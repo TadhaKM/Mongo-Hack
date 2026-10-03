@@ -23,6 +23,8 @@ const props = defineProps<{
   print?: boolean
   /** Play the entrance animations (only when the user watched the check run). */
   animate?: boolean
+  /** The full report page shows the property in its cover instead. */
+  hideSummary?: boolean
 }>()
 
 const failed = (stage: string) => props.analysis.stages.find(s => s.stage === stage)?.status === 'failed'
@@ -34,7 +36,7 @@ const lowConfidence = computed(() => props.analysis.summary?.confidence.level ==
 <template>
   <div class="divide-y">
     <!-- Property summary -->
-    <ReportSection id="r-summary" title="The property">
+    <ReportSection v-if="!hideSummary" id="r-summary" title="The property">
       <div class="flex items-baseline justify-between gap-2">
         <p class="type-display-md text-foreground tabular-nums">{{ eur(analysis.input.monthly_rent) }}<span class="text-sm font-normal text-muted-foreground"> /month</span></p>
         <p class="text-sm text-muted-foreground">{{ analysis.property.area }}</p>

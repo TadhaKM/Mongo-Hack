@@ -52,12 +52,12 @@ export function parseDate(value: string): Date {
 export function month(value: string): string {
   const quarter = /^(\d{4})-Q([1-4])$/.exec(value)
   if (quarter) return `Q${quarter[2]} ${quarter[1]}`
-  return monthFormat.format(parseDate(value))
+  return monthFormat.format(parseDate(value)).replace('Sept', 'Sep')
 }
 
 /** "2026-05-12" → "12 May 2026" */
 export function day(value: string): string {
-  return dayFormat.format(parseDate(value))
+  return dayFormat.format(parseDate(value)).replace('Sept', 'Sep')
 }
 
 /** ('2025-01', '2026-09') → "Jan 2025 to Sep 2026" */

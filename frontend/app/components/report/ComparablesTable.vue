@@ -27,6 +27,8 @@ const table = useVueTable({
 })
 
 const expanded = ref(!!props.print)
+// Printing shows every row; restore the short list afterwards.
+watch(() => props.print, (p) => { expanded.value = !!p })
 const rows = computed(() => (expanded.value ? table.getRowModel().rows : table.getRowModel().rows.slice(0, 8)))
 
 // Map → table: highlight and reveal the row the map is hovering (unless the pointer is already on the table).
