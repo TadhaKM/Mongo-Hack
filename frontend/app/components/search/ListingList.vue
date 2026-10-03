@@ -30,7 +30,21 @@ const verdictChip: Record<ListingSummary['verdict'], string> = {
       <div>
         <h2 class="text-base font-semibold">
           <template v-if="isPending && !data">Loading rentals…</template>
-          <template v-else>{{ items.length }} {{ items.length === 1 ? 'rental' : 'rentals' }} in this area</template>
+          <template v-else>
+            <!-- The count slides out and the new one slides in when filters or the view change. -->
+            <span class="relative inline-flex overflow-hidden align-bottom tabular-nums">
+              <Transition
+                mode="out-in"
+                enter-active-class="transition duration-200 ease-out motion-reduce:transition-none"
+                enter-from-class="translate-y-full opacity-0"
+                leave-active-class="transition duration-150 ease-in motion-reduce:transition-none"
+                leave-to-class="-translate-y-full opacity-0"
+              >
+                <span :key="items.length" class="inline-block">{{ items.length }}</span>
+              </Transition>
+            </span>
+            {{ items.length === 1 ? 'rental' : 'rentals' }} in this area
+          </template>
         </h2>
         <p class="text-xs text-muted-foreground">Coloured by rent vs the local median</p>
       </div>
