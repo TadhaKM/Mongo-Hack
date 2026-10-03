@@ -10,11 +10,14 @@ export function snapshot(map: MlMap): CameraSnapshot {
   return { center: [c.lng, c.lat], zoom: map.getZoom(), pitch: map.getPitch(), bearing: map.getBearing() }
 }
 
-/** Padding that keeps content clear of the desktop side panel (none on mobile). */
+/** Mobile: the bottom sheet sits at half height while a property is open. */
+const mobileSheetPadding = () => Math.round((typeof window === 'undefined' ? 800 : window.innerHeight) * 0.45)
+
+/** Padding that keeps content clear of the desktop side panel or the mobile sheet. */
 export function panelPadding(desktop: boolean, extra = 0): PaddingOptions {
   return desktop
     ? { top: 80 + extra, bottom: 40 + extra, left: PANEL_PADDING_LEFT + extra, right: 60 + extra }
-    : { top: 120 + extra, bottom: 180 + extra, left: 20 + extra, right: 20 + extra }
+    : { top: 120 + extra, bottom: mobileSheetPadding() + extra, left: 20 + extra, right: 60 + extra }
 }
 
 /** Swoop in on a property. `flat` = 2D mode or mobile default. */
@@ -24,7 +27,7 @@ export function flyToProperty(map: MlMap, location: LngLat, opts: { desktop: boo
     zoom: CAMERA.selected.zoom,
     pitch: opts.flat ? 0 : CAMERA.selected.pitch,
     bearing: opts.flat ? 0 : CAMERA.selected.bearing,
-    padding: opts.desktop ? { left: PANEL_PADDING_LEFT, top: 0, right: 0, bottom: 0 } : { top: 0, left: 0, right: 0, bottom: 160 },
+    padding: opts.desktop ? { left: PANEL_PADDING_LEFT, top: 0, right: 0, bottom: 0 } : { top: 110, left: 0, right: 0, bottom: mobileSheetPadding() },
     duration: FLY_DURATION_MS,
     essential: true,
   })
@@ -45,10 +48,8 @@ export function fitPoints(map: MlMap, points: LngLat[], desktop: boolean) {
   // so ask only for the difference and keep the map's padding (no jump).
   const want = panelPadding(desktop, 20)
   const has = map.getPadding()
-  const extra = {
-    top: Math.max(0, want.top - has.top), bottom: Math.max(0, want.bottom - has.bottom),
-    left: Math.max(0, want.left - has.left), right: Math.max(0, want.right - has.right),
-  }
+  const diff = (k: keyof PaddingOptions) => Math.max(0, (want[k] ?? 0) - (has[k] ?? 0))
+  const extra = { top: diff('top'), bottom: diff('bottom'), left: diff('left'), right: diff('right') }
   const cam = map.cameraForBounds(b, { padding: extra, bearing: map.getBearing(), maxZoom: 16.5 })
   if (!cam?.center || cam.zoom == null) return
   map.easeTo({

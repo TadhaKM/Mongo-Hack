@@ -21,6 +21,10 @@ export interface CreateMapResult {
 export function createMap(options: Omit<MapOptions, 'style'> & { style?: string }): CreateMapResult {
   ensureMapWorker()
   const map = new MlMap({ style: options.style ?? MAP_STYLE, attributionControl: { compact: true }, ...options })
+  // Liberty references a few POI icons its sprite lacks; stand in a blank image instead of warning.
+  map.setMissingStyleImageResolver((id) => {
+    if (!map.hasImage(id)) map.addImage(id, { width: 1, height: 1, data: new Uint8Array(4) })
+  })
   const ready = new Promise<{ fallback: boolean }>((resolve) => {
     let settled = false
     const useFallback = () => {

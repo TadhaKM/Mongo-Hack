@@ -6,7 +6,7 @@ import { useDebounceFn, useMediaQuery } from '@vueuse/core'
 import { toast } from 'vue-sonner'
 import type { ListingSummary, LngLat } from '~/types/api'
 import {
-  BBOX_DEBOUNCE_MS, CAMERA, DESKTOP_QUERY, DUBLIN_CENTER, PANEL_PADDING_LEFT, PITCH_3D,
+  BBOX_DEBOUNCE_MS, CAMERA, DESKTOP_QUERY, DUBLIN_CENTER, PITCH_3D,
 } from '~/lib/map/config'
 import { MAP_KEY, createMap, softenBuildings } from '~/lib/map/core'
 import { clearBuildingHighlight, highlightBuildingWhenSettled, removeBuildingHighlight } from '~/lib/map/building'
@@ -270,7 +270,7 @@ function flyToAnalysis(home: LngLat) {
   m.flyTo({
     center: [home.lng, home.lat], zoom: CAMERA.analysis.zoom,
     pitch: flat.value ? 0 : CAMERA.analysis.pitch, bearing: m.getBearing(),
-    padding: desktop.value ? { left: PANEL_PADDING_LEFT, top: 0, right: 0, bottom: 0 } : { top: 0, left: 0, right: 0, bottom: 160 },
+    padding: panelPadding(desktop.value),
     duration: 1200, essential: true,
   })
 }
