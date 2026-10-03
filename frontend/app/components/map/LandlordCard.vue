@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Check, Copy, Mail, X } from '@lucide/vue'
+import { onClickOutside } from '@vueuse/core'
 import { toast } from 'vue-sonner'
 import { beds, eur, metres, period, propertyType } from '~/lib/format'
 import { gsap, reducedMotion } from '~/lib/motion'
@@ -102,13 +103,18 @@ onMounted(() => {
 })
 onBeforeUnmount(() => tween?.kill())
 
+let closing = false
 function close() {
+  if (closing) return
+  closing = true
   if (!tween || reducedMotion()) return emit('closed')
   tween.eventCallback('onReverseComplete', () => emit('closed'))
   tween.timeScale(1.5).reverse()
 }
 function onKey(e: KeyboardEvent) { if (e.key === 'Escape') close() }
 onMounted(() => window.addEventListener('keydown', onKey))
+// Any click outside the card (map, side panel, search, anywhere) closes it.
+onClickOutside(root, close)
 onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 </script>
 

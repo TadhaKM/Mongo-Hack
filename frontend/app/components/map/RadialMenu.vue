@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
+import { onClickOutside } from '@vueuse/core'
 import { gsap, reducedMotion } from '~/lib/motion'
 
 export interface RadialItem { key: string; label: string; icon: Component }
@@ -63,6 +64,8 @@ function pick(key: string) {
 function onKey(e: KeyboardEvent) {
   if (e.key === 'Escape') close()
 }
+
+onClickOutside(root, close)
 
 defineExpose({ close })
 </script>
