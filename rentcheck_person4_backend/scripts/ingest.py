@@ -10,7 +10,7 @@ from app.db.mongodb import collection
 from app.ingestion.nta_gtfs import NtaGtfsImporter
 from app.ingestion.planning import PlanningImporter
 from app.ingestion.ppr import PprImporter
-from app.ingestion.rtb import RtbManualImporter
+from app.ingestion.rtb import RtbManualImporter, CsoRiq02Importer
 from app.ingestion.cso import CsoCsvImporter, VacancyCsvImporter
 from app.ingestion.boundaries import GeoJsonBoundaryImporter
 from app.ingestion.registry import seed_source_catalog
@@ -29,6 +29,7 @@ def main():
     p=sub.add_parser("planning"); p.add_argument("--path"); p.add_argument("--url")
     p=sub.add_parser("ppr"); p.add_argument("--path", required=True)
     p=sub.add_parser("rtb"); p.add_argument("--path", required=True)
+    p=sub.add_parser("riq02"); p.add_argument("--path", required=True)
     p=sub.add_parser("census"); p.add_argument("--path", required=True)
     p=sub.add_parser("vacancy"); p.add_argument("--path", required=True)
     p=sub.add_parser("boundary"); p.add_argument("--path", required=True); p.add_argument("--collection", required=True); p.add_argument("--dataset-id", default="official_boundaries"); p.add_argument("--source-url")
@@ -44,6 +45,7 @@ def main():
         "planning": lambda: PlanningImporter().import_path(args.path, args.url) if args.url or args.path else None,
         "ppr": lambda: PprImporter().import_path(args.path),
         "rtb": lambda: RtbManualImporter().import_path(args.path),
+        "riq02": lambda: CsoRiq02Importer().import_path(args.path),
         "census": lambda: CsoCsvImporter().import_path(args.path),
         "vacancy": lambda: VacancyCsvImporter().import_path(args.path),
         "boundary": lambda: GeoJsonBoundaryImporter(args.collection, args.dataset_id).import_path(args.path, args.source_url)

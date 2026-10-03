@@ -155,3 +155,31 @@ Do not build a scraper for RTB pages. Use official downloadable files that the t
 ## One-line architecture
 
 External Irish datasets -> ingestion -> normalisation/validation -> MongoDB -> FastAPI -> AI agents + frontend
+
+## Optional Daft.ie live integration
+
+The project now includes an **optional live Daft.ie API V3 adapter** under `app/daft/`.
+
+Important: Daft's current terms require an API key and restrict usage. They prohibit using the API data with an existing product/service that competes with Daft without written consent, prohibit pre-fetching/caching/storing results as an independent property database, and require visible `Properties by Daft.ie` attribution on an authorised public-facing website. Personal accounts are currently limited to 1,000 requests per 24 hours. Do not enable this integration until the team's Daft account is authorised for the intended hackathon use.
+
+Configuration:
+
+```text
+DAFT_API_ENABLED=true
+DAFT_API_AUTHORISED=true
+DAFT_API_KEY=<real key>
+DAFT_WSDL_URL=http://api.daft.ie/v3/wsdl.xml
+```
+
+The adapter is intentionally **live-only**. Daft listing results must not be written to MongoDB or persisted inside the `analyses` collection.
+
+Endpoints:
+
+```text
+GET /daft/rental/search/{property_id}
+GET /daft/sale/search/{property_id}
+GET /analysis/{analysis_id}/live/daft-rental
+GET /analysis/{analysis_id}/live/daft-sale
+GET /agent/getDaftRentalComparables/{property_id}
+GET /agent/getDaftSaleComparables/{property_id}
+```

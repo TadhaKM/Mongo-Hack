@@ -35,6 +35,8 @@ Person 1's `db/` layer (schema v2) reuses collection names that Person 4's backe
 runs in its own database, **`rentcheck_engine`**. The backend and agents stay on **`rentcheck`**
 (`MONGODB_DATABASE`). Don't point both at the same database until the schemas are merged.
 
+> **Update (Person 1):** the same real rent data (CSO RIQ02) is now loaded into both databases, and the backend reaches the engine through `/engine/*` (set `ENGINE_URL`). See [real-data-and-integration.md](real-data-and-integration.md).
+
 ## For Person 1 (MongoDB). Facts about the rent data (verified today)
 - **Use CSO PxStat RIQ02** ("RTB Average Monthly Rent Report"):
   `https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/RIQ02/JSON-stat/2.0/en`.

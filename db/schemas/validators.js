@@ -17,7 +17,7 @@ const src = {
     geoMethod: { enum: ["source_coords", "eircode", "address_match", "centroid", "polygon"] },
     geoConfidence: { ...num, minimum: 0, maximum: 1 } },
 };
-const propertyType = { enum: ["apartment", "house", "detached", "semi_detached", "terraced", "studio", "all", "unknown"] };
+const propertyType = { enum: ["apartment", "house", "detached", "semi_detached", "terraced", "studio", "other_flat", "all", "unknown"] };
 
 export const VALIDATORS = {
   // Individual advertised or registered rents. Point data only.
@@ -40,7 +40,7 @@ export const VALIDATORS = {
     required: ["areaId", "areaLevel", "propertyType", "measure", "avgRent", "periodStart", "periodLabel", "src"],
     properties: {
       areaId: str, areaLevel: str, propertyType, bedrooms: { bsonType: ["int", "long", "double"], minimum: 0, maximum: 5 },
-      measure: { enum: ["index_mean"] },
+      measure: { enum: ["index_mean", "registered_average"] },
       avgRent: posNum, stdError: num, sampleSize: num, periodStart: date, periodLabel: str, src,
     },
     not: { anyOf: [{ required: ["rent"] }, { required: ["geo"] }] },   // cannot be mistaken for an observation

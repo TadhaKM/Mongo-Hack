@@ -33,6 +33,17 @@ class RtbManualImporter(DatasetImporter):
             })
         return ImportResult(records_read=len(rows), records_written=self.write(docs))
 
+class CsoRiq02Importer(RtbManualImporter):
+    """CSO PxStat RIQ02 'RTB Average Monthly Rent Report': average rent of newly registered tenancies by place, type,
+    bedrooms and quarter. A different dataset from the standardised RTB/ESRI index, so it keeps its own dataset id and
+    source. Produce the CSV with `node db/scripts/importRiq02.js` (repo root) or any file with the same columns."""
+    dataset_id = "cso_riq02"
+    organisation = "Residential Tenancies Board (published by the Central Statistics Office)"
+    default_url = "https://data.cso.ie/table/RIQ02"
+
+    def import_path(self, path, source_url=None):
+        return super().import_path(path, source_url or self.default_url)
+
 def parse_rent(v):
     if v is None: return None
     try: return float(str(v).replace("€", "").replace(",", "").strip())

@@ -10,6 +10,8 @@ from app.api.properties import router as properties_router
 from app.api.analysis import router as analysis_router
 from app.api.agent import router as agent_router
 from app.api.system import router as system_router
+from app.api.daft import router as daft_router
+from app.api.engine import router as engine_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -23,6 +25,8 @@ app.include_router(properties_router)
 app.include_router(analysis_router)
 app.include_router(agent_router)
 app.include_router(system_router)
+app.include_router(daft_router)
+app.include_router(engine_router)
 
 # Person 2's AI agents (../agents). Mounted in-process: they call these services directly and save
 # reports into this backend's `analyses` collection, so GET /analysis/{id}/report includes `report` + `agent`.

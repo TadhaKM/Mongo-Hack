@@ -166,6 +166,8 @@ The RTB index appears **beside** the comparables in the engine's output (`histor
 | `embedding` | array<double> | O | Vector Search (stretch) |
 | `src` | `src` | R | `recordId` is the listing id |
 
+> **Licence constraint on the source of listings.** The Daft API terms recorded in `rentcheck_person4_backend/source_catalog.json` forbid pre-fetching, caching or storing results. Daft listings must therefore **not** be loaded here; they stay a live, non-persisted lookup in the backend. `rental_observations` needs a source whose licence allows storage; until then the comparable engine reports `status: none` rather than inventing comparables. See [real-data-and-integration.md](real-data-and-integration.md).
+
 **Examples**
 
 *Advertised rent* (the common case):
@@ -211,10 +213,10 @@ The RTB index appears **beside** the comparables in the engine's output (`histor
 | Field | Type | Req | Notes |
 |---|---|---|---|
 | `areaId` | string | R | usually an RTB zone (`rtbzone:dublin-6`) |
-| `areaLevel` | string | R | `rtb_zone`, `lea`, `county`, ... |
-| `propertyType` | enum (as above) | R | `all` if the cell is not split by type |
+| `areaLevel` | string | R | `rtb_zone` (a town or neighbourhood), `lea`, `county`. Counties and places are different levels and are never compared with each other |
+| `propertyType` | enum (as above, plus `other_flat`) | R | `all` if the cell is not split by type |
 | `bedrooms` | int 0-5 | O | omit when the cell covers all sizes |
-| `measure` | enum `index_mean` | R | |
+| `measure` | enum `index_mean`, `registered_average` | R | `index_mean` = the standardised RTB/ESRI index. `registered_average` = the average rent of newly registered tenancies (CSO RIQ02, the real data loaded today). Different measures, never merged; tools prefer `index_mean` when a zone has both |
 | `avgRent` | double > 0 | R | the standardised average. **Not** `rent.amount`, on purpose |
 | `stdError`, `sampleSize` | double / int | O | |
 | `periodStart`, `periodLabel` | date, string | R | quarter start, `2026Q3` |

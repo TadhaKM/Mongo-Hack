@@ -27,6 +27,8 @@ export const TOOLS = {
   comparableListings: geo.comparableListings,
   rentalComparables: comparables.rentalComparables,
   rentalTrend: trends.rentalTrend,
+  locateRentArea: rent.locateRentArea,
+  rentContext: rent.rentContext,
   benchmarkRent: rent.benchmarkRent,
   zoneComparables: rent.zoneComparables,
   rentTrend: rent.rentTrend,

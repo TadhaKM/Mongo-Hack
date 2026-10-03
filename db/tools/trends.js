@@ -10,6 +10,7 @@ import { envelope, noData } from "../lib/envelope.js";
 import { TREND_V1 } from "../config/trendConfig.js";
 import { pctExpr } from "./comparables.js";
 import { rentTrend as officialIndexTrend } from "./rent.js";
+import { resolveRtbZone } from "../lib/zones.js";
 
 const ref = (collection, docId) => ({ collection, docId: String(docId) });
 const MONTHS = { month: 1, quarter: 3, year: 12 };
@@ -248,12 +249,12 @@ export async function rentalTrend(db, input, ledger, cfg = TREND_V1) {
   // Cross-check against the official quarterly index. Reported separately, never merged.
   let officialIndex = null;
   if (used.type === "radius" && v.bedrooms != null && v.propertyType) {
-    const sa = await db.collection("areas").findOne({ level: "small_area", geometry: { $geoIntersects: { $geometry: v.scope.center } } }, { projection: { parents: 1 } });
-    const zone = sa?.parents?.rtb_zone;
+    const zr = await resolveRtbZone(db, v.scope.center, { propertyType: v.propertyType, bedrooms: v.bedrooms });
+    const zone = zr.zoneId;
     if (zone) {
       const idx = await officialIndexTrend(db, { rtbZoneId: zone, propertyType: v.propertyType, bedrooms: v.bedrooms, sinceYears: Math.max(1, Math.ceil(v.periods * (MONTHS[v.unit] / 12))) }, ledger);
       scope.items.push(...idx.evidence);
-      if (idx.data) officialIndex = { unit: "quarter", measure: "index_mean", zone, from: idx.data.series[0].period, to: idx.data.series.at(-1).period, totalChangePct: idx.data.totalChangePct, latestYoY: idx.data.latestYoY, direction: idx.data.direction };
+      if (idx.data) officialIndex = { unit: "quarter", measure: idx.data.measure, zone, from: idx.data.series[0].period, to: idx.data.series.at(-1).period, totalChangePct: idx.data.totalChangePct, latestYoY: idx.data.latestYoY, direction: idx.data.direction };
     }
   }
 

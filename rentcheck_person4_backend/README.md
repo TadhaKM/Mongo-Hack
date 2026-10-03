@@ -218,3 +218,17 @@ Outliers are flagged rather than silently deleted.
 ## Not a valuation engine
 
 PPR data is historical sales evidence, not rental value. RTB/ESRI data is area/property-characteristic rental evidence, not a guaranteed valuation of an individual dwelling. The API therefore returns explicit match metadata and data vintage.
+
+## Daft.ie API V3 (optional)
+
+This project contains an optional live Daft.ie V3 SOAP adapter. It is disabled by default and requires a real authorised Daft API key. See `HANDOFF_TO_TEAM.md` for the relevant terms and setup. Do not put the API key in Git.
+
+### Testing Daft after authorisation
+
+After installing dependencies and configuring a real authorised Daft API key in `.env`, create/use a test property, then run:
+
+```bash
+python scripts/daft_smoke_test.py <property_id> --kind rental --radius-m 5000 --limit 5
+```
+
+The script performs one live search and prints the returned evidence. It does not save the results to MongoDB.

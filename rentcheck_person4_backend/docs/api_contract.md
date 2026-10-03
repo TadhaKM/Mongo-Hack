@@ -62,3 +62,29 @@ Returns all evidence and source metadata in one frontend-friendly payload.
 `/agent/getNeighbourhoodData/{property_id}`
 `/agent/getNearbyPlanning/{property_id}`
 `/agent/getPropertySales/{property_id}`
+
+## Daft live endpoints
+
+Daft V3 is exposed as an optional live-only integration. Responses are not cached or persisted by this backend.
+
+### Rental
+
+`GET /agent/getDaftRentalComparables/{property_id}?radius_m=5000&limit=10&bedrooms=2&property_type=apartment`
+
+### Sale
+
+`GET /agent/getDaftSaleComparables/{property_id}?radius_m=5000&limit=10&bedrooms=2&property_type=apartment`
+
+The response includes listing ID, Daft URL, rent/price, bedrooms/bathrooms, address/location, calculated distance, and source/terms metadata. Weekly rental amounts are also exposed as a derived monthly figure using `weekly * 52 / 12`.
+
+Daft results are live evidence only and are deliberately excluded from persistent analysis documents because Daft's terms prohibit building an independent property database from API results.
+
+
+## Daft live HTTP API
+
+```text
+GET /daft/rental/search/{property_id}
+GET /daft/sale/search/{property_id}
+```
+
+These endpoints call Daft V3 live via SOAP. They use the property coordinate to request distance-sorted results and apply the requested radius to returned geocoded ads. No Daft listing result is persisted in MongoDB.

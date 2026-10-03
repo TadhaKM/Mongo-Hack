@@ -16,3 +16,4 @@ pytest-asyncio>=0.23,<1
 mongomock>=4.2,<5
 google-genai>=2.28,<3
 python-dotenv>=1.0
+zeep>=4.3,<5

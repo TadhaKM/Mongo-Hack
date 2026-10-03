@@ -5,6 +5,7 @@ import { point } from "../lib/geo.js";
 import { envelope, noData } from "../lib/envelope.js";
 import { COMP_V1 } from "../config/comparableScoring.js";
 import { rentTrend, benchmarkRent } from "./rent.js";
+import { resolveRtbZone } from "../lib/zones.js";
 
 const ref = (collection, docId) => ({ collection, docId: String(docId) });
 const DAY = 864e5;
@@ -233,15 +234,17 @@ export async function rentalComparables(db, input, ledger, cfg = COMP_V1) {
 
   // Cross-check against the official RTB index when the zone is known.
   let rtbIndex = null;
-  const zone = geo.parents?.rtb_zone, rtbType = v.propertyType && v.propertyType !== "all" ? v.propertyType : null;
+  const zoneRes = geo.parents?.rtb_zone ? { zoneId: geo.parents.rtb_zone, method: "small_area_parent" } : await resolveRtbZone(db, v.pt, { propertyType: v.propertyType && v.propertyType !== "all" ? v.propertyType : undefined, bedrooms: v.bedrooms });
+  const zone = zoneRes.zoneId, rtbType = v.propertyType && v.propertyType !== "all" ? v.propertyType : null;
   if (zone && rtbType) {
     const trend = await rentTrend(db, { rtbZoneId: zone, propertyType: rtbType, bedrooms: v.bedrooms, sinceYears: 3 }, ledger);
     const bench = v.monthlyRent ? await benchmarkRent(db, { rtbZoneId: zone, propertyType: rtbType, bedrooms: v.bedrooms, askingRent: v.monthlyRent }, ledger) : null;
     scope.items.push(...trend.evidence, ...(bench?.evidence ?? []));
-    rtbIndex = { zone, trend: trend.data && { from: trend.data.series[0].period, to: trend.data.series.at(-1).period, totalChangePct: trend.data.totalChangePct, latestYoY: trend.data.latestYoY, direction: trend.data.direction },
+    rtbIndex = { zone, zoneMethod: zoneRes.method, ...(zoneRes.distM != null && { zoneDistanceM: zoneRes.distM, zoneName: zoneRes.zoneName }), measure: (trend.data ?? bench?.data)?.measure ?? null, trend: trend.data && { from: trend.data.series[0].period, to: trend.data.series.at(-1).period, totalChangePct: trend.data.totalChangePct, latestYoY: trend.data.latestYoY, direction: trend.data.direction },
       benchmark: bench?.data && { period: bench.data.periodLabel, areaMean: bench.data.mean, diffPct: bench.data.diffPct, band: bench.data.band } };
   }
 
+  if (zoneRes.method === "nearest_with_data") warnings.push(`The official rent cross-check uses ${zoneRes.zoneName}, the nearest published place with data (${zoneRes.distM} m away); this is approximate.`);
   const data = {
     status, confidence, scoringModel: cfg.version, measure: v.measure,
     comparableCount: n,

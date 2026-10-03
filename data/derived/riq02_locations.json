@@ -1,0 +1,3562 @@
+{
+ "110000": {
+  "code": "110000",
+  "label": "Carlow",
+  "lat": 52.84083,
+  "lng": -6.92611,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Carlow, County Carlow, Leinster, Éire / Ireland",
+  "importance": 0.49271680979075044
+ },
+ "110200": {
+  "code": "110200",
+  "label": "Carlow Town",
+  "lat": 52.84083,
+  "lng": -6.92611,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Carlow, County Carlow, Leinster, Éire / Ireland",
+  "importance": 0.49271680979075044
+ },
+ "110500": {
+  "code": "110500",
+  "label": "Tullow, Carlow",
+  "lat": 52.80315,
+  "lng": -6.73773,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Tullow, The Municipal District of Tullow, County Carlow, Leinster, Éire / Ireland",
+  "importance": 0.3930358659837339
+ },
+ "110550": {
+  "code": "110550",
+  "label": "Cavan",
+  "lat": 54.03498,
+  "lng": -7.2937,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "County Cavan, Ulster, Éire / Ireland",
+  "importance": 0.24004841306172273
+ },
+ "110600": {
+  "code": "110600",
+  "label": "Bailieborough, Cavan",
+  "lat": 53.91686,
+  "lng": -6.97071,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Bailieborough, Bailieborough ED, Bailieborough-Cootehill Municipal District, County Cavan, Ulster, Éire / Ireland",
+  "importance": 0.1600496581979095
+ },
+ "110800": {
+  "code": "110800",
+  "label": "Ballyconnell, Cavan",
+  "lat": 54.11667,
+  "lng": -7.58333,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ballyconnell, Ballyconnell ED, Ballyconnell, Cavan-Belturbet Municipal District, County Cavan, Ulster, H14 EC99, Éire / Ireland",
+  "importance": 0.43169223361915116
+ },
+ "110900": {
+  "code": "110900",
+  "label": "Ballyjamesduff, Cavan",
+  "lat": 53.86391,
+  "lng": -7.20616,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ballyjamesduff, Ballyjamesduff Municipal District, County Cavan, Ulster, Éire / Ireland",
+  "importance": 0.43051382543298305
+ },
+ "111000": {
+  "code": "111000",
+  "label": "Belturbet, Cavan",
+  "lat": 54.10074,
+  "lng": -7.44404,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Belturbet, Cavan-Belturbet Municipal District, County Cavan, Ulster, Éire / Ireland",
+  "importance": 0.43060522884509167
+ },
+ "111100": {
+  "code": "111100",
+  "label": "Cavan Town",
+  "lat": 53.9911,
+  "lng": -7.36031,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Cavan, Cavan-Belturbet Municipal District, County Cavan, Ulster, Éire / Ireland",
+  "importance": 0.16005535439078353
+ },
+ "111200": {
+  "code": "111200",
+  "label": "Cootehill, Cavan",
+  "lat": 54.07253,
+  "lng": -7.08225,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Cootehill, Bailieborough-Cootehill Municipal District, County Cavan, Ulster, Éire / Ireland",
+  "importance": 0.1600497177080949
+ },
+ "111300": {
+  "code": "111300",
+  "label": "Kingscourt, Cavan",
+  "lat": 53.90502,
+  "lng": -6.80467,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Kingscourt, Kingscourt ED, Bailieborough-Cootehill Municipal District, County Cavan, Ulster, Éire / Ireland",
+  "importance": 0.16004913176165406
+ },
+ "111500": {
+  "code": "111500",
+  "label": "Virginia, Cavan",
+  "lat": 53.83507,
+  "lng": -7.08316,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Virginia, Virginia ED, Ballyjamesduff Municipal District, County Cavan, Ulster, Éire / Ireland",
+  "importance": 0.4295927056894503
+ },
+ "111600": {
+  "code": "111600",
+  "label": "Clare",
+  "lat": 53.34553,
+  "lng": -8.98585,
+  "osmType": "river",
+  "osmClass": "waterway",
+  "displayName": "Clare, Claregalway ED, Athenry-Oranmore Municipal District, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.36212526445830706
+ },
+ "111900": {
+  "code": "111900",
+  "label": "Ennis, Clare",
+  "lat": 52.84352,
+  "lng": -8.98375,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ennis, Ennis Municipal District, County Clare, Munster, Éire / Ireland",
+  "importance": 0.5102980478439053
+ },
+ "112100": {
+  "code": "112100",
+  "label": "Killaloe, Clare",
+  "lat": 52.80505,
+  "lng": -8.4459,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Killaloe, Killaloe ED, Killaloe Municipal District, County Clare, Munster, Éire / Ireland",
+  "importance": 0.16004869687953
+ },
+ "112200": {
+  "code": "112200",
+  "label": "Kilrush, Clare",
+  "lat": 52.63972,
+  "lng": -9.48333,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Kilrush, West Clare Municipal District, County Clare, Munster, Éire / Ireland",
+  "importance": 0.1600517090104524
+ },
+ "112400": {
+  "code": "112400",
+  "label": "Newmarket-On-Fergus, Clare",
+  "lat": 52.76059,
+  "lng": -8.89615,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Newmarket on Fergus, County Clare, Munster, Éire / Ireland",
+  "importance": 0.16005108339055465
+ },
+ "112700": {
+  "code": "112700",
+  "label": "Shannon, Clare",
+  "lat": 52.69132,
+  "lng": -8.61862,
+  "osmType": "river",
+  "osmClass": "waterway",
+  "displayName": "Shannon, Abbey A, Ballyglass ED, Shannon Municipal District, County Clare, Munster, Éire / Ireland",
+  "importance": 0.5297041223804846
+ },
+ "112800": {
+  "code": "112800",
+  "label": "Sixmilebridge, Clare",
+  "lat": 52.7381,
+  "lng": -8.78577,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Sixmilebridge, R471, Sixmilebridge, Shannon Municipal District, County Clare, Munster, Éire / Ireland",
+  "importance": 0.3015950553092256
+ },
+ "113000": {
+  "code": "113000",
+  "label": "Cork",
+  "lat": 51.89851,
+  "lng": -8.47264,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Cork, County Cork, Munster, Éire / Ireland",
+  "importance": 0.6461937354371459
+ },
+ "113100": {
+  "code": "113100",
+  "label": "Ballincollig, Cork",
+  "lat": 51.88826,
+  "lng": -8.59184,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Ballincollig, Ballincollig ED, Cork, County Cork, Munster, P31 PD95, Éire / Ireland",
+  "importance": 0.46004801718592575
+ },
+ "113200": {
+  "code": "113200",
+  "label": "Ballintemple, Cork",
+  "lat": 51.8948,
+  "lng": -8.43545,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Ballintemple, Knockrea A, Cork, County Cork, Munster, Éire / Ireland",
+  "importance": 0.14673591287098492
+ },
+ "113500": {
+  "code": "113500",
+  "label": "Bandon, Cork",
+  "lat": 51.74617,
+  "lng": -8.73693,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Bandon, The Municipal District of Bandon-Kinsale, County Cork, Munster, Éire / Ireland",
+  "importance": 0.46977615874031897
+ },
+ "113600": {
+  "code": "113600",
+  "label": "Bantry, Cork",
+  "lat": 51.67977,
+  "lng": -9.45236,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Bantry, West Cork, County Cork, Munster, P75 W242, Éire / Ireland",
+  "importance": 0.16005220645456625
+ },
+ "113800": {
+  "code": "113800",
+  "label": "Bishopstown, Cork",
+  "lat": 51.87961,
+  "lng": -8.51666,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Bishopstown, Bishopstown ED E, Cork, County Cork, Munster, T12 P951, Éire / Ireland",
+  "importance": 0.14673591287098492
+ },
+ "113900": {
+  "code": "113900",
+  "label": "Blackpool, Cork",
+  "lat": 51.91127,
+  "lng": -8.47364,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Blackpool, Farranferris A, Cork, County Cork, Munster, Éire / Ireland",
+  "importance": 0.14673591287098492
+ },
+ "114000": {
+  "code": "114000",
+  "label": "Blackrock, Cork",
+  "lat": 51.89746,
+  "lng": -8.41309,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Blackrock, Mahon A, Cork, County Cork, Munster, T12 TY70, Éire / Ireland",
+  "importance": 0.3697233328141787
+ },
+ "114100": {
+  "code": "114100",
+  "label": "Blarney, Cork",
+  "lat": 51.93246,
+  "lng": -8.5681,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Blarney, County Cork, Munster, Éire / Ireland",
+  "importance": 0.4569458819436982
+ },
+ "114300": {
+  "code": "114300",
+  "label": "Carrigaline, Cork",
+  "lat": 51.81496,
+  "lng": -8.39227,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Carrigaline, County Cork, Munster, Éire / Ireland",
+  "importance": 0.16005048065918973
+ },
+ "114400": {
+  "code": "114400",
+  "label": "Carrigtwohill, Cork",
+  "lat": 51.90946,
+  "lng": -8.26118,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Carrigtwohill, Municipal District of Cobh, County Cork, Munster, Éire / Ireland",
+  "importance": 0.44081797074058054
+ },
+ "114700": {
+  "code": "114700",
+  "label": "Charleville, Cork",
+  "lat": 52.35464,
+  "lng": -8.68288,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Charleville, County Cork, Munster, Éire / Ireland",
+  "importance": 0.44854900924452645
+ },
+ "114800": {
+  "code": "114800",
+  "label": "Clonakilty, Cork",
+  "lat": 51.62322,
+  "lng": -8.89141,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Clonakilty, County Cork, Munster, Éire / Ireland",
+  "importance": 0.46992665409757184
+ },
+ "115000": {
+  "code": "115000",
+  "label": "Cobh, Cork",
+  "lat": 51.85023,
+  "lng": -8.29506,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Cobh, County Cork, Munster, Éire / Ireland",
+  "importance": 0.5252733224900974
+ },
+ "115200": {
+  "code": "115200",
+  "label": "Cork City",
+  "lat": 51.88978,
+  "lng": -8.46538,
+  "osmType": "barony",
+  "osmClass": "boundary",
+  "displayName": "Cork City, Cork, County Cork, Munster, Éire / Ireland",
+  "importance": 0.06673591287098496
+ },
+ "115500": {
+  "code": "115500",
+  "label": "Crosshaven, Cork",
+  "lat": 51.80238,
+  "lng": -8.29533,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Crosshaven, County Cork, Munster, Éire / Ireland",
+  "importance": 0.1467246623941405
+ },
+ "115700": {
+  "code": "115700",
+  "label": "Douglas, Cork",
+  "lat": 51.87755,
+  "lng": -8.43589,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Douglas, Cork, County Cork, Munster, T12 W90W, Éire / Ireland",
+  "importance": 0.4472868399702154
+ },
+ "115900": {
+  "code": "115900",
+  "label": "Dunmanway, Cork",
+  "lat": 51.7202,
+  "lng": -9.11269,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Dunmanway, West Cork, County Cork, Munster, Éire / Ireland",
+  "importance": 0.1600507522697795
+ },
+ "116100": {
+  "code": "116100",
+  "label": "Fermoy, Cork",
+  "lat": 52.13817,
+  "lng": -8.27522,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Fermoy, The Municipal District of Fermoy, County Cork, Munster, Éire / Ireland",
+  "importance": 0.16005267338063628
+ },
+ "116300": {
+  "code": "116300",
+  "label": "Glanmire, Cork",
+  "lat": 51.91923,
+  "lng": -8.39598,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Glanmire, Tivoli, Caherlag ED, Cork, County Cork, Munster, Éire / Ireland",
+  "importance": 0.14673591287098492
+ },
+ "116500": {
+  "code": "116500",
+  "label": "Kanturk, Cork",
+  "lat": 52.18768,
+  "lng": -8.92057,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Kanturk, The Municipal District of Kanturk-Mallow, County Cork, Munster, Éire / Ireland",
+  "importance": 0.16004976653696495
+ },
+ "116800": {
+  "code": "116800",
+  "label": "Kinsale, Cork",
+  "lat": 51.70574,
+  "lng": -8.52298,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Kinsale, County Cork, Munster, Éire / Ireland",
+  "importance": 0.5002612218286734
+ },
+ "116900": {
+  "code": "116900",
+  "label": "Macroom, Cork",
+  "lat": 51.90497,
+  "lng": -8.95992,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Macroom, Municipal District of Macroom, County Cork, Munster, Éire / Ireland",
+  "importance": 0.16005467078660257
+ },
+ "117000": {
+  "code": "117000",
+  "label": "Mallow, Cork",
+  "lat": 52.13891,
+  "lng": -8.65511,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Mallow, New Road, Mallow, The Municipal District of Kanturk-Mallow, County Cork, Munster, Éire / Ireland",
+  "importance": 0.33359242145229745
+ },
+ "117100": {
+  "code": "117100",
+  "label": "Midleton, Cork",
+  "lat": 51.9212,
+  "lng": -8.1757,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Midleton, Mill Road, Midleton, The Municipal District of East Cork, County Cork, Munster, Éire / Ireland",
+  "importance": 0.311877314681546
+ },
+ "117200": {
+  "code": "117200",
+  "label": "Millstreet, Cork",
+  "lat": 52.06023,
+  "lng": -9.06401,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Millstreet, Municipal District of Macroom, County Cork, Munster, Éire / Ireland",
+  "importance": 0.5024930130167787
+ },
+ "117300": {
+  "code": "117300",
+  "label": "Mitchelstown, Cork",
+  "lat": 52.25951,
+  "lng": -8.23784,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Mitchelstown, The Municipal District of Fermoy, County Cork, Munster, Éire / Ireland",
+  "importance": 0.16005053253986418
+ },
+ "117500": {
+  "code": "117500",
+  "label": "Passage West, Cork",
+  "lat": 51.87111,
+  "lng": -8.33542,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Passage West, County Cork, Munster, Éire / Ireland",
+  "importance": 0.16005799572747387
+ },
+ "118200": {
+  "code": "118200",
+  "label": "Skibbereen, Cork",
+  "lat": 51.54782,
+  "lng": -9.26621,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Skibbereen, County Cork, Munster, Éire / Ireland",
+  "importance": 0.4633431188913769
+ },
+ "118800": {
+  "code": "118800",
+  "label": "Youghal, Cork",
+  "lat": 51.94947,
+  "lng": -7.84319,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Youghal, County Cork, Munster, Éire / Ireland",
+  "importance": 0.4869894336103424
+ },
+ "118900": {
+  "code": "118900",
+  "label": "Donegal",
+  "lat": 54.65379,
+  "lng": -8.11026,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Donegal, County Donegal, Ulster, Éire / Ireland",
+  "importance": 0.4755415098206907
+ },
+ "119200": {
+  "code": "119200",
+  "label": "Ballybofey, Donegal",
+  "lat": 54.79906,
+  "lng": -7.78195,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ballybofey, Lifford-Stranorlar Municipal District, County Donegal, Ulster, Éire / Ireland",
+  "importance": 0.16006447623407338
+ },
+ "119400": {
+  "code": "119400",
+  "label": "Buncrana, Donegal",
+  "lat": 55.13536,
+  "lng": -7.45311,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Buncrana, County Donegal, Ulster, Éire / Ireland",
+  "importance": 0.16006447623407338
+ },
+ "119500": {
+  "code": "119500",
+  "label": "Bundoran, Donegal",
+  "lat": 54.47888,
+  "lng": -8.27825,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Bundoran, County Donegal, Ulster, Éire / Ireland",
+  "importance": 0.4633985020102336
+ },
+ "119600": {
+  "code": "119600",
+  "label": "Carndonagh, Donegal",
+  "lat": 55.25131,
+  "lng": -7.26115,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Carndonagh, Inishowen Municipal District, County Donegal, Ulster, Éire / Ireland",
+  "importance": 0.4209800478487352
+ },
+ "119800": {
+  "code": "119800",
+  "label": "Donegal Town",
+  "lat": 54.65379,
+  "lng": -8.11026,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Donegal, County Donegal, Ulster, Éire / Ireland",
+  "importance": 0.4755415098206907
+ },
+ "120000": {
+  "code": "120000",
+  "label": "Letterkenny, Donegal",
+  "lat": 54.95179,
+  "lng": -7.73544,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Letterkenny Municipal District, County Donegal, Ulster, Éire / Ireland",
+  "importance": 0.18673114290074003
+ },
+ "120100": {
+  "code": "120100",
+  "label": "Lifford, Donegal",
+  "lat": 54.8327,
+  "lng": -7.48347,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Lifford, County Donegal, Ulster, F93 RKW6, Éire / Ireland",
+  "importance": 0.44868776042809017
+ },
+ "120400": {
+  "code": "120400",
+  "label": "Stranorlar, Donegal",
+  "lat": 54.80447,
+  "lng": -7.76916,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Stranorlar, Lifford-Stranorlar Municipal District, County Donegal, Ulster, F93 FR9K, Éire / Ireland",
+  "importance": 0.16006447623407338
+ },
+ "120500": {
+  "code": "120500",
+  "label": "Dublin",
+  "lat": 53.34938,
+  "lng": -6.26056,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.7590181549453134
+ },
+ "120600": {
+  "code": "120600",
+  "label": "Balbriggan, Dublin",
+  "lat": 53.59581,
+  "lng": -6.18246,
+  "osmType": "pub",
+  "osmClass": "amenity",
+  "displayName": "Balbriggan Golf Clubhouse Bar, Blackhall, Balbriggan Rural DED 1986, Balbriggan, Fingal, County Dublin, Leinster, K32 HH00, Éire / Ireland",
+  "importance": 0.000055731288624353664
+ },
+ "120700": {
+  "code": "120700",
+  "label": "Blackrock, Dublin",
+  "lat": 53.30186,
+  "lng": -6.17883,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Blackrock, Dún Laoghaire-Rathdown, County Dublin, Leinster, A94 VP03, Éire / Ireland",
+  "importance": 0.4540097153518186
+ },
+ "120800": {
+  "code": "120800",
+  "label": "Booterstown, Dublin",
+  "lat": 53.30863,
+  "lng": -6.19665,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Booterstown, Blackrock-Booterstown DED 1986, Blackrock, Dún Laoghaire-Rathdown, County Dublin, Leinster, A94 X2C6, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "121200": {
+  "code": "121200",
+  "label": "Dalkey, Dublin",
+  "lat": 53.27828,
+  "lng": -6.10744,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Dalkey, Dún Laoghaire-Rathdown, County Dublin, Leinster, A96 D3K5, Éire / Ireland",
+  "importance": 0.1467231837949187
+ },
+ "121300": {
+  "code": "121300",
+  "label": "Donabate, Dublin",
+  "lat": 53.48575,
+  "lng": -6.15129,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Donabate, L2170, Donabate, Donabate DED 1986, Fingal, County Dublin, Leinster, K36 XK18, Éire / Ireland",
+  "importance": 0.3090170114439377
+ },
+ "121400": {
+  "code": "121400",
+  "label": "Dun Laoghaire, Dublin",
+  "lat": 53.29228,
+  "lng": -6.13601,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Dún Laoghaire, Dún Laoghaire-Rathdown, County Dublin, Leinster, A96 T860, Éire / Ireland",
+  "importance": 0.502064968786156
+ },
+ "121500": {
+  "code": "121500",
+  "label": "Glenageary, Dublin",
+  "lat": 53.28134,
+  "lng": -6.12848,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Glenagarey, Glenageary, Dun Laoghaire-Glasthule DED 1986, Dún Laoghaire, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.39727265900251174
+ },
+ "121600": {
+  "code": "121600",
+  "label": "Howth, Dublin",
+  "lat": 53.38583,
+  "lng": -6.06512,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Howth, Fingal, County Dublin, Leinster, D13 V2F9, Éire / Ireland",
+  "importance": 0.46840590773058643
+ },
+ "121700": {
+  "code": "121700",
+  "label": "Killiney, Dublin",
+  "lat": 53.26424,
+  "lng": -6.11484,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Killiney, Dún Laoghaire-Rathdown, County Dublin, Leinster, A96 CV62, Éire / Ireland",
+  "importance": 0.1467231837949187
+ },
+ "121800": {
+  "code": "121800",
+  "label": "Kinsealy, Dublin",
+  "lat": 53.41933,
+  "lng": -6.1768,
+  "osmType": "fuel",
+  "osmClass": "amenity",
+  "displayName": "Kinsealy Service Station, Malahide Road, Balgriffin ED, Kinsealey, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.00008015945677877496
+ },
+ "121900": {
+  "code": "121900",
+  "label": "Lucan, Dublin",
+  "lat": 53.35672,
+  "lng": -6.45015,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Lucan, South Dublin, County Dublin, Leinster, K78 HF83, Éire / Ireland",
+  "importance": 0.16005419623102157
+ },
+ "122000": {
+  "code": "122000",
+  "label": "Lusk, Dublin",
+  "lat": 53.52558,
+  "lng": -6.16581,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Lusk, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.16005573128862438
+ },
+ "122100": {
+  "code": "122100",
+  "label": "Malahide, Dublin",
+  "lat": 53.39601,
+  "lng": -6.19308,
+  "osmType": "industrial",
+  "osmClass": "landuse",
+  "displayName": "Malahide Road Industrial Park, Priorswood D Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.0800801594567788
+ },
+ "122200": {
+  "code": "122200",
+  "label": "Monkstown, Dublin",
+  "lat": 53.29365,
+  "lng": -6.1539,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Monkstown, Dun Laoghaire-Salthill DED 1986, Dún Laoghaire, Dún Laoghaire-Rathdown, County Dublin, Leinster, A94 HK58, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "122300": {
+  "code": "122300",
+  "label": "Mount Merrion, Dublin",
+  "lat": 53.29322,
+  "lng": -6.21171,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Mount Merrion, Stillorgan-Deerpark DED 1986, Dundrum, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "122400": {
+  "code": "122400",
+  "label": "Portmarnock, Dublin",
+  "lat": 53.41768,
+  "lng": -6.15135,
+  "osmType": "stop",
+  "osmClass": "railway",
+  "displayName": "Portmarnock, Station Road, Portmarnock South DED 1986, Portmarnock, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.31673068536229987
+ },
+ "122500": {
+  "code": "122500",
+  "label": "Rathcoole, Dublin",
+  "lat": 53.28099,
+  "lng": -6.47043,
+  "osmType": "pub",
+  "osmClass": "amenity",
+  "displayName": "The Rathcoole Inn, Main Street, Rathcoole DED 1986, Rathcoole, South Dublin, County Dublin, Leinster, D24 V9Y4, Éire / Ireland",
+  "importance": 0.000054196231021546004
+ },
+ "122600": {
+  "code": "122600",
+  "label": "Rush, Dublin",
+  "lat": 53.34288,
+  "lng": -6.26185,
+  "osmType": "bar",
+  "osmClass": "amenity",
+  "displayName": "Johnny Rush's, 65, William Street South, Royal Exchange B ED, Dublin, County Dublin, Leinster, D02 TH24, Éire / Ireland",
+  "importance": 0.00008015945677877496
+ },
+ "122700": {
+  "code": "122700",
+  "label": "Saggart, Dublin",
+  "lat": 53.25877,
+  "lng": -6.44429,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Saggart DED 1986, South Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.16005419623102157
+ },
+ "122800": {
+  "code": "122800",
+  "label": "Sandycove, Dublin",
+  "lat": 53.28595,
+  "lng": -6.11558,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Sandycove, Dún Laoghaire-Sandycove DED 1986, Dún Laoghaire, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "122900": {
+  "code": "122900",
+  "label": "Shankill, Dublin",
+  "lat": 53.23023,
+  "lng": -6.12418,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Shankill, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.1467231837949187
+ },
+ "123000": {
+  "code": "123000",
+  "label": "Skerries, Dublin",
+  "lat": 53.57399,
+  "lng": -6.11917,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Skerries, Station Road, Rush DED 1986, Skerries, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.30289193994832775
+ },
+ "123200": {
+  "code": "123200",
+  "label": "Stillorgan, Dublin",
+  "lat": 53.28884,
+  "lng": -6.19834,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Stillorgan, Stillorgan-Merville DED 1986, Blackrock, Dún Laoghaire-Rathdown, County Dublin, Leinster, A94 N6F5, Éire / Ireland",
+  "importance": 0.4294069168155019
+ },
+ "123300": {
+  "code": "123300",
+  "label": "Swords, Dublin",
+  "lat": 53.37822,
+  "lng": -6.24725,
+  "osmType": "industrial",
+  "osmClass": "landuse",
+  "displayName": "Swords Road AGI, Whitehall, Drumcondra North A ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.0800801594567788
+ },
+ "123500": {
+  "code": "123500",
+  "label": "I.F.S.C., Dublin 1",
+  "lat": 53.35249,
+  "lng": -6.25665,
+  "osmType": "postal_district",
+  "osmClass": "boundary",
+  "displayName": "Dublin 1, Leinster, Éire / Ireland",
+  "importance": 0.2400801594567788
+ },
+ "123600": {
+  "code": "123600",
+  "label": "Parnell Street, Dublin 1",
+  "lat": 53.35405,
+  "lng": -6.25754,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Parnell Street, Hardwicke Street Flats, Rotunda A ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.05341349279011212
+ },
+ "123700": {
+  "code": "123700",
+  "label": "Spencer Dock, Dublin 1",
+  "lat": 53.3488,
+  "lng": -6.23716,
+  "osmType": "tram_stop",
+  "osmClass": "railway",
+  "displayName": "Spencer Dock, Mayor Street Upper, North Docklands, North Wall, North Dock B Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.3047903492217065
+ },
+ "123800": {
+  "code": "123800",
+  "label": "Summerhill, Dublin 1",
+  "lat": 53.35504,
+  "lng": -6.25481,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Summerhill, Mountjoy B Ward 1986, Dublin, County Dublin, Leinster, D01 TY46, Éire / Ireland",
+  "importance": 0.05341349279011212
+ },
+ "124100": {
+  "code": "124100",
+  "label": "Charlemont Street, Dublin 2",
+  "lat": 53.33147,
+  "lng": -6.26169,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Charlemont Street, Saint Kevins Ward 1986, Dublin, County Dublin, Leinster, D02 Y993, Éire / Ireland",
+  "importance": 0.05341349279011212
+ },
+ "124600": {
+  "code": "124600",
+  "label": "Pearse Street, Dublin 2",
+  "lat": 53.34504,
+  "lng": -6.25411,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Pearse Street, Mansion House A Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.3511138876399894
+ },
+ "124800": {
+  "code": "124800",
+  "label": "Temple Bar, Dublin 2",
+  "lat": 53.3455,
+  "lng": -6.26311,
+  "osmType": "quarter",
+  "osmClass": "place",
+  "displayName": "Temple Bar, Royal Exchange A Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.3750543179568698
+ },
+ "124900": {
+  "code": "124900",
+  "label": "Townsend Street, Dublin 2",
+  "lat": 53.34564,
+  "lng": -6.25028,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Townsend Street, Mansion House A ED, Dublin, County Dublin, Leinster, D02 R156, Éire / Ireland",
+  "importance": 0.05341349279011212
+ },
+ "125200": {
+  "code": "125200",
+  "label": "Clonliffe, Dublin 3",
+  "lat": 53.36499,
+  "lng": -6.25333,
+  "osmType": "university",
+  "osmClass": "amenity",
+  "displayName": "Holy Cross College & Diocesan Centre, Clonliffe Road, Drumcondra South B ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.22274623325780465
+ },
+ "125300": {
+  "code": "125300",
+  "label": "Clontarf, Dublin 3",
+  "lat": 53.36081,
+  "lng": -6.19685,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Clontarf, Clontarf East C Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.45356092873116677
+ },
+ "125400": {
+  "code": "125400",
+  "label": "Drumcondra, Dublin 3",
+  "lat": 53.36495,
+  "lng": -6.25245,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Drumcondra South B ED, Dublin, County Dublin, Leinster, D09 HY04, Éire / Ireland",
+  "importance": 0.1600801594567788
+ },
+ "125500": {
+  "code": "125500",
+  "label": "East Wall, Dublin 3",
+  "lat": 53.35407,
+  "lng": -6.23352,
+  "osmType": "neighbourhood",
+  "osmClass": "place",
+  "displayName": "East Wall, North Dock B ED, Dublin, County Dublin, Leinster, D03 AY74, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "125700": {
+  "code": "125700",
+  "label": "Fairview, Dublin 3",
+  "lat": 53.36107,
+  "lng": -6.23093,
+  "osmType": "service_station",
+  "osmClass": "railway",
+  "displayName": "Fairview, Alfie Byrne Road, Fairview, Clontarf West D ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.26001653813030656
+ },
+ "125900": {
+  "code": "125900",
+  "label": "Marino, Dublin 3",
+  "lat": 53.36631,
+  "lng": -6.23475,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Marino, Clontarf West D Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.3978776566920157
+ },
+ "126000": {
+  "code": "126000",
+  "label": "North Strand, Dublin 3",
+  "lat": 53.35843,
+  "lng": -6.24162,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "North Strand, Ballybough A ED, Dublin, County Dublin, Leinster, D03 NH34, Éire / Ireland",
+  "importance": 0.39817807251303894
+ },
+ "126200": {
+  "code": "126200",
+  "label": "Ballsbridge, Dublin 4",
+  "lat": 53.32919,
+  "lng": -6.23133,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Ballsbridge, Pembroke East E ED, Dublin, County Dublin, Leinster, D04 C7K6, Éire / Ireland",
+  "importance": 0.42894012557242434
+ },
+ "126300": {
+  "code": "126300",
+  "label": "Donnybrook, Dublin 4",
+  "lat": 53.32204,
+  "lng": -6.23635,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Donnybrook, Rathmines East B ED, Dublin, County Dublin, Leinster, D04 T8X2, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "126400": {
+  "code": "126400",
+  "label": "Irishtown, Dublin 4",
+  "lat": 53.33796,
+  "lng": -6.22247,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Irishtown, Pembroke East A Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.41264182722604775
+ },
+ "126500": {
+  "code": "126500",
+  "label": "Merrion, Dublin 4",
+  "lat": 53.31769,
+  "lng": -6.20918,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Merrion, Pembroke East D Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "126600": {
+  "code": "126600",
+  "label": "Pembroke, Dublin 4",
+  "lat": 53.3263,
+  "lng": -6.22525,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Pembroke East E Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.1600801594567788
+ },
+ "126700": {
+  "code": "126700",
+  "label": "Ringsend, Dublin 4",
+  "lat": 53.34194,
+  "lng": -6.22639,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Ringsend, Pembroke East A Ward 1986, Dublin, County Dublin, Leinster, D04 Y970, Éire / Ireland",
+  "importance": 0.4238774159986079
+ },
+ "126800": {
+  "code": "126800",
+  "label": "Sandymount, Dublin 4",
+  "lat": 53.328,
+  "lng": -6.22096,
+  "osmType": "train_station",
+  "osmClass": "building",
+  "displayName": "Sandymount, Sandymount Avenue, Sandymount, Pembroke East B ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.31568281446101826
+ },
+ "127000": {
+  "code": "127000",
+  "label": "Artane, Dublin 5",
+  "lat": 53.38299,
+  "lng": -6.20527,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Artane, Clontarf West A Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.41252155072916463
+ },
+ "127400": {
+  "code": "127400",
+  "label": "Killester, Dublin 5",
+  "lat": 53.3728,
+  "lng": -6.20492,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Killester, Middle Third, Clontarf West A Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.3245597611328047
+ },
+ "127500": {
+  "code": "127500",
+  "label": "Raheny, Dublin 5",
+  "lat": 53.3802,
+  "lng": -6.17515,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Raheny, Clontarf East A ED, Dublin, County Dublin, Leinster, D05 T9K8, Éire / Ireland",
+  "importance": 0.4247821346186361
+ },
+ "127800": {
+  "code": "127800",
+  "label": "Dartry, Dublin 6",
+  "lat": 53.30996,
+  "lng": -6.26311,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Dartry, Rathfarnham ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.3425880974885877
+ },
+ "127900": {
+  "code": "127900",
+  "label": "Harolds Cross, Dublin 6",
+  "lat": 53.32901,
+  "lng": -6.27543,
+  "osmType": "industrial",
+  "osmClass": "building",
+  "displayName": "Harolds Cross 110kV Station, Harold's Cross Road, Portobello, Rathmines West A Ward 1986, Dublin, County Dublin, Leinster, D06 HP29, Éire / Ireland",
+  "importance": 0.00008015945677877496
+ },
+ "128000": {
+  "code": "128000",
+  "label": "Milltown, Dublin 6",
+  "lat": 53.31316,
+  "lng": -6.24699,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Milltown, Rathmines East B Ward 1986, Dublin, County Dublin, Leinster, D06 H020, Éire / Ireland",
+  "importance": 0.416605097114494
+ },
+ "128100": {
+  "code": "128100",
+  "label": "Ranelagh, Dublin 6",
+  "lat": 53.32522,
+  "lng": -6.25505,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Ranelagh, Rathmines East D ED, Dublin, County Dublin, Leinster, D06 X7P1, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "128200": {
+  "code": "128200",
+  "label": "Rathgar, Dublin 6",
+  "lat": 53.31185,
+  "lng": -6.27447,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Rathgar, Rathfarham Ward 1986, Dublin, County Dublin, Leinster, D06 F6H9, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "128300": {
+  "code": "128300",
+  "label": "Rathmines, Dublin 6",
+  "lat": 53.32652,
+  "lng": -6.26486,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Rathmines, Rathmines West B ED, Dublin, County Dublin, Leinster, D06 Y5Y8, Éire / Ireland",
+  "importance": 0.44379706256812973
+ },
+ "128900": {
+  "code": "128900",
+  "label": "Templeogue, Dublin 6W",
+  "lat": 53.29787,
+  "lng": -6.30429,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Templeogue, Templeogue Village DED 1986, South Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.41980577698315585
+ },
+ "129000": {
+  "code": "129000",
+  "label": "Terenure, Dublin 6W",
+  "lat": 53.3051,
+  "lng": -6.29651,
+  "osmType": "school",
+  "osmClass": "amenity",
+  "displayName": "Terenure College, Templeogue Road, Terenure C ED, Dublin, South Dublin, County Dublin, Leinster, D6W DK72, Éire / Ireland",
+  "importance": 0.33749181912886295
+ },
+ "129200": {
+  "code": "129200",
+  "label": "Arbour Hill, Dublin 7",
+  "lat": 53.3499,
+  "lng": -6.28378,
+  "osmType": "residential",
+  "osmClass": "highway",
+  "displayName": "Arbour Hill, Arran Quay C Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.05341349279011212
+ },
+ "129300": {
+  "code": "129300",
+  "label": "Cabra, Dublin 7",
+  "lat": 53.36695,
+  "lng": -6.29339,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Cabra, Cabra West B ED, Dublin, County Dublin, Leinster, D07 PX98, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "129500": {
+  "code": "129500",
+  "label": "North Circular Road, Dublin 7",
+  "lat": 53.35901,
+  "lng": -6.28124,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "North Circular Road, Grangegorman, Arran Quay B Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.05341349279011212
+ },
+ "129700": {
+  "code": "129700",
+  "label": "Smithfield, Dublin 7",
+  "lat": 53.34843,
+  "lng": -6.27824,
+  "osmType": "quarter",
+  "osmClass": "place",
+  "displayName": "Smithfield, Arran Quay C ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.42076810418755856
+ },
+ "129800": {
+  "code": "129800",
+  "label": "Stoneybatter, Dublin 7",
+  "lat": 53.35151,
+  "lng": -6.28304,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Stoneybatter, Arran Quay B Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.3951100392087533
+ },
+ "130000": {
+  "code": "130000",
+  "label": "Christchurch, Dublin 8",
+  "lat": 53.34269,
+  "lng": -6.27278,
+  "osmType": "commercial",
+  "osmClass": "landuse",
+  "displayName": "Christchurch Square, The Liberties, Merchants Quay B 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.0800801594567788
+ },
+ "130100": {
+  "code": "130100",
+  "label": "Cork Street, Dublin 8",
+  "lat": 53.33805,
+  "lng": -6.28304,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Cork Street, Merchants Quay C ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.05341349279011212
+ },
+ "130200": {
+  "code": "130200",
+  "label": "Dolphins Barn, Dublin 8",
+  "lat": 53.33905,
+  "lng": -6.28819,
+  "osmType": "industrial",
+  "osmClass": "landuse",
+  "displayName": "Dolphins Barn Telephone Exchange, Ushers C ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.0800801594567788
+ },
+ "130300": {
+  "code": "130300",
+  "label": "Inchicore, Dublin 8",
+  "lat": 53.33946,
+  "lng": -6.32092,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Inchicore, Ballyfermot F ED, Dublin, County Dublin, Leinster, D08 PN20, Éire / Ireland",
+  "importance": 0.43653918711954165
+ },
+ "130400": {
+  "code": "130400",
+  "label": "Islandbridge, Dublin 8",
+  "lat": 53.34722,
+  "lng": -6.30831,
+  "osmType": "bridge",
+  "osmClass": "man_made",
+  "displayName": "Islandbridge, South Circular Road, Kilmainham, Ushers A ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.36541948668891217
+ },
+ "130500": {
+  "code": "130500",
+  "label": "Kilmainham, Dublin 8",
+  "lat": 53.34105,
+  "lng": -6.30728,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Kilmainham, Ushers A ED, Dublin, County Dublin, Leinster, D08 W257, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "130600": {
+  "code": "130600",
+  "label": "Portobello, Dublin 8",
+  "lat": 53.33126,
+  "lng": -6.26883,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Portobello, Wood Quay B Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "130700": {
+  "code": "130700",
+  "label": "Rialto, Dublin 8",
+  "lat": 53.33577,
+  "lng": -6.29693,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Rialto, Ushers E Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.3809657170471295
+ },
+ "130800": {
+  "code": "130800",
+  "label": "South Circular Road, Dublin 8",
+  "lat": 53.33229,
+  "lng": -6.27176,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "South Circular Road, Portobello, Wood Quay B Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.05341349279011212
+ },
+ "131100": {
+  "code": "131100",
+  "label": "Ballymun, Dublin 9",
+  "lat": 53.39611,
+  "lng": -6.2579,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Ballymun C Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.1600801594567788
+ },
+ "131200": {
+  "code": "131200",
+  "label": "Beaumont, Dublin 9",
+  "lat": 53.38546,
+  "lng": -6.23325,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Beaumont, Artane H ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "131500": {
+  "code": "131500",
+  "label": "Glasnevin, Dublin 9",
+  "lat": 53.37829,
+  "lng": -6.2662,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Glasnevin, Glasnevin A ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.44556519337943523
+ },
+ "131600": {
+  "code": "131600",
+  "label": "Santry, Dublin 9",
+  "lat": 53.39716,
+  "lng": -6.24547,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Santry, Whitehall C Ward 1896, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.4397146143447338
+ },
+ "131700": {
+  "code": "131700",
+  "label": "Whitehall, Dublin 9",
+  "lat": 53.38267,
+  "lng": -6.24319,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Whitehall, Drumcondra North B ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "131900": {
+  "code": "131900",
+  "label": "Ballyfermot, Dublin 10",
+  "lat": 53.34232,
+  "lng": -6.34888,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Ballyfermot, Ballyfermot B ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "132000": {
+  "code": "132000",
+  "label": "Cherry Orchard, Dublin 10",
+  "lat": 53.33724,
+  "lng": -6.37248,
+  "osmType": "quarter",
+  "osmClass": "place",
+  "displayName": "Cherry Orchard, Cherry Orchard C ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.13341349279011214
+ },
+ "132300": {
+  "code": "132300",
+  "label": "Finglas, Dublin 11",
+  "lat": 53.38917,
+  "lng": -6.29694,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Finglas, Ballygall A ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.43096957211662124
+ },
+ "132900": {
+  "code": "132900",
+  "label": "Crumlin, Dublin 12",
+  "lat": 53.32023,
+  "lng": -6.31617,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Crumlin, Walkinstown C Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "133000": {
+  "code": "133000",
+  "label": "Drimnagh, Dublin 12",
+  "lat": 53.32993,
+  "lng": -6.32365,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Drimnagh, Crumlin, Crumlin A ED, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "133100": {
+  "code": "133100",
+  "label": "Kimmage, Dublin 12",
+  "lat": 53.31606,
+  "lng": -6.29909,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Kimmage, Kimmage D Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "133200": {
+  "code": "133200",
+  "label": "Walkinstown, Dublin 12",
+  "lat": 53.32161,
+  "lng": -6.33012,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Walkinstown, Walkinstown B Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "133500": {
+  "code": "133500",
+  "label": "Baldoyle, Dublin 13",
+  "lat": 53.39583,
+  "lng": -6.12855,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Baldoyle, Baldoyle ED, Sutton, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "133600": {
+  "code": "133600",
+  "label": "Balgriffin, Dublin 13",
+  "lat": 53.41246,
+  "lng": -6.17487,
+  "osmType": "civil_parish",
+  "osmClass": "boundary",
+  "displayName": "Balgriffin Civil Parish, Balgriffin DED 1986, Kinsealey, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.06674682612344549
+ },
+ "133900": {
+  "code": "133900",
+  "label": "Clongriffin, Dublin 13",
+  "lat": 53.4027,
+  "lng": -6.14895,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Clongriffin, Station Hill, Clongriffin, Baldoyle ED, Dublin, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.32173239253715025
+ },
+ "134200": {
+  "code": "134200",
+  "label": "Sutton, Dublin 13",
+  "lat": 53.39201,
+  "lng": -6.11608,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Sutton, Station Road, Bayside, Howth DED 1986, Sutton, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.3035308770567123
+ },
+ "134400": {
+  "code": "134400",
+  "label": "Churchtown, Dublin 14",
+  "lat": 53.29581,
+  "lng": -6.25949,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Churchtown, Churchtown-Landscape DED 1986, Dundrum, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "134500": {
+  "code": "134500",
+  "label": "Clonskeagh, Dublin 14",
+  "lat": 53.30557,
+  "lng": -6.23686,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Clonskeagh, Clonskeagh-Milltown DED 1986, Dundrum, Dún Laoghaire-Rathdown, County Dublin, Leinster, D14 NH72, Éire / Ireland",
+  "importance": 0.415002101916886
+ },
+ "134700": {
+  "code": "134700",
+  "label": "Goatstown, Dublin 14",
+  "lat": 53.29275,
+  "lng": -6.22934,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Goatstown, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "135100": {
+  "code": "135100",
+  "label": "Ashtown, Dublin 15",
+  "lat": 53.37541,
+  "lng": -6.33181,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Ashtown, Ashtown Road, Castleknock-Park DED 1986, Dublin, Fingal, Dublin 15, Leinster, Éire / Ireland",
+  "importance": 0.32316133360556143
+ },
+ "135200": {
+  "code": "135200",
+  "label": "Blanchardstown, Dublin 15",
+  "lat": 53.38446,
+  "lng": -6.38294,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Blanchardstown, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.1600801594567788
+ },
+ "135400": {
+  "code": "135400",
+  "label": "Castleknock, Dublin 15",
+  "lat": 53.37296,
+  "lng": -6.36247,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Castleknock, Fingal, County Dublin, Leinster, D15 VY32, Éire / Ireland",
+  "importance": 0.43502000867299523
+ },
+ "135500": {
+  "code": "135500",
+  "label": "Clonee, Dublin 15",
+  "lat": 53.40673,
+  "lng": -6.41871,
+  "osmType": "motorway_junction",
+  "osmClass": "highway",
+  "displayName": "Clonee, Clonee Bypass, Blanchardstown-Blakestown DED 1986, Ongar, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.000055731288624353664
+ },
+ "135600": {
+  "code": "135600",
+  "label": "Clonsilla, Dublin 15",
+  "lat": 53.38294,
+  "lng": -6.42319,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Clonsilla, Callaghan Bridge, Clonsilla, Blanchardstown-Blakestown DED 1986, Dublin, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.324096928576472
+ },
+ "135900": {
+  "code": "135900",
+  "label": "Mulhuddart, Dublin 15",
+  "lat": 53.40278,
+  "lng": -6.3982,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Mulhuddart, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.4032238424858545
+ },
+ "136000": {
+  "code": "136000",
+  "label": "Ongar, Dublin 15",
+  "lat": 53.39537,
+  "lng": -6.43878,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Ongar, Fingal, County Dublin, Leinster, D15 H34C, Éire / Ireland",
+  "importance": 0.14671758983749136
+ },
+ "136100": {
+  "code": "136100",
+  "label": "Porterstown, Dublin 15",
+  "lat": 53.3797,
+  "lng": -6.40527,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Porterstown, Blanchardstown-Delwood DED 1986, Blanchardstown, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.13341349279011214
+ },
+ "136200": {
+  "code": "136200",
+  "label": "Royal Canal Park, Dublin 15",
+  "lat": 53.37903,
+  "lng": -6.34838,
+  "osmType": "cycleway",
+  "osmClass": "highway",
+  "displayName": "The Royal Canal Way, Castleknock-Park DED 1986, Castleknock, Fingal, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.04008015945677881
+ },
+ "136500": {
+  "code": "136500",
+  "label": "Ballinteer, Dublin 16",
+  "lat": 53.27643,
+  "lng": -6.25284,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Ballinteer, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "136600": {
+  "code": "136600",
+  "label": "Dundrum, Dublin 16",
+  "lat": 53.28734,
+  "lng": -6.24502,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Dundrum, Dundrum-Sandyford DED 1986, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.13341349279011214
+ },
+ "136700": {
+  "code": "136700",
+  "label": "Knocklyon, Dublin 16",
+  "lat": 53.28388,
+  "lng": -6.31819,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Knocklyon, Firhouse-Knocklyon DED 1986, Ballyboden, South Dublin, County Dublin, Leinster, D16 YV04, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "136800": {
+  "code": "136800",
+  "label": "Rathfarnham, Dublin 16",
+  "lat": 53.29733,
+  "lng": -6.28071,
+  "osmType": "civil_parish",
+  "osmClass": "boundary",
+  "displayName": "Rathfarnham, South Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.06674682612344549
+ },
+ "137500": {
+  "code": "137500",
+  "label": "Malahide Road, Dublin 17",
+  "lat": 53.3979,
+  "lng": -6.1861,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Malahide Road, Clonshaugh, Ayrfield Ward 1986, Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.05341349279011212
+ },
+ "137900": {
+  "code": "137900",
+  "label": "Cabinteely, Dublin 18",
+  "lat": 53.26128,
+  "lng": -6.15057,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Cabinteely, Dún Laoghaire, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "138000": {
+  "code": "138000",
+  "label": "Carrickmines, Dublin 18",
+  "lat": 53.25324,
+  "lng": -6.17189,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Carrickmines, Cabinteely-Loughlinstown DED 1986, Cornelscourt, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "138100": {
+  "code": "138100",
+  "label": "Foxrock, Dublin 18",
+  "lat": 53.26681,
+  "lng": -6.18384,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Foxrock, Ballyogan, Dún Laoghaire-Rathdown, County Dublin, Leinster, D18 TD00, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "138300": {
+  "code": "138300",
+  "label": "Leopardstown, Dublin 18",
+  "lat": 53.27472,
+  "lng": -6.19276,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Leopardstown, Stillorgan-Leopardstown DED 1986, Blackrock, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "138600": {
+  "code": "138600",
+  "label": "Sandyford, Dublin 18",
+  "lat": 53.26983,
+  "lng": -6.22457,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Sandyford, Dún Laoghaire-Rathdown, County Dublin, Leinster, D18 CY97, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "138900": {
+  "code": "138900",
+  "label": "Stepaside, Dublin 18",
+  "lat": 53.25311,
+  "lng": -6.21437,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Stepaside, Dún Laoghaire-Rathdown, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "139200": {
+  "code": "139200",
+  "label": "Chapelizod, Dublin 20",
+  "lat": 53.34792,
+  "lng": -6.3452,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Chapelizod, Phoenix Park ED, Dublin, County Dublin, Leinster, D20 XK72, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "139300": {
+  "code": "139300",
+  "label": "Palmerstown, Dublin 20",
+  "lat": 53.35598,
+  "lng": -6.3705,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Palmerstown, South Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "139400": {
+  "code": "139400",
+  "label": "Clondalkin, Dublin 22",
+  "lat": 53.32196,
+  "lng": -6.39427,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Clondalkin, South Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.43987337935374904
+ },
+ "139600": {
+  "code": "139600",
+  "label": "Ballycullen, Dublin 24",
+  "lat": 53.27059,
+  "lng": -6.32847,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Ballycullen, Firhouse Village DED 1986, Tallaght, South Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "139700": {
+  "code": "139700",
+  "label": "Citywest, Dublin 24",
+  "lat": 53.29463,
+  "lng": -6.42776,
+  "osmType": "motorway_junction",
+  "osmClass": "highway",
+  "displayName": "Citywest, Naas Road, Tallaght-Fettercairn DED 1986, Saggart, South Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.00005435034714270264
+ },
+ "139800": {
+  "code": "139800",
+  "label": "Firhouse, Dublin 24",
+  "lat": 53.28081,
+  "lng": -6.34019,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Firhouse, Firhouse Village DED 1986, Tallaght, South Dublin, County Dublin, Leinster, Éire / Ireland",
+  "importance": 0.14674682612344545
+ },
+ "140100": {
+  "code": "140100",
+  "label": "Tallaght, Dublin 24",
+  "lat": 53.28781,
+  "lng": -6.36235,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Tallaght, South Dublin, County Dublin, Leinster, D24 DE62, Éire / Ireland",
+  "importance": 0.1600801594567788
+ },
+ "140200": {
+  "code": "140200",
+  "label": "Galway",
+  "lat": 53.27441,
+  "lng": -9.04906,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Cathair na Gaillimhe, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.6077067441868027
+ },
+ "140300": {
+  "code": "140300",
+  "label": "Athenry, Galway",
+  "lat": 53.3015,
+  "lng": -8.74856,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Athenry, Station Road, Athenry, Athenry-Oranmore Municipal District, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.3250193457146212
+ },
+ "140400": {
+  "code": "140400",
+  "label": "Ballinasloe, Galway",
+  "lat": 53.33643,
+  "lng": -8.23987,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Ballinasloe, Station Road, Ballinasloe Urban ED, Ballinasloe, County Galway, Connacht, H53 X657, Éire / Ireland",
+  "importance": 0.311877314681546
+ },
+ "140500": {
+  "code": "140500",
+  "label": "Ballybane, Galway",
+  "lat": 53.28611,
+  "lng": -9.0075,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Ballybane, Ballybaan, Cathair na Gaillimhe, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.1467325467307545
+ },
+ "140600": {
+  "code": "140600",
+  "label": "Ballybrit, Galway",
+  "lat": 53.29605,
+  "lng": -8.99985,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Ballybrit, Cathair na Gaillimhe, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.16006588006408787
+ },
+ "140800": {
+  "code": "140800",
+  "label": "Barna, Galway",
+  "lat": 53.27043,
+  "lng": -9.11245,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Barna, Cathair na Gaillimhe, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.16006588006408787
+ },
+ "140900": {
+  "code": "140900",
+  "label": "Bohermore, Galway",
+  "lat": 53.27873,
+  "lng": -9.04492,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Bohermore, St Nicholas, Cathair na Gaillimhe, County Galway, Connacht, H91 P653, Éire / Ireland",
+  "importance": 0.05339921339742119
+ },
+ "141000": {
+  "code": "141000",
+  "label": "Claregalway, Galway",
+  "lat": 53.34048,
+  "lng": -8.94624,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Baile Chláir, Athenry-Oranmore Municipal District, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.41958999249091855
+ },
+ "141200": {
+  "code": "141200",
+  "label": "Clifden, Galway",
+  "lat": 53.48849,
+  "lng": -10.02107,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Clifden, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.44664651460050014
+ },
+ "141400": {
+  "code": "141400",
+  "label": "Doughiska, Galway",
+  "lat": 53.2843,
+  "lng": -8.98178,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Doughiska, Ballybaan, Cathair na Gaillimhe, County Galway, Connacht, H91 DKF7, Éire / Ireland",
+  "importance": 0.2861574737770128
+ },
+ "141600": {
+  "code": "141600",
+  "label": "Galway City",
+  "lat": 53.27441,
+  "lng": -9.04906,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Cathair na Gaillimhe, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.6077067441868027
+ },
+ "141700": {
+  "code": "141700",
+  "label": "Gort, Galway",
+  "lat": 53.06717,
+  "lng": -8.81418,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Gort, Station Road, Gort, Loughrea Municipal District, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.30093685344584264
+ },
+ "141800": {
+  "code": "141800",
+  "label": "Headford, Galway",
+  "lat": 53.46934,
+  "lng": -9.10705,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Headford, Headford ED, Tuam Municipal District, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.16006368429083695
+ },
+ "142000": {
+  "code": "142000",
+  "label": "Loughrea, Galway",
+  "lat": 53.19816,
+  "lng": -8.56906,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Loughrea, Loughrea Municipal District, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.16006368429083695
+ },
+ "142300": {
+  "code": "142300",
+  "label": "Moycullen, Galway",
+  "lat": 53.33771,
+  "lng": -9.17906,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Maigh Cuilinn, Conamara Municipal District, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.4263602961431367
+ },
+ "142500": {
+  "code": "142500",
+  "label": "Oranmore, Galway",
+  "lat": 53.27549,
+  "lng": -8.94727,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Oranmore, Coast Road, Ballintemple ED, Oranmore, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.3041636407631838
+ },
+ "142600": {
+  "code": "142600",
+  "label": "Oughterard, Galway",
+  "lat": 53.42843,
+  "lng": -9.3226,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Oughterard, Oughterard ED, Conamara Municipal District, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.41871967358108847
+ },
+ "142700": {
+  "code": "142700",
+  "label": "Portumna, Galway",
+  "lat": 53.09233,
+  "lng": -8.21929,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Portumna, Loughrea Municipal District, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.16006368429083695
+ },
+ "143200": {
+  "code": "143200",
+  "label": "Tuam, Galway",
+  "lat": 53.28318,
+  "lng": -9.03695,
+  "osmType": "retail",
+  "osmClass": "landuse",
+  "displayName": "Tuam Road Retail Centre, Castlegar, Cathair na Gaillimhe, County Galway, Connacht, Éire / Ireland",
+  "importance": 0.08006588006408787
+ },
+ "143500": {
+  "code": "143500",
+  "label": "Kerry",
+  "lat": 52.14533,
+  "lng": -9.5174,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "County Kerry, Munster, Éire / Ireland",
+  "importance": 0.24004500114442662
+ },
+ "143700": {
+  "code": "143700",
+  "label": "Castleisland, Kerry",
+  "lat": 52.23117,
+  "lng": -9.46367,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Castleisland, Tralee Municipal District, County Kerry, Munster, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "143800": {
+  "code": "143800",
+  "label": "Dingle, Kerry",
+  "lat": 52.14153,
+  "lng": -10.28952,
+  "osmType": "distillery",
+  "osmClass": "craft",
+  "displayName": "Dingle Distillery, R559, Glin ED, Dingle / Daingean Uí Chúis, County Kerry, Munster, V92 E7YD, Éire / Ireland",
+  "importance": 0.27236747457604304
+ },
+ "143900": {
+  "code": "143900",
+  "label": "Kenmare, Kerry",
+  "lat": 51.8791,
+  "lng": -9.58395,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Kenmare, County Kerry, Munster, Éire / Ireland",
+  "importance": 0.44097408650972797
+ },
+ "144000": {
+  "code": "144000",
+  "label": "Killarney, Kerry",
+  "lat": 52.05957,
+  "lng": -9.50532,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Killarney, Killarney Municipal District, County Kerry, Munster, Éire / Ireland",
+  "importance": 0.5179004174584328
+ },
+ "144100": {
+  "code": "144100",
+  "label": "Killorglin, Kerry",
+  "lat": 52.1062,
+  "lng": -9.78679,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Killorglin, Kenmare Municipal District, County Kerry, Munster, V93 V027, Éire / Ireland",
+  "importance": 0.16004792172121765
+ },
+ "144200": {
+  "code": "144200",
+  "label": "Listowel, Kerry",
+  "lat": 52.44723,
+  "lng": -9.48468,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Listowel, Listowel Municipal District, County Kerry, Munster, Éire / Ireland",
+  "importance": 0.44534677005030143
+ },
+ "144500": {
+  "code": "144500",
+  "label": "Tralee, Kerry",
+  "lat": 52.26921,
+  "lng": -9.7057,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Tralee, County Kerry, Munster, Éire / Ireland",
+  "importance": 0.5113180030075909
+ },
+ "144600": {
+  "code": "144600",
+  "label": "Kildare",
+  "lat": 53.15685,
+  "lng": -6.91172,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Kildare, The Municipal District of Kildare — Newbridge, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.4930344686228157
+ },
+ "144700": {
+  "code": "144700",
+  "label": "Athy, Kildare",
+  "lat": 52.99239,
+  "lng": -6.98359,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Athy, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.4478508093037898
+ },
+ "144800": {
+  "code": "144800",
+  "label": "Castledermot, Kildare",
+  "lat": 52.91195,
+  "lng": -6.83684,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Castledermot, The Municipal District of Athy, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.16004670710307467
+ },
+ "144900": {
+  "code": "144900",
+  "label": "Celbridge, Kildare",
+  "lat": 53.3383,
+  "lng": -6.53962,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Celbridge, The Municipal District of Celbridge — Leixlip, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.43169223361915116
+ },
+ "145000": {
+  "code": "145000",
+  "label": "Clane, Kildare",
+  "lat": 53.29118,
+  "lng": -6.68611,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Clane, County Kildare, Leinster, W91 DF85, Éire / Ireland",
+  "importance": 0.4032238424858545
+ },
+ "145200": {
+  "code": "145200",
+  "label": "Kilcock, Kildare",
+  "lat": 53.39904,
+  "lng": -6.66886,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Kilcock, Molly Ware Street, Kilcock ED, Kilcock, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.31568281446101826
+ },
+ "145300": {
+  "code": "145300",
+  "label": "Kilcullen, Kildare",
+  "lat": 53.13058,
+  "lng": -6.74564,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Kilcullen, The Municipal District of Kildare — Newbridge, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.39542339164457335
+ },
+ "145400": {
+  "code": "145400",
+  "label": "Kildare Town",
+  "lat": 53.1569,
+  "lng": -6.91063,
+  "osmType": "bus_stop",
+  "osmClass": "highway",
+  "displayName": "Kildare Town, R445, Kildare ED, The Municipal District of Kildare — Newbridge, County Kildare, Leinster, R51 V267, Éire / Ireland",
+  "importance": 0.00005567177843895655
+ },
+ "145500": {
+  "code": "145500",
+  "label": "Kill, Kildare",
+  "lat": 53.24871,
+  "lng": -6.58921,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Kill, Kill ED, The Municipal District of Naas, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.14672207293812461
+ },
+ "145600": {
+  "code": "145600",
+  "label": "Leixlip, Kildare",
+  "lat": 53.36448,
+  "lng": -6.48974,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Leixlip ED, The Municipal District of Celbridge — Leixlip, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.46143167148653075
+ },
+ "145700": {
+  "code": "145700",
+  "label": "Maynooth, Kildare",
+  "lat": 53.38302,
+  "lng": -6.59228,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Maynooth, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.47131484759845954
+ },
+ "145800": {
+  "code": "145800",
+  "label": "Monasterevin, Kildare",
+  "lat": 53.14265,
+  "lng": -7.06346,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Monasterevin, Monasterevin ED, The Municipal District of Kildare — Newbridge, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.40432454964183334
+ },
+ "145900": {
+  "code": "145900",
+  "label": "Naas, Kildare",
+  "lat": 53.22147,
+  "lng": -6.65741,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Naas, The Municipal District of Naas, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.48597767618085386
+ },
+ "146000": {
+  "code": "146000",
+  "label": "Newbridge, Kildare",
+  "lat": 53.18015,
+  "lng": -6.79819,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Newbridge, The Municipal District of Kildare — Newbridge, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.4643874718224092
+ },
+ "146200": {
+  "code": "146200",
+  "label": "Rathangan, Kildare",
+  "lat": 53.22033,
+  "lng": -6.99297,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Rathangan, County Kildare, Leinster, R51 CT93, Éire / Ireland",
+  "importance": 0.3949527989551982
+ },
+ "146300": {
+  "code": "146300",
+  "label": "Sallins, Kildare",
+  "lat": 53.24903,
+  "lng": -6.66569,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Sallins, The Municipal District of Naas, County Kildare, Leinster, Éire / Ireland",
+  "importance": 0.16005540627145798
+ },
+ "146500": {
+  "code": "146500",
+  "label": "Kilkenny",
+  "lat": 52.65063,
+  "lng": -7.25144,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Kilkenny, County Kilkenny, Leinster, Éire / Ireland",
+  "importance": 0.5439143961646227
+ },
+ "146700": {
+  "code": "146700",
+  "label": "Callan, Kilkenny",
+  "lat": 52.54459,
+  "lng": -7.39009,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Callan, The Municipal District of Callan — Thomastown, County Kilkenny, Leinster, Éire / Ireland",
+  "importance": 0.16004638056000609
+ },
+ "146800": {
+  "code": "146800",
+  "label": "Castlecomer, Kilkenny",
+  "lat": 52.80609,
+  "lng": -7.21058,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Castlecomer, The Municipal District of Castlecomer, County Kilkenny, Leinster, R95 HP97, Éire / Ireland",
+  "importance": 0.16006038834210726
+ },
+ "147200": {
+  "code": "147200",
+  "label": "Kilkenny City",
+  "lat": 52.65377,
+  "lng": -7.2537,
+  "osmType": "bank",
+  "osmClass": "amenity",
+  "displayName": "Bank of Ireland, High Street, Kilkenny, The Municipal District of Kilkenny City, County Kilkenny, Leinster, R95 VY53, Éire / Ireland",
+  "importance": 0.000060388342107225414
+ },
+ "147400": {
+  "code": "147400",
+  "label": "Thomastown, Kilkenny",
+  "lat": 52.52317,
+  "lng": -7.1489,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Thomastown, Station Road, Thomastown, The Municipal District of Callan — Thomastown, County Kilkenny, Leinster, Éire / Ireland",
+  "importance": 0.29892160108322774
+ },
+ "147600": {
+  "code": "147600",
+  "label": "Laois",
+  "lat": 52.99846,
+  "lng": -7.39803,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "County Laois, Leinster, Éire / Ireland",
+  "importance": 0.24004500114442662
+ },
+ "148500": {
+  "code": "148500",
+  "label": "Mountmellick, Laois",
+  "lat": 53.11751,
+  "lng": -7.32519,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Mountmellick, The Municipal District of Borris-in-Ossory — Mountmellick, County Laois, Leinster, Éire / Ireland",
+  "importance": 0.16004539635309376
+ },
+ "148600": {
+  "code": "148600",
+  "label": "Mountrath, Laois",
+  "lat": 53.00124,
+  "lng": -7.47429,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Mountrath, Mountrath ED, The Municipal District of Borris-in-Ossory — Mountmellick, County Laois, Leinster, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "148700": {
+  "code": "148700",
+  "label": "Portarlington, Laois",
+  "lat": 53.16222,
+  "lng": -7.19111,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Portarlington, County Laois, Leinster, Éire / Ireland",
+  "importance": 0.4063398020044483
+ },
+ "148800": {
+  "code": "148800",
+  "label": "Portlaoise, Laois",
+  "lat": 53.03401,
+  "lng": -7.30006,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Portlaoise, The Municipal District of Portlaoise, County Laois, Leinster, Éire / Ireland",
+  "importance": 0.4786403716328095
+ },
+ "149100": {
+  "code": "149100",
+  "label": "Leitrim",
+  "lat": 54.14016,
+  "lng": -8.05248,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "County Leitrim, Connacht, Éire / Ireland",
+  "importance": 0.24004500114442662
+ },
+ "149300": {
+  "code": "149300",
+  "label": "Carrick-On-Shannon, Leitrim",
+  "lat": 53.94415,
+  "lng": -8.09528,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Carrick-on-Shannon, County Leitrim, Connacht, Éire / Ireland",
+  "importance": 0.4402686161245203
+ },
+ "149900": {
+  "code": "149900",
+  "label": "Manorhamilton, Leitrim",
+  "lat": 54.30404,
+  "lng": -8.17544,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Manorhamilton, Manorhamilton ED, Manorhamilton Municipal District, County Leitrim, Connacht, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "150100": {
+  "code": "150100",
+  "label": "Limerick",
+  "lat": 52.66125,
+  "lng": -8.63012,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Limerick, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.6031835612375621
+ },
+ "150200": {
+  "code": "150200",
+  "label": "Abbeyfeale, Limerick",
+  "lat": 52.38476,
+  "lng": -9.30155,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Abbeyfeale, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.16006136186770425
+ },
+ "150400": {
+  "code": "150400",
+  "label": "Annacotty, Limerick",
+  "lat": 52.66619,
+  "lng": -8.53608,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Annacotty, Ballysimon ED, The Metropolitan District of Limerick City, Limerick, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.1467325619897764
+ },
+ "150900": {
+  "code": "150900",
+  "label": "Castleconnell, Limerick",
+  "lat": 52.71306,
+  "lng": -8.49793,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Castleconnell, Station Road, Castleconnell, The Metropolitan District of Limerick City, Castleconnell, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.3015950553092256
+ },
+ "151000": {
+  "code": "151000",
+  "label": "Castletroy, Limerick",
+  "lat": 52.66543,
+  "lng": -8.57124,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Castletroy, Ballysimon ED, The Metropolitan District of Limerick City, Limerick, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.1467325619897764
+ },
+ "151100": {
+  "code": "151100",
+  "label": "Corbally, Limerick",
+  "lat": 52.68642,
+  "lng": -8.61551,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Corbally, Abbey A, The Metropolitan District of Limerick City, Limerick, County Limerick, Munster, V94 HXW5, Éire / Ireland",
+  "importance": 0.1333992286564431
+ },
+ "151300": {
+  "code": "151300",
+  "label": "Dock Road, Limerick",
+  "lat": 52.66007,
+  "lng": -8.63583,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Dock Road, Dock A, The Metropolitan District of Limerick City, Limerick, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.05339922865644309
+ },
+ "151400": {
+  "code": "151400",
+  "label": "Dooradoyle, Limerick",
+  "lat": 52.63596,
+  "lng": -8.64944,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Dooradoyle, Ballycummin ED, The Metropolitan District of Limerick City, Limerick, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.1467325619897764
+ },
+ "151700": {
+  "code": "151700",
+  "label": "Kilmallock, Limerick",
+  "lat": 52.40065,
+  "lng": -8.5712,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Kilmallock, The Municipal District of Cappamore — Kilmallock, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.16006136186770425
+ },
+ "151900": {
+  "code": "151900",
+  "label": "Limerick City",
+  "lat": 52.6486,
+  "lng": -8.45232,
+  "osmType": "political",
+  "osmClass": "boundary",
+  "displayName": "Limerick City, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.06672802853437095
+ },
+ "152000": {
+  "code": "152000",
+  "label": "Newcastle West, Limerick",
+  "lat": 52.44889,
+  "lng": -9.05293,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Newcastle West, The Municipal District of Newcastle West, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.40906086839840655
+ },
+ "152200": {
+  "code": "152200",
+  "label": "Raheen, Limerick",
+  "lat": 52.63022,
+  "lng": -8.66161,
+  "osmType": "suburb",
+  "osmClass": "place",
+  "displayName": "Raheen, Ballycummin ED, The Metropolitan District of Limerick City, Limerick, County Limerick, Munster, Éire / Ireland",
+  "importance": 0.3767390548248983
+ },
+ "152400": {
+  "code": "152400",
+  "label": "Longford",
+  "lat": 53.72988,
+  "lng": -7.78854,
+  "osmType": "historic",
+  "osmClass": "boundary",
+  "displayName": "Longford, County Longford, Leinster, Éire / Ireland",
+  "importance": 0.4712166608722043
+ },
+ "152500": {
+  "code": "152500",
+  "label": "Ballymahon, Longford",
+  "lat": 53.56173,
+  "lng": -7.76173,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ballymahon, Ballymahon ED, Ballymahon Municipal District, County Longford, Leinster, Éire / Ireland",
+  "importance": 0.16005000152590218
+ },
+ "152800": {
+  "code": "152800",
+  "label": "Edgeworthstown, Longford",
+  "lat": 53.68876,
+  "lng": -7.60311,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Edgeworthstown, Station Road, Edgeworthstown, Edgeworthstown ED, Ballymahon Municipal District, County Longford, Leinster, Éire / Ireland",
+  "importance": 0.3140788844789178
+ },
+ "153100": {
+  "code": "153100",
+  "label": "Longford Town",
+  "lat": 53.7278,
+  "lng": -7.79638,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Longford, Longford Municipal District, County Longford, Leinster, Éire / Ireland",
+  "importance": 0.4712166608722043
+ },
+ "153200": {
+  "code": "153200",
+  "label": "Newtownforbes, Longford",
+  "lat": 53.76674,
+  "lng": -7.83485,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Newtown Forbes, Longford Municipal District, County Longford, Leinster, Éire / Ireland",
+  "importance": 0.16005396429388874
+ },
+ "153300": {
+  "code": "153300",
+  "label": "Louth",
+  "lat": 53.90628,
+  "lng": -6.53205,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "County Louth, Leinster, Éire / Ireland",
+  "importance": 0.24004701991302355
+ },
+ "153400": {
+  "code": "153400",
+  "label": "Ardee, Louth",
+  "lat": 53.85531,
+  "lng": -6.53891,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ardee, The Municipal District of Ardee, County Louth, Leinster, Éire / Ireland",
+  "importance": 0.16004701991302356
+ },
+ "154000": {
+  "code": "154000",
+  "label": "Drogheda, Louth",
+  "lat": 53.71499,
+  "lng": -6.35242,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Drogheda, County Louth, Leinster, Éire / Ireland",
+  "importance": 0.5391991216642558
+ },
+ "154200": {
+  "code": "154200",
+  "label": "Dundalk, Louth",
+  "lat": 54.0046,
+  "lng": -6.40089,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Dundalk, County Louth, Leinster, Éire / Ireland",
+  "importance": 0.5354209789917076
+ },
+ "154900": {
+  "code": "154900",
+  "label": "Mayo",
+  "lat": 53.90865,
+  "lng": -9.29813,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.24006325246051727
+ },
+ "155100": {
+  "code": "155100",
+  "label": "Ballina, Mayo",
+  "lat": 54.11434,
+  "lng": -9.15321,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ballina, Ballina Municipal District, County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.47329590008323624
+ },
+ "155200": {
+  "code": "155200",
+  "label": "Ballinrobe, Mayo",
+  "lat": 53.62409,
+  "lng": -9.22208,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ballinrobe, Ballinrobe ED, Claremorris-Swinford Municipal District, County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.16006325246051728
+ },
+ "155300": {
+  "code": "155300",
+  "label": "Ballyhaunis, Mayo",
+  "lat": 53.76167,
+  "lng": -8.75854,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Ballyhaunis, Station Rise, Ballyhaunis, Claremorris-Swinford Municipal District, County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.2328416436185146
+ },
+ "155400": {
+  "code": "155400",
+  "label": "Belmullet, Mayo",
+  "lat": 54.22411,
+  "lng": -9.98722,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Béal an Mhuirthead, County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.16006325246051728
+ },
+ "155500": {
+  "code": "155500",
+  "label": "Castlebar, Mayo",
+  "lat": 53.85684,
+  "lng": -9.29797,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Castlebar, Castlebar Municipal District, County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.49342063745846637
+ },
+ "155600": {
+  "code": "155600",
+  "label": "Charlestown, Mayo",
+  "lat": 53.96417,
+  "lng": -8.79417,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Charlestown, Claremorris-Swinford Municipal District, County Mayo, Connacht, F12 Y562, Éire / Ireland",
+  "importance": 0.16006325246051728
+ },
+ "155700": {
+  "code": "155700",
+  "label": "Claremorris, Mayo",
+  "lat": 53.71973,
+  "lng": -8.99879,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Claremorris, Claremorris-Swinford Municipal District, County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.430238847278923
+ },
+ "155900": {
+  "code": "155900",
+  "label": "Foxford, Mayo",
+  "lat": 53.98286,
+  "lng": -9.13644,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Foxford, L1316, Sraheen ED, Claremorris-Swinford Municipal District, County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.3035308770567123
+ },
+ "156400": {
+  "code": "156400",
+  "label": "Swinford, Mayo",
+  "lat": 53.94352,
+  "lng": -8.94981,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Swinford, Swineford ED, Claremorris-Swinford Municipal District, County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.16006325246051728
+ },
+ "156500": {
+  "code": "156500",
+  "label": "Westport, Mayo",
+  "lat": 53.80006,
+  "lng": -9.52022,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Westport, County Mayo, Connacht, Éire / Ireland",
+  "importance": 0.47353344308630146
+ },
+ "156600": {
+  "code": "156600",
+  "label": "Meath",
+  "lat": 53.64975,
+  "lng": -6.58842,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "County Meath, Leinster, Éire / Ireland",
+  "importance": 0.24004500114442662
+ },
+ "156700": {
+  "code": "156700",
+  "label": "Ashbourne, Meath",
+  "lat": 53.51161,
+  "lng": -6.39817,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ashbourne, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.16004788204776071
+ },
+ "156800": {
+  "code": "156800",
+  "label": "Athboy, Meath",
+  "lat": 53.62278,
+  "lng": -6.91853,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Athboy, The Municipal District of Kells, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.16004659571221483
+ },
+ "157000": {
+  "code": "157000",
+  "label": "Bettystown, Meath",
+  "lat": 53.69829,
+  "lng": -6.24442,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Bettystown, The Municipal District of Laytown — Bettystown, County Meath, Leinster, A92 AH27, Éire / Ireland",
+  "importance": 0.14671166781109327
+ },
+ "157100": {
+  "code": "157100",
+  "label": "Clonee, Meath",
+  "lat": 53.41042,
+  "lng": -6.44038,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Clonee, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.14671758983749136
+ },
+ "157200": {
+  "code": "157200",
+  "label": "Drogheda, Meath",
+  "lat": 53.71661,
+  "lng": -6.37674,
+  "osmType": "poor_law_union",
+  "osmClass": "boundary",
+  "displayName": "Drogheda Poor Law Union 1885, County Louth, Leinster, Éire / Ireland",
+  "importance": 0.06672617303730831
+ },
+ "157300": {
+  "code": "157300",
+  "label": "Duleek, Meath",
+  "lat": 53.65634,
+  "lng": -6.41475,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Duleek, The Municipal District of Laytown — Bettystown, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.14671330968184934
+ },
+ "157400": {
+  "code": "157400",
+  "label": "Dunboyne, Meath",
+  "lat": 53.41944,
+  "lng": -6.47602,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Dunboyne, Dunboyne ED, The Municipal District of Ratoath, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.4177265377721238
+ },
+ "157500": {
+  "code": "157500",
+  "label": "Dunshaughlin, Meath",
+  "lat": 53.51248,
+  "lng": -6.53944,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Dunshaughlin, Dunshaughlin ED, The Municipal District of Ratoath, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.4067355164056416
+ },
+ "157600": {
+  "code": "157600",
+  "label": "Enfield, Meath",
+  "lat": 53.41618,
+  "lng": -6.83417,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Enfield, Main Street, Enfield, Innfield ED, The Municipal District of Trim, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.31074813956852465
+ },
+ "157700": {
+  "code": "157700",
+  "label": "Kells, Meath",
+  "lat": 53.72718,
+  "lng": -6.87679,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Kells, The Municipal District of Kells, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.44944568143391417
+ },
+ "157800": {
+  "code": "157800",
+  "label": "Laytown, Meath",
+  "lat": 53.67953,
+  "lng": -6.24275,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Laytown, The Sidings, Laytown, The Municipal District of Laytown — Bettystown, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.31074813956852465
+ },
+ "158100": {
+  "code": "158100",
+  "label": "Navan, Meath",
+  "lat": 53.65309,
+  "lng": -6.68404,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Navan, The Municipal District of Navan, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.16005548256656746
+ },
+ "158300": {
+  "code": "158300",
+  "label": "Ratoath, Meath",
+  "lat": 53.50727,
+  "lng": -6.46407,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ratoath, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.1600481780727855
+ },
+ "158500": {
+  "code": "158500",
+  "label": "Stamullen, Meath",
+  "lat": 53.62855,
+  "lng": -6.26227,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Stamullen, County Meath, Leinster, Éire / Ireland",
+  "importance": 0.14671166781109327
+ },
+ "158700": {
+  "code": "158700",
+  "label": "Trim, Meath",
+  "lat": 53.55429,
+  "lng": -6.78978,
+  "osmType": "yes",
+  "osmClass": "building",
+  "displayName": "Trim Castle Keep, Castle Street, Trim Urban ED, The Municipal District of Trim, County Meath, Leinster, C15 HN90, Éire / Ireland",
+  "importance": 0.4576144686094317
+ },
+ "158800": {
+  "code": "158800",
+  "label": "Monaghan",
+  "lat": 54.24856,
+  "lng": -6.96889,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Monaghan, Monaghan Municipal District, County Monaghan, Ulster, Éire / Ireland",
+  "importance": 0.45981453909855047
+ },
+ "158900": {
+  "code": "158900",
+  "label": "Ballybay, Monaghan",
+  "lat": 54.12888,
+  "lng": -6.90297,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ballybay, Ballybay-Clones Municipal District, County Monaghan, Ulster, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "159000": {
+  "code": "159000",
+  "label": "Carrickmacross, Monaghan",
+  "lat": 53.97705,
+  "lng": -6.71938,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Carrickmacross, Carrickmacross-Castleblayney Municipal District, County Monaghan, Ulster, Éire / Ireland",
+  "importance": 0.39635455236634
+ },
+ "159100": {
+  "code": "159100",
+  "label": "Castleblayney, Monaghan",
+  "lat": 54.12021,
+  "lng": -6.74044,
+  "osmType": "house",
+  "osmClass": "building",
+  "displayName": "Castleblayney, 1, 2, Ashview Court, Castleblayney, Carrickmacross-Castleblayney Municipal District, County Monaghan, Ulster, Éire / Ireland",
+  "importance": 0.16273786379520622
+ },
+ "159300": {
+  "code": "159300",
+  "label": "Monaghan Town",
+  "lat": 54.24856,
+  "lng": -6.96889,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Monaghan, Monaghan Municipal District, County Monaghan, Ulster, Éire / Ireland",
+  "importance": 0.45981453909855047
+ },
+ "159400": {
+  "code": "159400",
+  "label": "Offaly",
+  "lat": 53.13617,
+  "lng": -7.81034,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "County Offaly, Leinster, Éire / Ireland",
+  "importance": 0.24004500114442662
+ },
+ "159500": {
+  "code": "159500",
+  "label": "Banagher, Offaly",
+  "lat": 53.18988,
+  "lng": -7.98685,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Banagher, County Offaly, Leinster, Éire / Ireland",
+  "importance": 0.16004672388799876
+ },
+ "159600": {
+  "code": "159600",
+  "label": "Birr, Offaly",
+  "lat": 53.10573,
+  "lng": -7.7572,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Birr, County Offaly, Leinster, Éire / Ireland",
+  "importance": 0.18671166781109327
+ },
+ "159700": {
+  "code": "159700",
+  "label": "Clara, Offaly",
+  "lat": 53.33982,
+  "lng": -7.61637,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Clara, Station Road, Clara, Clara ED, The Municipal District of Tullamore, County Offaly, Leinster, Éire / Ireland",
+  "importance": 0.31298735030903774
+ },
+ "159900": {
+  "code": "159900",
+  "label": "Edenderry, Offaly",
+  "lat": 53.34337,
+  "lng": -7.04886,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Edenderry, The Municipal District of Edenderry, County Offaly, Leinster, Éire / Ireland",
+  "importance": 0.16004603418020905
+ },
+ "160100": {
+  "code": "160100",
+  "label": "Tullamore, Offaly",
+  "lat": 53.27438,
+  "lng": -7.49275,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Tullamore, The Municipal District of Tullamore, County Offaly, Leinster, Éire / Ireland",
+  "importance": 0.4822251132095625
+ },
+ "160200": {
+  "code": "160200",
+  "label": "Roscommon",
+  "lat": 53.63124,
+  "lng": -8.19068,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Roscommon, Roscommon Municipal District, County Roscommon, Connacht, Éire / Ireland",
+  "importance": 0.4597560392874744
+ },
+ "160300": {
+  "code": "160300",
+  "label": "Athlone, Roscommon",
+  "lat": 53.45733,
+  "lng": -8.04476,
+  "osmType": "poor_law_union",
+  "osmClass": "boundary",
+  "displayName": "Athlone Poor Law Union 1885, County Roscommon, Connacht, Éire / Ireland",
+  "importance": 0.0667116678110933
+ },
+ "160400": {
+  "code": "160400",
+  "label": "Ballaghaderreen, Roscommon",
+  "lat": 53.90137,
+  "lng": -8.57886,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ballaghaderreen, Ballaghaderreen ED, Boyle Municipal District, County Roscommon, Connacht, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "160600": {
+  "code": "160600",
+  "label": "Boyle, Roscommon",
+  "lat": 53.99068,
+  "lng": -8.26649,
+  "osmType": "river",
+  "osmClass": "waterway",
+  "displayName": "Boyle, County Roscommon, Connacht, Éire / Ireland",
+  "importance": 0.33113623856093605
+ },
+ "160800": {
+  "code": "160800",
+  "label": "Castlerea, Roscommon",
+  "lat": 53.76157,
+  "lng": -8.4858,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Castlerea, Saint Patrick Street, Castlerea, Castlereagh ED, Roscommon Municipal District, County Roscommon, Connacht, Éire / Ireland",
+  "importance": 0.23094323434513592
+ },
+ "161000": {
+  "code": "161000",
+  "label": "Roscommon Town",
+  "lat": 53.63124,
+  "lng": -8.19068,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Roscommon, Roscommon Municipal District, County Roscommon, Connacht, Éire / Ireland",
+  "importance": 0.4597560392874744
+ },
+ "161100": {
+  "code": "161100",
+  "label": "Strokestown, Roscommon",
+  "lat": 53.77663,
+  "lng": -8.10222,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Strokestown, Strokestown ED, Boyle Municipal District, County Roscommon, Connacht, F42 PX61, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "161200": {
+  "code": "161200",
+  "label": "Sligo",
+  "lat": 54.27207,
+  "lng": -8.47514,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Sligo, Sligo Municipal Borough District, County Sligo, Connacht, Éire / Ireland",
+  "importance": 0.5398914170553131
+ },
+ "161300": {
+  "code": "161300",
+  "label": "Ballinode, Sligo",
+  "lat": 54.27808,
+  "lng": -8.45663,
+  "osmType": "house",
+  "osmClass": "building",
+  "displayName": "Ballinode House, Manorhamilton Road, Sligo, Sligo Municipal Borough District, County Sligo, Connacht, Éire / Ireland",
+  "importance": 0.000059579613946700506
+ },
+ "161400": {
+  "code": "161400",
+  "label": "Ballisodare, Sligo",
+  "lat": 54.20989,
+  "lng": -8.50926,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Ballysadare, County Sligo, Connacht, Éire / Ireland",
+  "importance": 0.3514206354333152
+ },
+ "161500": {
+  "code": "161500",
+  "label": "Ballymote, Sligo",
+  "lat": 54.08853,
+  "lng": -8.51553,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ballymote, Ballymote-Tubbercurry Municipal District, County Sligo, Connacht, Éire / Ireland",
+  "importance": 0.38307540422660474
+ },
+ "161800": {
+  "code": "161800",
+  "label": "Collooney, Sligo",
+  "lat": 54.1837,
+  "lng": -8.49247,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Collooney, Sligo Municipal Borough District, County Sligo, Connacht, Éire / Ireland",
+  "importance": 0.37310569550553185
+ },
+ "162200": {
+  "code": "162200",
+  "label": "Sligo Town",
+  "lat": 54.27207,
+  "lng": -8.47514,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Sligo, Sligo Municipal Borough District, County Sligo, Connacht, Éire / Ireland",
+  "importance": 0.5398914170553131
+ },
+ "162300": {
+  "code": "162300",
+  "label": "Strandhill, Sligo",
+  "lat": 54.26995,
+  "lng": -8.5943,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Strandhill, County Sligo, Connacht, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "162400": {
+  "code": "162400",
+  "label": "Tubbercurry, Sligo",
+  "lat": 54.05393,
+  "lng": -8.73057,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Tobercurry, Tobercurry ED, Ballymote-Tubbercurry Municipal District, County Sligo, Connacht, Éire / Ireland",
+  "importance": 0.37878580059237354
+ },
+ "162500": {
+  "code": "162500",
+  "label": "Tipperary",
+  "lat": 52.47348,
+  "lng": -8.16144,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Tipperary, The Municipal District of Cahir — Cashel, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.4576144686094317
+ },
+ "162600": {
+  "code": "162600",
+  "label": "Ballina, Tipperary",
+  "lat": 52.80495,
+  "lng": -8.40421,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Ballina, The Municipal District of Nenagh, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "162800": {
+  "code": "162800",
+  "label": "Cahir, Tipperary",
+  "lat": 52.37795,
+  "lng": -7.92258,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Cahir, Church Street, Cahir, The Municipal District of Cahir — Cashel, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.29960026554141705
+ },
+ "162900": {
+  "code": "162900",
+  "label": "Carrick-On-Suir, Tipperary",
+  "lat": 52.34917,
+  "lng": -7.41306,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Carrick-on-Suir, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.43293801503914436
+ },
+ "163000": {
+  "code": "163000",
+  "label": "Cashel, Tipperary",
+  "lat": 52.51675,
+  "lng": -7.88793,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Cashel, The Municipal District of Cahir — Cashel, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.47136388581426264
+ },
+ "163100": {
+  "code": "163100",
+  "label": "Clonmel, Tipperary",
+  "lat": 52.36108,
+  "lng": -7.69912,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Clonmel, Thomas Street, Clonmel East Urban, Clonmel, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.3113151607222326
+ },
+ "163300": {
+  "code": "163300",
+  "label": "Fethard, Tipperary",
+  "lat": 52.46722,
+  "lng": -7.69111,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Fethard, The Municipal District of Carrick-on-Suir, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "163400": {
+  "code": "163400",
+  "label": "Nenagh, Tipperary",
+  "lat": 52.86194,
+  "lng": -8.19667,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Nenagh, The Municipal District of Nenagh, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.45827629865675207
+ },
+ "163600": {
+  "code": "163600",
+  "label": "Roscrea, Tipperary",
+  "lat": 52.95516,
+  "lng": -7.79903,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Roscrea, The Municipal District of Thurles, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.43398728502681116
+ },
+ "163700": {
+  "code": "163700",
+  "label": "Templemore, Tipperary",
+  "lat": 52.79472,
+  "lng": -7.83389,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Templemore, The Municipal District of Thurles, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.4167181092808382
+ },
+ "163800": {
+  "code": "163800",
+  "label": "Thurles, Tipperary",
+  "lat": 52.67669,
+  "lng": -7.82191,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Thurles, Railway Road, Thurles, The Municipal District of Thurles, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.308429648456196
+ },
+ "163900": {
+  "code": "163900",
+  "label": "Tipperary Town",
+  "lat": 52.47348,
+  "lng": -8.16144,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Tipperary, The Municipal District of Cahir — Cashel, County Tipperary, Munster, Éire / Ireland",
+  "importance": 0.4576144686094317
+ },
+ "164000": {
+  "code": "164000",
+  "label": "Waterford",
+  "lat": 52.261,
+  "lng": -7.11191,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Waterford, County Waterford, Munster, Éire / Ireland",
+  "importance": 0.5736239707186881
+ },
+ "164700": {
+  "code": "164700",
+  "label": "Cork Road, Waterford",
+  "lat": 52.24365,
+  "lng": -7.15017,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Cork Road, Ballynaneashagh, Waterford, County Waterford, Munster, Éire / Ireland",
+  "importance": 0.05339586404211487
+ },
+ "164800": {
+  "code": "164800",
+  "label": "Dungarvan, Waterford",
+  "lat": 52.08975,
+  "lng": -7.62103,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Dungarvan, The Municipal District of Dungarvan — Lismore, County Waterford, Munster, X35 FN40, Éire / Ireland",
+  "importance": 0.4624505594657726
+ },
+ "164900": {
+  "code": "164900",
+  "label": "Dunmore East, Waterford",
+  "lat": 52.14884,
+  "lng": -6.99473,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Dunmore East, County Waterford, Munster, X91 C677, Éire / Ireland",
+  "importance": 0.40647197265303264
+ },
+ "165000": {
+  "code": "165000",
+  "label": "Dunmore Road, Waterford",
+  "lat": 52.24709,
+  "lng": -7.08094,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Dunmore Road, Ballynakill, Waterford, County Waterford, Munster, Éire / Ireland",
+  "importance": 0.05339586404211487
+ },
+ "165400": {
+  "code": "165400",
+  "label": "Inner Ring Road, Waterford",
+  "lat": 52.24805,
+  "lng": -7.11369,
+  "osmType": "secondary",
+  "osmClass": "highway",
+  "displayName": "Inner Ring Road, Ballintruckle, Waterford, County Waterford, Munster, Éire / Ireland",
+  "importance": 0.05339586404211487
+ },
+ "165500": {
+  "code": "165500",
+  "label": "Johns Hill, Waterford",
+  "lat": 52.25033,
+  "lng": -7.10486,
+  "osmType": "tertiary",
+  "osmClass": "highway",
+  "displayName": "Johns Hill, Newtown, Waterford City Metropolitan District, County Waterford, Munster, Éire / Ireland",
+  "importance": 0.05339586404211487
+ },
+ "165900": {
+  "code": "165900",
+  "label": "Lismore, Waterford",
+  "lat": 52.1368,
+  "lng": -7.93305,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Lismore, The Municipal District of Dungarvan — Lismore, County Waterford, Munster, P51 VW44, Éire / Ireland",
+  "importance": 0.43005488498339645
+ },
+ "166300": {
+  "code": "166300",
+  "label": "Poleberry, Waterford",
+  "lat": 52.25179,
+  "lng": -7.11036,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Poleberry, Waterford City Metropolitan District, County Waterford, Munster, Éire / Ireland",
+  "importance": 0.16006253070878154
+ },
+ "166400": {
+  "code": "166400",
+  "label": "Portlaw, Waterford",
+  "lat": 52.30359,
+  "lng": -7.34325,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Portlaw, The Municipal District of Comeragh, County Waterford, Munster, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "166800": {
+  "code": "166800",
+  "label": "Templars Hall, Waterford",
+  "lat": 52.24006,
+  "lng": -7.13417,
+  "osmType": "residential",
+  "osmClass": "landuse",
+  "displayName": "Templars Hall, Kilbarry, Waterford, County Waterford, Munster, Éire / Ireland",
+  "importance": 0.08006253070878154
+ },
+ "166900": {
+  "code": "166900",
+  "label": "Tramore, Waterford",
+  "lat": 52.1836,
+  "lng": -7.14962,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Tramore, Waterford City Metropolitan District, County Waterford, Munster, Éire / Ireland",
+  "importance": 0.16004766689555197
+ },
+ "167100": {
+  "code": "167100",
+  "label": "Waterford City",
+  "lat": 52.26298,
+  "lng": -7.11501,
+  "osmType": "bus_stop",
+  "osmClass": "highway",
+  "displayName": "Waterford City (Eurolines), R680, Centre A, Waterford City Metropolitan District, County Waterford, Munster, X91 FF86, Éire / Ireland",
+  "importance": 0.000045001144426596745
+ },
+ "167300": {
+  "code": "167300",
+  "label": "Westmeath",
+  "lat": 53.55779,
+  "lng": -7.34786,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "County Westmeath, Leinster, Éire / Ireland",
+  "importance": 0.24005614633401998
+ },
+ "167400": {
+  "code": "167400",
+  "label": "Athlone, Westmeath",
+  "lat": 53.42284,
+  "lng": -7.94259,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Athlone, County Westmeath, Leinster, Éire / Ireland",
+  "importance": 0.5204050504754917
+ },
+ "167500": {
+  "code": "167500",
+  "label": "Castlepollard, Westmeath",
+  "lat": 53.67969,
+  "lng": -7.29819,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Castlepollard, The Municipal District of Mullingar — Kinnegad, County Westmeath, Leinster, N91 Y168, Éire / Ireland",
+  "importance": 0.16005000152590218
+ },
+ "167700": {
+  "code": "167700",
+  "label": "Kilbeggan, Westmeath",
+  "lat": 53.36951,
+  "lng": -7.50267,
+  "osmType": "distillery",
+  "osmClass": "craft",
+  "displayName": "Kilbeggan Distillery, R446, Kilbeggan, Kilbeggan ED, The Municipal District of Athlone — Moate, County Westmeath, Leinster, Éire / Ireland",
+  "importance": 0.3363461829037416
+ },
+ "167900": {
+  "code": "167900",
+  "label": "Kinnegad, Westmeath",
+  "lat": 53.45481,
+  "lng": -7.10119,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Kinnegad, Kinnegad ED, The Municipal District of Mullingar — Kinnegad, County Westmeath, Leinster, Éire / Ireland",
+  "importance": 0.16005000152590218
+ },
+ "168000": {
+  "code": "168000",
+  "label": "Moate, Westmeath",
+  "lat": 53.3962,
+  "lng": -7.72405,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Moate, The Municipal District of Athlone — Moate, County Westmeath, Leinster, N37 WK44, Éire / Ireland",
+  "importance": 0.16005000152590218
+ },
+ "168100": {
+  "code": "168100",
+  "label": "Mullingar, Westmeath",
+  "lat": 53.52582,
+  "lng": -7.3413,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Mullingar, The Municipal District of Mullingar — Kinnegad, County Westmeath, Leinster, Éire / Ireland",
+  "importance": 0.49666425095920747
+ },
+ "168200": {
+  "code": "168200",
+  "label": "Wexford",
+  "lat": 52.33677,
+  "lng": -6.46014,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Wexford, County Wexford, Leinster, Éire / Ireland",
+  "importance": 0.5324997544757593
+ },
+ "168300": {
+  "code": "168300",
+  "label": "Bunclody, Wexford",
+  "lat": 52.65511,
+  "lng": -6.65205,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Bunclody, County Wexford, Leinster, Éire / Ireland",
+  "importance": 0.16004698939497977
+ },
+ "168600": {
+  "code": "168600",
+  "label": "Enniscorthy, Wexford",
+  "lat": 52.50461,
+  "lng": -6.56629,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Enniscorthy, Templeshannon, Enniscorthy, The Municipal District of Enniscorthy, County Wexford, Leinster, Éire / Ireland",
+  "importance": 0.31017616620231897
+ },
+ "168700": {
+  "code": "168700",
+  "label": "Ferns, Wexford",
+  "lat": 52.58979,
+  "lng": -6.49529,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Ferns, The Municipal District of Enniscorthy, County Wexford, Leinster, Éire / Ireland",
+  "importance": 0.16004500114442663
+ },
+ "168900": {
+  "code": "168900",
+  "label": "Gorey, Wexford",
+  "lat": 52.67122,
+  "lng": -6.29201,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Gorey, Railway Road, Gorey, The Municipal District of Gorey — Kilmuckridge, County Wexford, Leinster, Y25 E0W9, Éire / Ireland",
+  "importance": 0.31017616620231897
+ },
+ "169000": {
+  "code": "169000",
+  "label": "Mulgannon, Wexford",
+  "lat": 52.32166,
+  "lng": -6.46349,
+  "osmType": "administrative",
+  "osmClass": "boundary",
+  "displayName": "Mulgannon, Wexford Rural ED, The Borough District of Wexford, County Wexford, Leinster, Éire / Ireland",
+  "importance": 0.13339198825055312
+ },
+ "169100": {
+  "code": "169100",
+  "label": "New Ross, Wexford",
+  "lat": 52.39557,
+  "lng": -6.94461,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "New Ross, The Municipal District of New Ross, County Wexford, Leinster, Éire / Ireland",
+  "importance": 0.16005130617227434
+ },
+ "169200": {
+  "code": "169200",
+  "label": "Rosslare, Wexford",
+  "lat": 52.27357,
+  "lng": -6.3869,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Rosslare, County Wexford, Leinster, Y35 DVX7, Éire / Ireland",
+  "importance": 0.14670416800183103
+ },
+ "169300": {
+  "code": "169300",
+  "label": "Wicklow",
+  "lat": 52.98024,
+  "lng": -6.04142,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Wicklow, County Wicklow, Leinster, Éire / Ireland",
+  "importance": 0.4780233633825388
+ },
+ "169400": {
+  "code": "169400",
+  "label": "Arklow, Wicklow",
+  "lat": 52.79822,
+  "lng": -6.154,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Arklow, County Wicklow, Leinster, Éire / Ireland",
+  "importance": 0.4557747258879297
+ },
+ "169700": {
+  "code": "169700",
+  "label": "Baltinglass, Wicklow",
+  "lat": 52.94019,
+  "lng": -6.7084,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Baltinglass, Baltinglass ED, The Municipal District of Baltinglass, County Wicklow, Leinster, Éire / Ireland",
+  "importance": 0.16004728694590675
+ },
+ "169900": {
+  "code": "169900",
+  "label": "Blessington, Wicklow",
+  "lat": 53.1726,
+  "lng": -6.53309,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Blessington, County Wicklow, Leinster, Éire / Ireland",
+  "importance": 0.1600476943617914
+ },
+ "170000": {
+  "code": "170000",
+  "label": "Bray, Wicklow",
+  "lat": 53.20146,
+  "lng": -6.1105,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Bray, County Wicklow, Leinster, Éire / Ireland",
+  "importance": 0.16005651712825206
+ },
+ "170200": {
+  "code": "170200",
+  "label": "Delgany, Wicklow",
+  "lat": 53.13263,
+  "lng": -6.09223,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Delgany, The Municipal District of Greystones, County Wicklow, Leinster, A63 W953, Éire / Ireland",
+  "importance": 0.36517188513067234
+ },
+ "170500": {
+  "code": "170500",
+  "label": "Greystones, Wicklow",
+  "lat": 53.14489,
+  "lng": -6.06322,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Greystones, The Municipal District of Greystones, County Wicklow, Leinster, A63 HW80, Éire / Ireland",
+  "importance": 0.4413627555089302
+ },
+ "170600": {
+  "code": "170600",
+  "label": "Kilcoole, Wicklow",
+  "lat": 53.10687,
+  "lng": -6.04101,
+  "osmType": "station",
+  "osmClass": "railway",
+  "displayName": "Kilcoole, Sea Road, Kilcoole ED, Kilcoole, County Wicklow, Leinster, Éire / Ireland",
+  "importance": 0.311877314681546
+ },
+ "170900": {
+  "code": "170900",
+  "label": "Rathnew, Wicklow",
+  "lat": 52.99492,
+  "lng": -6.08213,
+  "osmType": "village",
+  "osmClass": "place",
+  "displayName": "Rathnew, The Municipal District of Wicklow, County Wicklow, Leinster, Éire / Ireland",
+  "importance": 0.14672003891050578
+ },
+ "171200": {
+  "code": "171200",
+  "label": "Wicklow Town",
+  "lat": 52.98024,
+  "lng": -6.04142,
+  "osmType": "town",
+  "osmClass": "place",
+  "displayName": "Wicklow, County Wicklow, Leinster, Éire / Ireland",
+  "importance": 0.4780233633825388
+ }
+}

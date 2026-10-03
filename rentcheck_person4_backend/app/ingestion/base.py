@@ -26,9 +26,9 @@ class DatasetImporter(ABC):
 
     def write(self, docs: list[dict]) -> int:
         if not docs: return 0
+        from pymongo import ReplaceOne
         col = collection(self.collection_name)
-        for doc in docs:
-            key = doc.pop("_record_key")
-            doc["_record_key"] = key
-            col.replace_one({"_record_key": key}, doc, upsert=True)
+        # one round trip per batch instead of per document (a 90k-row file went from ~30 min to seconds); still an idempotent upsert
+        for i in range(0, len(docs), 1000):
+            col.bulk_write([ReplaceOne({"_record_key": d["_record_key"]}, d, upsert=True) for d in docs[i:i + 1000]], ordered=False)
         return len(docs)

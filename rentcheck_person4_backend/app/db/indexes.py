@@ -12,6 +12,11 @@ def ensure_indexes() -> None:
     )
     for name in ["analyses", "data_sources", "ingestion_runs"]:
         db[name].create_index([("_id", 1)], name="id")
+    # Importers upsert on `_record_key`. Without an index every upsert scans the whole collection (a 90k-row load never finished).
+    # Partial, so API-created documents without the key (properties, analyses) are unaffected.
+    for name in ["transport_stops", "planning_applications", "property_sales", "rent_index", "census_saps", "vacancy",
+                 "small_areas", "electoral_divisions", "local_electoral_areas", "local_authorities", "counties", "rtb_areas"]:
+        db[name].create_index([("_record_key", 1)], name="record_key", unique=True, partialFilterExpression={"_record_key": {"$exists": True}})
     db.properties.create_index([("address.normalised", 1)], name="address_normalised")
     db.property_sales.create_index([("sale_date", -1)], name="sale_date_desc")
     db.planning_applications.create_index([("application_date", -1)], name="planning_date_desc")

@@ -165,6 +165,36 @@
       "attribution_required": true,
       "hackathon_use": "yes, only with permitted official published files; no scraping",
       "notes": "Aggregate market context only."
+    },
+    {
+      "id": "daft_api_v3",
+      "organisation": "Daft.ie",
+      "dataset": "Daft.ie API V3 property listings",
+      "official_url": "https://api.daft.ie/doc/v3/",
+      "format": "XML / SOAP",
+      "api_or_download": "SOAP API",
+      "update_frequency": "live/on-demand",
+      "geographic_resolution": "listing-level address + latitude/longitude when provided",
+      "historical_coverage": "live listings returned by the API; not a historical archive",
+      "licence": "Daft API Terms & Conditions",
+      "attribution_required": true,
+      "hackathon_use": "only if the API account is authorised for the intended use; confirm written consent if the use could compete with Daft products/services",
+      "notes": "Do not scrape. Do not pre-fetch, cache, or store search results in MongoDB. Public-facing authorised use requires a visible link to Daft with the anchor text \"Properties by Daft.ie\"."
+    },
+    {
+      "id": "cso_riq02",
+      "organisation": "Residential Tenancies Board (published by the Central Statistics Office)",
+      "dataset": "RTB Average Monthly Rent Report (RIQ02)",
+      "official_url": "https://data.cso.ie/table/RIQ02",
+      "format": "JSON-stat / CSV (PxStat API)",
+      "api_or_download": "CSO PxStat REST API (open, no key)",
+      "update_frequency": "quarterly",
+      "geographic_resolution": "446 named places (towns, Dublin neighbourhoods, counties); no coordinates published",
+      "historical_coverage": "2007 Q4 to 2025 Q4",
+      "licence": "CC BY 4.0 (CSO open data)",
+      "attribution_required": true,
+      "hackathon_use": "primary REAL rent source: average rent of newly registered tenancies by place, property type, bedrooms and quarter",
+      "notes": "No tenancy counts; most cells are suppressed in the latest quarter; ranges (1 to 2 bed) skipped on import. Place centroids come from OpenStreetMap Nominatim geocoding (c) OpenStreetMap contributors, ODbL."
     }
   ]
 }

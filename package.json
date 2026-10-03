@@ -7,12 +7,18 @@
   "scripts": {
     "db:indexes": "node db/scripts/createIndexes.js",
     "db:seed": "node db/scripts/seed.js",
-    "db:test": "node db/test/run.js && node db/test/comparables.test.js && node db/test/trends.test.js",
+    "db:test": "node db/test/run.js && node db/test/comparables.test.js && node db/test/trends.test.js && node db/test/server.test.js && node db/test/realdata.test.js",
     "db:test:trends": "node db/test/trends.test.js",
     "db:pipelines": "node db/scripts/printComparablePipeline.js && node db/scripts/printTrendPipelines.js",
-    "db:test:comparables": "node db/test/comparables.test.js"
+    "db:test:comparables": "node db/test/comparables.test.js",
+    "engine": "node db/server.js",
+    "db:import:riq02": "node db/scripts/importRiq02.js",
+    "db:geocode:riq02": "node db/scripts/geocodeRiq02Locations.js",
+    "db:test:server": "node db/test/server.test.js",
+    "db:test:real": "node db/test/realdata.test.js"
   },
   "dependencies": {
+    "d3-delaunay": "^6.0.4",
     "mongodb": "^6.10.0"
   },
   "devDependencies": {

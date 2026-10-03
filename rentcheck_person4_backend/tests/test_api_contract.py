@@ -23,3 +23,9 @@ def test_routes_registered():
     assert "/analysis/{analysis_id}/report" in paths
 
     assert "/agent/getRentalComparables/{property_id}" in paths
+    assert "/daft/rental/search/{property_id}" in paths
+    assert "/daft/sale/search/{property_id}" in paths
+    assert "/analysis/{analysis_id}/live/daft-rental" in paths
+    assert "/analysis/{analysis_id}/live/daft-sale" in paths
+    assert "/agent/getDaftRentalComparables/{property_id}" in paths
+    assert "/agent/getDaftSaleComparables/{property_id}" in paths
