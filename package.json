@@ -20,7 +20,9 @@
     "db:geocode:riq02": "node db/scripts/geocodeRiq02Locations.js",
     "atlas:check": "node db/scripts/atlas.js check",
     "atlas:setup": "node db/scripts/atlas.js setup",
-    "db:test:provenance": "node db/test/provenance.test.js"
+    "db:test:provenance": "node db/test/provenance.test.js",
+    "snapshot:frontend": "node db/scripts/snapshotFrontendRents.js",
+    "db:demo": "npx --yes tsx db/scripts/loadDemoData.js"
   },
   "dependencies": {
     "d3-delaunay": "^6.0.4",

@@ -103,7 +103,7 @@ const submit = handleSubmit(async (form) => {
 
 <template>
   <div>
-    <PanelHeader title="Check a rent" subtitle="Four details. RentCheck finds the rest." />
+    <PanelHeader title="Check a rent" subtitle="Four details. mend.ai finds the rest." />
 
     <form class="space-y-5 p-4" data-form="property" novalidate @submit.prevent="submit">
       <!-- Address (required) -->

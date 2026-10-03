@@ -27,7 +27,7 @@ const listed = computed(() => props.sources.filter(s => s.id !== 'user'))
     </div>
 
     <p class="text-xs text-muted-foreground">
-      {{ disclaimer ?? 'RentCheck is a decision-support tool, not a valuation or legal advice.' }}
+      {{ disclaimer ?? 'mend.ai is a decision-support tool, not a valuation or legal advice.' }}
     </p>
   </div>
 </template>

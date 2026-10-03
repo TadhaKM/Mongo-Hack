@@ -6,7 +6,7 @@ export default defineEventHandler((event): GeocodeResponse | ReturnType<typeof a
   const q = String(getQuery(event).q ?? '').trim().toLowerCase()
   if (q.length < 3) return { results: [] }
   if (/\b(london|paris|new york|belfast|uk|england)\b/.test(q))
-    return apiError(event, 422, 'OUT_OF_COVERAGE', 'RentCheck currently covers Ireland only.')
+    return apiError(event, 422, 'OUT_OF_COVERAGE', 'mend.ai currently covers Ireland only.')
   const words = q.split(/[\s,]+/).filter(Boolean)
   const results = GEOCODE_INDEX
     .filter(r => words.every(w => r.label.toLowerCase().includes(w)))

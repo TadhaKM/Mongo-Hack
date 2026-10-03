@@ -88,7 +88,10 @@ export async function applyValidators(db) {
   const existing = new Set((await db.listCollections({}, { nameOnly: true }).toArray()).map((c) => c.name));
   for (const [name, $jsonSchema] of Object.entries(VALIDATORS)) {
     const opts = { validator: { $jsonSchema }, validationLevel: "strict", validationAction: "error" };
-    if (existing.has(name)) await db.command({ collMod: name, ...opts });
+    if (existing.has(name)) {
+      // some Atlas database users may not be allowed collMod; the validator was applied when the collection was created
+      try { await db.command({ collMod: name, ...opts }); } catch (e) { if (e.code !== 8000 && e.code !== 13) throw e; }
+    }
     else await db.createCollection(name, opts);
   }
 }

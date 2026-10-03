@@ -6,7 +6,7 @@ import type {
   PlanningResponse, PropertyType, ReportResponse, Stage, StageKey,
 } from '../../app/types/api'
 import {
-  COMPARABLES_FOUND, COUNTY_TOWNS, DEMO_LISTING_ID, DUBLIN_8_CENTER, GEOCODE_INDEX, distanceM, LISTINGS, SOURCES, amenitiesNear, areaBase, areaMedian, areaStats, comparablesFor,
+  COMPARABLES_FOUND, COUNTY_TOWNS, RENT_DATA_PERIOD, DEMO_LISTING_ID, DUBLIN_8_CENTER, GEOCODE_INDEX, distanceM, LISTINGS, SOURCES, amenitiesNear, areaBase, areaMedian, areaStats, comparablesFor,
   planningNear, quantile, transportNear, trendFor, verdictFor,
 } from './data'
 import { eur, metres, pct } from '../../app/lib/format'
@@ -24,7 +24,7 @@ interface TimelineStep { stage: StageKey; start: number; end: number; running: s
 
 const TIMELINE: TimelineStep[] = [
   { stage: 'geocode', start: 0, end: 900, running: 'Locating property…', done: a => `Property identified: ${a.area}` },
-  { stage: 'market', start: 900, end: 2300, running: 'Retrieving rental market data…', done: () => 'Rental market data retrieved (RTB Q2 2026)' },
+  { stage: 'market', start: 900, end: 2300, running: 'Retrieving rental market data…', done: () => `Rental market data retrieved (RTB, ${RENT_DATA_PERIOD})` },
   {
     stage: 'comparables', start: 2300, end: 4400, running: 'Finding comparable properties…',
     done: () => `${COMPARABLES_FOUND} comparable properties found`,
@@ -162,7 +162,7 @@ function buildSummary(a: StoredAnalysis) {
   const differencePct = Math.round((differenceEur / stats.median) * 1000) / 10
   const percentile = Math.round((items.filter(c => c.rent < asking).length / items.length) * 100)
   const verdict = verdictFor(differencePct)
-  const trend = trendFor(areaMedian(a.input.bedrooms, a.input.property_type as PropertyType, areaBase(a.area)))
+  const trend = trendFor(areaMedian(a.input.bedrooms, a.input.property_type as PropertyType, areaBase(a.area)), a.area)
   const typeLabel = a.input.bedrooms === 0 ? 'studios' : `${a.input.bedrooms}-bed ${a.input.property_type.replace('_', ' ')}s`
 
   const evidence: Evidence[] = [
@@ -295,6 +295,6 @@ export function buildReport(a: StoredAnalysis): ReportResponse {
     location: buildLocation(a),
     planning: buildPlanning(a),
     generated_at: new Date().toISOString(),
-    disclaimer: 'RentCheck is a decision-support tool, not a valuation or legal advice. Check important details with the landlord and the RTB.',
+    disclaimer: 'mend.ai is a decision-support tool, not a valuation or legal advice. Check important details with the landlord and the RTB.',
   }
 }

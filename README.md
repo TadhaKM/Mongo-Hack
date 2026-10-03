@@ -7,6 +7,7 @@
 | Folder | Owner | What it is | Run / test |
 |---|---|---|---|
 | [rentcheck_person4_backend/](rentcheck_person4_backend/) | Person 4 | FastAPI backend: REST API, dataset ingestion, geocoding, Daft (optional). Mounts the AI agents at `/ai` and the MongoDB engine gateway at `/engine`. Database `rentcheck` | `pytest` |
+| [frontend/](frontend/) | Person 3 | Nuxt app: map, check-a-rent flow, report, and a live **/database** page. Deployed on Vercel ([docs/DEPLOY_VERCEL.md](docs/DEPLOY_VERCEL.md)). Rent levels and trends are real CSO/RTB figures (snapshot); listings, transport, planning and census are labelled sample data | `cd frontend && npm run dev` |
 | [agents/](agents/) | Person 2 | AI agents (planner, investigators, verifier, writer). Run in-process inside the backend | `pytest` |
 | [db/](db/) | Person 1 | MongoDB engine (Node): schema, indexes, validators, geospatial queries, comparable-rental engine, time-series trends, evidence and claim verification, HTTP gateway. Database `rentcheck_engine` | `npm run db:test` |
 | [docs/](docs/) | all | design documents (start with [real-data-and-integration.md](docs/real-data-and-integration.md)) | |
@@ -54,12 +55,16 @@ curl -X POST localhost:8000/engine/tools/rentContext -H 'content-type: applicati
   -d '{"params":{"lng":-6.2546,"lat":53.3438,"propertyType":"apartment","bedrooms":2,"askingRent":2600}}'
 ```
 
+**Deploying and the video:** [docs/DEPLOY_VERCEL.md](docs/DEPLOY_VERCEL.md) (Vercel steps, environment variables, how to show the database).
+
 ## MongoDB Atlas (shared database for the whole team)
 
 1. Atlas: create a **database user** (Database Access) and allow your IP (Network Access; `0.0.0.0/0` is fine for a hackathon).
 2. Copy the cluster's connection string (`mongodb+srv://<user>:<password>@<cluster>.mongodb.net/...`) into the git-ignored repo-root `.env` as `MONGODB_URI` (template: `.env.example`).
 3. `npm run atlas:setup` creates the validators and indexes and loads the real CSO/RTB rent data into the engine database. `npm run atlas:check` connects and reports which datasets are present or missing in both databases, then runs a live query on the real data.
 4. Backend: put the same `MONGODB_URI` and `MONGODB_DATABASE=rentcheck` in `rentcheck_person4_backend/.env`, then run the three `ingest.py` commands from the quick start.
+
+Sample data for datasets we have no real files for (listings, transport, planning, sales, vacancy): `npm run db:demo` (marked synthetic everywhere). Copy the real rent figures into the frontend: `npm run snapshot:frontend`.
 
 Never commit `.env`: it holds the database password and the Atlas Model API key.
 

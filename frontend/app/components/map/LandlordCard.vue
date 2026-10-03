@@ -5,7 +5,7 @@ import { beds, eur, metres, period, propertyType } from '~/lib/format'
 import MapCard from './MapCard.vue'
 
 // "Send to landlord", opened from the map's radial menu. A draft built from the
-// evidence (same wording as A's report version). RentCheck never sends anything:
+// evidence (same wording as A's report version). mend.ai never sends anything:
 // the renter edits it, then copies it or opens it in their own email app.
 const props = defineProps<{ listingId: string; x: number; y: number; desktop: boolean }>()
 const emit = defineEmits<{ closed: [] }>()
@@ -97,7 +97,7 @@ async function copy() {
       </button>
     </div>
     <p class="text-xs text-muted-foreground">
-      RentCheck doesn't send anything.<template v-if="listing?.is_sample"> Sample listing: there's no real landlord to contact.</template>
+      mend.ai doesn't send anything.<template v-if="listing?.is_sample"> Sample listing: there's no real landlord to contact.</template>
     </p>
   </MapCard>
 </template>

@@ -123,7 +123,7 @@ onBeforeUnmount(() => {
         <Button as-child variant="ghost" class="-ml-2 rounded-full px-3">
           <NuxtLink :to="backTo"><ArrowLeft class="size-4" /> Back to map</NuxtLink>
         </Button>
-        <p class="type-caption-upper hidden flex-1 text-center text-muted-foreground sm:block">RentCheck · Know before you rent</p>
+        <p class="type-caption-upper hidden flex-1 text-center text-muted-foreground sm:block">mend.ai · Know before you rent</p>
         <div class="ml-auto flex items-center gap-2">
           <Button variant="outline" class="rounded-full border-hairline-strong" :disabled="!report" @click="copyLink">
             <component :is="copied ? Check : Link2" class="size-4" />
@@ -257,7 +257,7 @@ onBeforeUnmount(() => {
       </div>
 
       <footer class="mt-8 flex flex-wrap items-center justify-between gap-2 px-1 text-xs text-muted-foreground print:mt-4">
-        <span>RentCheck AI · Report {{ a.id }}</span>
+        <span>mend.ai · Report {{ a.id }}</span>
         <span>Generated {{ day(report.generated_at) }}</span>
       </footer>
     </main>

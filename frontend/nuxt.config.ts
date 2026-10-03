@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'RentCheck AI',
+      title: 'mend.ai',
       meta: [{ name: 'description', content: 'Know before you rent. Check any Irish rental against real market, transport, census and planning data.' }],
     },
   },

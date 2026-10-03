@@ -1,0 +1,1944 @@
+{
+ "generated_at": "2026-10-03T14:15:37.410Z",
+ "note": "REAL figures from CSO PxStat RIQ02 (RTB Average Monthly Rent Report), snapshotted from the database. Bedroom/type scaling beyond these ratios is still a sample model.",
+ "source": {
+  "id": "cso_riq02",
+  "title": "RTB Average Monthly Rent Report (RIQ02)",
+  "organisation": "Residential Tenancies Board, published by the Central Statistics Office",
+  "url": "https://data.cso.ie/table/RIQ02",
+  "licence": "CC BY 4.0 (CSO open data)",
+  "version": "2026-05-14"
+ },
+ "latestPeriod": "2025-Q4",
+ "bedroomRatios": {
+  "1": 0.773,
+  "3": 1.148,
+  "4": 1.473
+ },
+ "areas": {
+  "Dublin 8": {
+   "place": "Cork Street, Dublin 8",
+   "placeLevel": "rtb_zone",
+   "distanceM": 6,
+   "base2bed": 1976.34,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 1629.04
+    },
+    {
+     "period": "2022-Q2",
+     "value": 1651.69
+    },
+    {
+     "period": "2022-Q3",
+     "value": 1686.16
+    },
+    {
+     "period": "2022-Q4",
+     "value": 1743.31
+    },
+    {
+     "period": "2023-Q1",
+     "value": 1753.63
+    },
+    {
+     "period": "2023-Q2",
+     "value": 1767.84
+    },
+    {
+     "period": "2023-Q3",
+     "value": 1854.45
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1882
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1905.86
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1908.11
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1842.35
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1831.27
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1881.24
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1931.21
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1981.18
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1976.34
+    }
+   ],
+   "interpolatedQuarters": 2
+  },
+  "Carlow": {
+   "place": "Carlow Town",
+   "placeLevel": "rtb_zone",
+   "distanceM": 538,
+   "base2bed": 1123.42,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 877.36
+    },
+    {
+     "period": "2022-Q2",
+     "value": 886.61
+    },
+    {
+     "period": "2022-Q3",
+     "value": 908.64
+    },
+    {
+     "period": "2022-Q4",
+     "value": 920.83
+    },
+    {
+     "period": "2023-Q1",
+     "value": 912.53
+    },
+    {
+     "period": "2023-Q2",
+     "value": 930.61
+    },
+    {
+     "period": "2023-Q3",
+     "value": 941.88
+    },
+    {
+     "period": "2023-Q4",
+     "value": 962.6
+    },
+    {
+     "period": "2024-Q1",
+     "value": 975.82
+    },
+    {
+     "period": "2024-Q2",
+     "value": 986.54
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1007.1
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1029.03
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1049.88
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1050.96
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1097.28
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1123.42
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Cavan": {
+   "place": "Cavan Town",
+   "placeLevel": "rtb_zone",
+   "distanceM": 124,
+   "base2bed": 1170.07,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 793.33
+    },
+    {
+     "period": "2022-Q2",
+     "value": 817.05
+    },
+    {
+     "period": "2022-Q3",
+     "value": 837.99
+    },
+    {
+     "period": "2022-Q4",
+     "value": 859.84
+    },
+    {
+     "period": "2023-Q1",
+     "value": 908.95
+    },
+    {
+     "period": "2023-Q2",
+     "value": 936.46
+    },
+    {
+     "period": "2023-Q3",
+     "value": 961.69
+    },
+    {
+     "period": "2023-Q4",
+     "value": 993.2
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1056.72
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1058.83
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1073.02
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1095.19
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1106.06
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1130.14
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1139.64
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1170.07
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Ennis": {
+   "place": "Ennis, Clare",
+   "placeLevel": "rtb_zone",
+   "distanceM": 73,
+   "base2bed": 1042.19,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 790.03
+    },
+    {
+     "period": "2022-Q2",
+     "value": 786.55
+    },
+    {
+     "period": "2022-Q3",
+     "value": 809.09
+    },
+    {
+     "period": "2022-Q4",
+     "value": 811.44
+    },
+    {
+     "period": "2023-Q1",
+     "value": 842.7
+    },
+    {
+     "period": "2023-Q2",
+     "value": 868.55
+    },
+    {
+     "period": "2023-Q3",
+     "value": 894.04
+    },
+    {
+     "period": "2023-Q4",
+     "value": 927.79
+    },
+    {
+     "period": "2024-Q1",
+     "value": 946.16
+    },
+    {
+     "period": "2024-Q2",
+     "value": 960
+    },
+    {
+     "period": "2024-Q3",
+     "value": 965.42
+    },
+    {
+     "period": "2024-Q4",
+     "value": 992.15
+    },
+    {
+     "period": "2025-Q1",
+     "value": 990.65
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1002.5
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1009.36
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1042.19
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Cork City": {
+   "place": "Cork City",
+   "placeLevel": "rtb_zone",
+   "distanceM": 969,
+   "base2bed": 1623.69,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 1296.42
+    },
+    {
+     "period": "2022-Q2",
+     "value": 1302.98
+    },
+    {
+     "period": "2022-Q3",
+     "value": 1321.12
+    },
+    {
+     "period": "2022-Q4",
+     "value": 1331.7
+    },
+    {
+     "period": "2023-Q1",
+     "value": 1351.11
+    },
+    {
+     "period": "2023-Q2",
+     "value": 1371.62
+    },
+    {
+     "period": "2023-Q3",
+     "value": 1395.13
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1406.75
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1424.79
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1446.37
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1470.2
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1490.04
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1530.7
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1547.2
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1592.16
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1623.69
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Letterkenny": {
+   "place": "Letterkenny, Donegal",
+   "placeLevel": "rtb_zone",
+   "distanceM": 219,
+   "base2bed": 1058.28,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 669.19
+    },
+    {
+     "period": "2022-Q2",
+     "value": 680.48
+    },
+    {
+     "period": "2022-Q3",
+     "value": 698.19
+    },
+    {
+     "period": "2022-Q4",
+     "value": 713.62
+    },
+    {
+     "period": "2023-Q1",
+     "value": 725.33
+    },
+    {
+     "period": "2023-Q2",
+     "value": 758.24
+    },
+    {
+     "period": "2023-Q3",
+     "value": 805.94
+    },
+    {
+     "period": "2023-Q4",
+     "value": 835.51
+    },
+    {
+     "period": "2024-Q1",
+     "value": 875.93
+    },
+    {
+     "period": "2024-Q2",
+     "value": 905.95
+    },
+    {
+     "period": "2024-Q3",
+     "value": 940.14
+    },
+    {
+     "period": "2024-Q4",
+     "value": 962.63
+    },
+    {
+     "period": "2025-Q1",
+     "value": 998.48
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1012.58
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1044.84
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1058.28
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Galway City": {
+   "place": "Galway City",
+   "placeLevel": "rtb_zone",
+   "distanceM": 651,
+   "base2bed": 1665.37,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 1226.3
+    },
+    {
+     "period": "2022-Q2",
+     "value": 1240.81
+    },
+    {
+     "period": "2022-Q3",
+     "value": 1280.7
+    },
+    {
+     "period": "2022-Q4",
+     "value": 1296.58
+    },
+    {
+     "period": "2023-Q1",
+     "value": 1313.71
+    },
+    {
+     "period": "2023-Q2",
+     "value": 1349.18
+    },
+    {
+     "period": "2023-Q3",
+     "value": 1395.77
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1412.57
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1447.97
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1476.34
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1525.87
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1558.58
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1592.52
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1619.51
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1652.56
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1665.37
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Tralee": {
+   "place": "Tralee, Kerry",
+   "placeLevel": "rtb_zone",
+   "distanceM": 267,
+   "base2bed": 1178.46,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 833.86
+    },
+    {
+     "period": "2022-Q2",
+     "value": 839.18
+    },
+    {
+     "period": "2022-Q3",
+     "value": 861.7
+    },
+    {
+     "period": "2022-Q4",
+     "value": 890.02
+    },
+    {
+     "period": "2023-Q1",
+     "value": 906.06
+    },
+    {
+     "period": "2023-Q2",
+     "value": 911.98
+    },
+    {
+     "period": "2023-Q3",
+     "value": 939.89
+    },
+    {
+     "period": "2023-Q4",
+     "value": 969.47
+    },
+    {
+     "period": "2024-Q1",
+     "value": 973.42
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1000.28
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1023.08
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1067.41
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1093.31
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1125.96
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1164.66
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1178.46
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Naas": {
+   "place": "Naas, Kildare",
+   "placeLevel": "rtb_zone",
+   "distanceM": 883,
+   "base2bed": 1793.34,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 1332.2
+    },
+    {
+     "period": "2022-Q2",
+     "value": 1339.61
+    },
+    {
+     "period": "2022-Q3",
+     "value": 1356.12
+    },
+    {
+     "period": "2022-Q4",
+     "value": 1416.22
+    },
+    {
+     "period": "2023-Q1",
+     "value": 1428.95
+    },
+    {
+     "period": "2023-Q2",
+     "value": 1475.32
+    },
+    {
+     "period": "2023-Q3",
+     "value": 1514.94
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1575.24
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1594.02
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1616.28
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1646.79
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1655.6
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1674.78
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1706.14
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1724.94
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1793.34
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Kilkenny": {
+   "place": "Kilkenny",
+   "placeLevel": "county",
+   "distanceM": 446,
+   "base2bed": 1085.03,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 802.11
+    },
+    {
+     "period": "2022-Q2",
+     "value": 789.4
+    },
+    {
+     "period": "2022-Q3",
+     "value": 814.75
+    },
+    {
+     "period": "2022-Q4",
+     "value": 824.12
+    },
+    {
+     "period": "2023-Q1",
+     "value": 832.02
+    },
+    {
+     "period": "2023-Q2",
+     "value": 883.53
+    },
+    {
+     "period": "2023-Q3",
+     "value": 899.63
+    },
+    {
+     "period": "2023-Q4",
+     "value": 923.49
+    },
+    {
+     "period": "2024-Q1",
+     "value": 942.59
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1013.99
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1003.93
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1038.47
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1070.01
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1079.96
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1102.36
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1085.03
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Portlaoise": {
+   "place": "Portlaoise, Laois",
+   "placeLevel": "rtb_zone",
+   "distanceM": 4,
+   "base2bed": 1312.08,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 917.45
+    },
+    {
+     "period": "2022-Q2",
+     "value": 926.43
+    },
+    {
+     "period": "2022-Q3",
+     "value": 930.42
+    },
+    {
+     "period": "2022-Q4",
+     "value": 940.76
+    },
+    {
+     "period": "2023-Q1",
+     "value": 932.89
+    },
+    {
+     "period": "2023-Q2",
+     "value": 958.45
+    },
+    {
+     "period": "2023-Q3",
+     "value": 973.8
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1041.36
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1074.16
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1095.48
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1111.43
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1120.7
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1167.23
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1214.48
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1221.56
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1312.08
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Carrick-on-Shannon": {
+   "place": "Carrick-On-Shannon, Leitrim",
+   "placeLevel": "rtb_zone",
+   "distanceM": 469,
+   "base2bed": 1068.42,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 662.06
+    },
+    {
+     "period": "2022-Q2",
+     "value": 688.14
+    },
+    {
+     "period": "2022-Q3",
+     "value": 723.56
+    },
+    {
+     "period": "2022-Q4",
+     "value": 734.95
+    },
+    {
+     "period": "2023-Q1",
+     "value": 726.87
+    },
+    {
+     "period": "2023-Q2",
+     "value": 751.64
+    },
+    {
+     "period": "2023-Q3",
+     "value": 784.94
+    },
+    {
+     "period": "2023-Q4",
+     "value": 819.05
+    },
+    {
+     "period": "2024-Q1",
+     "value": 891.59
+    },
+    {
+     "period": "2024-Q2",
+     "value": 919.67
+    },
+    {
+     "period": "2024-Q3",
+     "value": 949.89
+    },
+    {
+     "period": "2024-Q4",
+     "value": 972.84
+    },
+    {
+     "period": "2025-Q1",
+     "value": 991.25
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1023.86
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1051.16
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1068.42
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Limerick City": {
+   "place": "Dock Road, Limerick",
+   "placeLevel": "rtb_zone",
+   "distanceM": 588,
+   "base2bed": 1441.38,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 952.5
+    },
+    {
+     "period": "2022-Q2",
+     "value": 947.41
+    },
+    {
+     "period": "2022-Q3",
+     "value": 946.74
+    },
+    {
+     "period": "2022-Q4",
+     "value": 951.54
+    },
+    {
+     "period": "2023-Q1",
+     "value": 975.28
+    },
+    {
+     "period": "2023-Q2",
+     "value": 1016.22
+    },
+    {
+     "period": "2023-Q3",
+     "value": 1058.08
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1101.52
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1165.96
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1195.31
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1218.85
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1253.33
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1259.83
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1256.93
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1359.08
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1441.38
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Longford": {
+   "place": "Longford Town",
+   "placeLevel": "rtb_zone",
+   "distanceM": 194,
+   "base2bed": 1124,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 747.44
+    },
+    {
+     "period": "2022-Q2",
+     "value": 746.73
+    },
+    {
+     "period": "2022-Q3",
+     "value": 760.5
+    },
+    {
+     "period": "2022-Q4",
+     "value": 794.62
+    },
+    {
+     "period": "2023-Q1",
+     "value": 786.5
+    },
+    {
+     "period": "2023-Q2",
+     "value": 809.11
+    },
+    {
+     "period": "2023-Q3",
+     "value": 836.84
+    },
+    {
+     "period": "2023-Q4",
+     "value": 858.66
+    },
+    {
+     "period": "2024-Q1",
+     "value": 906.65
+    },
+    {
+     "period": "2024-Q2",
+     "value": 956.14
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1002.66
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1023.09
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1081.85
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1116.21
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1139.54
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1124
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Dundalk": {
+   "place": "Dundalk, Louth",
+   "placeLevel": "rtb_zone",
+   "distanceM": 578,
+   "base2bed": 1271.69,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 1022.57
+    },
+    {
+     "period": "2022-Q2",
+     "value": 1027.17
+    },
+    {
+     "period": "2022-Q3",
+     "value": 1050.71
+    },
+    {
+     "period": "2022-Q4",
+     "value": 1057.09
+    },
+    {
+     "period": "2023-Q1",
+     "value": 1069.05
+    },
+    {
+     "period": "2023-Q2",
+     "value": 1091.77
+    },
+    {
+     "period": "2023-Q3",
+     "value": 1101.11
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1111.22
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1143.1
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1144.66
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1161.77
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1183.64
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1202.24
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1223.01
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1236.45
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1271.69
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Castlebar": {
+   "place": "Castlebar, Mayo",
+   "placeLevel": "rtb_zone",
+   "distanceM": 115,
+   "base2bed": 1207.84,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 789.85
+    },
+    {
+     "period": "2022-Q2",
+     "value": 807.81
+    },
+    {
+     "period": "2022-Q3",
+     "value": 832.14
+    },
+    {
+     "period": "2022-Q4",
+     "value": 850.05
+    },
+    {
+     "period": "2023-Q1",
+     "value": 911.35
+    },
+    {
+     "period": "2023-Q2",
+     "value": 922.39
+    },
+    {
+     "period": "2023-Q3",
+     "value": 957.53
+    },
+    {
+     "period": "2023-Q4",
+     "value": 974.01
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1026.84
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1041.31
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1076.29
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1104
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1156.83
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1161.09
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1193.56
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1207.84
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Navan": {
+   "place": "Navan, Meath",
+   "placeLevel": "rtb_zone",
+   "distanceM": 135,
+   "base2bed": 1388.55,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 1131.05
+    },
+    {
+     "period": "2022-Q2",
+     "value": 1136.94
+    },
+    {
+     "period": "2022-Q3",
+     "value": 1161.71
+    },
+    {
+     "period": "2022-Q4",
+     "value": 1180.44
+    },
+    {
+     "period": "2023-Q1",
+     "value": 1200.79
+    },
+    {
+     "period": "2023-Q2",
+     "value": 1233.97
+    },
+    {
+     "period": "2023-Q3",
+     "value": 1245.63
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1259.41
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1267.46
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1285.03
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1298.07
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1309.1
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1322.05
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1343.93
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1357.49
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1388.55
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Monaghan": {
+   "place": "Monaghan Town",
+   "placeLevel": "rtb_zone",
+   "distanceM": 76,
+   "base2bed": 896.53,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 716.85
+    },
+    {
+     "period": "2022-Q2",
+     "value": 721.89
+    },
+    {
+     "period": "2022-Q3",
+     "value": 722.16
+    },
+    {
+     "period": "2022-Q4",
+     "value": 738.09
+    },
+    {
+     "period": "2023-Q1",
+     "value": 745.45
+    },
+    {
+     "period": "2023-Q2",
+     "value": 758.29
+    },
+    {
+     "period": "2023-Q3",
+     "value": 779.32
+    },
+    {
+     "period": "2023-Q4",
+     "value": 806.81
+    },
+    {
+     "period": "2024-Q1",
+     "value": 824.72
+    },
+    {
+     "period": "2024-Q2",
+     "value": 836.01
+    },
+    {
+     "period": "2024-Q3",
+     "value": 843.37
+    },
+    {
+     "period": "2024-Q4",
+     "value": 881.92
+    },
+    {
+     "period": "2025-Q1",
+     "value": 903.9
+    },
+    {
+     "period": "2025-Q2",
+     "value": 891.58
+    },
+    {
+     "period": "2025-Q3",
+     "value": 897.34
+    },
+    {
+     "period": "2025-Q4",
+     "value": 896.53
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Tullamore": {
+   "place": "Tullamore, Offaly",
+   "placeLevel": "rtb_zone",
+   "distanceM": 45,
+   "base2bed": 1213.27,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 922.22
+    },
+    {
+     "period": "2022-Q2",
+     "value": 965.14
+    },
+    {
+     "period": "2022-Q3",
+     "value": 1017.99
+    },
+    {
+     "period": "2022-Q4",
+     "value": 981.01
+    },
+    {
+     "period": "2023-Q1",
+     "value": 952.99
+    },
+    {
+     "period": "2023-Q2",
+     "value": 943.1
+    },
+    {
+     "period": "2023-Q3",
+     "value": 980.9
+    },
+    {
+     "period": "2023-Q4",
+     "value": 985.43
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1003.85
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1039.7
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1081.11
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1088.64
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1108.2
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1121.81
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1179.69
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1213.27
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Roscommon": {
+   "place": "Roscommon Town",
+   "placeLevel": "rtb_zone",
+   "distanceM": 201,
+   "base2bed": 987.48,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 711.91
+    },
+    {
+     "period": "2022-Q2",
+     "value": 733.01
+    },
+    {
+     "period": "2022-Q3",
+     "value": 749.08
+    },
+    {
+     "period": "2022-Q4",
+     "value": 771.11
+    },
+    {
+     "period": "2023-Q1",
+     "value": 782.87
+    },
+    {
+     "period": "2023-Q2",
+     "value": 792.24
+    },
+    {
+     "period": "2023-Q3",
+     "value": 796.3
+    },
+    {
+     "period": "2023-Q4",
+     "value": 825.47
+    },
+    {
+     "period": "2024-Q1",
+     "value": 855.24
+    },
+    {
+     "period": "2024-Q2",
+     "value": 851.46
+    },
+    {
+     "period": "2024-Q3",
+     "value": 886.37
+    },
+    {
+     "period": "2024-Q4",
+     "value": 900.77
+    },
+    {
+     "period": "2025-Q1",
+     "value": 896.04
+    },
+    {
+     "period": "2025-Q2",
+     "value": 940.03
+    },
+    {
+     "period": "2025-Q3",
+     "value": 977.69
+    },
+    {
+     "period": "2025-Q4",
+     "value": 987.48
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Sligo": {
+   "place": "Sligo Town",
+   "placeLevel": "rtb_zone",
+   "distanceM": 132,
+   "base2bed": 1073.21,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 806.26
+    },
+    {
+     "period": "2022-Q2",
+     "value": 818.11
+    },
+    {
+     "period": "2022-Q3",
+     "value": 842.42
+    },
+    {
+     "period": "2022-Q4",
+     "value": 853.06
+    },
+    {
+     "period": "2023-Q1",
+     "value": 856.38
+    },
+    {
+     "period": "2023-Q2",
+     "value": 873.98
+    },
+    {
+     "period": "2023-Q3",
+     "value": 885.15
+    },
+    {
+     "period": "2023-Q4",
+     "value": 923.18
+    },
+    {
+     "period": "2024-Q1",
+     "value": 929.15
+    },
+    {
+     "period": "2024-Q2",
+     "value": 952.82
+    },
+    {
+     "period": "2024-Q3",
+     "value": 991.99
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1015.17
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1000.21
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1018.95
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1056.1
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1073.21
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Clonmel": {
+   "place": "Clonmel, Tipperary",
+   "placeLevel": "rtb_zone",
+   "distanceM": 754,
+   "base2bed": 1088.2,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 760.85
+    },
+    {
+     "period": "2022-Q2",
+     "value": 764.09
+    },
+    {
+     "period": "2022-Q3",
+     "value": 780.88
+    },
+    {
+     "period": "2022-Q4",
+     "value": 800.98
+    },
+    {
+     "period": "2023-Q1",
+     "value": 791.49
+    },
+    {
+     "period": "2023-Q2",
+     "value": 806.96
+    },
+    {
+     "period": "2023-Q3",
+     "value": 869.99
+    },
+    {
+     "period": "2023-Q4",
+     "value": 875.43
+    },
+    {
+     "period": "2024-Q1",
+     "value": 911.84
+    },
+    {
+     "period": "2024-Q2",
+     "value": 921.66
+    },
+    {
+     "period": "2024-Q3",
+     "value": 968.13
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1006.47
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1007.31
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1045.32
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1044.28
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1088.2
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Waterford City": {
+   "place": "Waterford City",
+   "placeLevel": "rtb_zone",
+   "distanceM": 559,
+   "base2bed": 1232.7,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 880.8
+    },
+    {
+     "period": "2022-Q2",
+     "value": 887.4
+    },
+    {
+     "period": "2022-Q3",
+     "value": 899.75
+    },
+    {
+     "period": "2022-Q4",
+     "value": 918.68
+    },
+    {
+     "period": "2023-Q1",
+     "value": 924.19
+    },
+    {
+     "period": "2023-Q2",
+     "value": 944.78
+    },
+    {
+     "period": "2023-Q3",
+     "value": 981.7
+    },
+    {
+     "period": "2023-Q4",
+     "value": 988.6
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1002.07
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1026.46
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1049.69
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1066.02
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1101.11
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1118.1
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1182.93
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1232.7
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Athlone": {
+   "place": "Athlone, Westmeath",
+   "placeLevel": "rtb_zone",
+   "distanceM": 173,
+   "base2bed": 1219.24,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 942.04
+    },
+    {
+     "period": "2022-Q2",
+     "value": 957.29
+    },
+    {
+     "period": "2022-Q3",
+     "value": 1003.89
+    },
+    {
+     "period": "2022-Q4",
+     "value": 1034.17
+    },
+    {
+     "period": "2023-Q1",
+     "value": 1020.76
+    },
+    {
+     "period": "2023-Q2",
+     "value": 1041.2
+    },
+    {
+     "period": "2023-Q3",
+     "value": 1064.76
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1092.32
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1118.02
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1120.09
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1158.9
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1141.81
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1173.44
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1203.6
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1215.93
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1219.24
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Wexford": {
+   "place": "Enniscorthy, Wexford",
+   "placeLevel": "rtb_zone",
+   "distanceM": 20133,
+   "base2bed": 1026.38,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 741.2
+    },
+    {
+     "period": "2022-Q2",
+     "value": 749.68
+    },
+    {
+     "period": "2022-Q3",
+     "value": 744.48
+    },
+    {
+     "period": "2022-Q4",
+     "value": 769.79
+    },
+    {
+     "period": "2023-Q1",
+     "value": 770.44
+    },
+    {
+     "period": "2023-Q2",
+     "value": 795.35
+    },
+    {
+     "period": "2023-Q3",
+     "value": 824.09
+    },
+    {
+     "period": "2023-Q4",
+     "value": 836.22
+    },
+    {
+     "period": "2024-Q1",
+     "value": 901.98
+    },
+    {
+     "period": "2024-Q2",
+     "value": 919.91
+    },
+    {
+     "period": "2024-Q3",
+     "value": 952.58
+    },
+    {
+     "period": "2024-Q4",
+     "value": 971.09
+    },
+    {
+     "period": "2025-Q1",
+     "value": 966.29
+    },
+    {
+     "period": "2025-Q2",
+     "value": 990.51
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1013.37
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1026.38
+    }
+   ],
+   "interpolatedQuarters": 0
+  },
+  "Bray": {
+   "place": "Bray, Wicklow",
+   "placeLevel": "rtb_zone",
+   "distanceM": 851,
+   "base2bed": 1728.6,
+   "latest": "2025-Q4",
+   "series": [
+    {
+     "period": "2022-Q1",
+     "value": 1493.93
+    },
+    {
+     "period": "2022-Q2",
+     "value": 1494.99
+    },
+    {
+     "period": "2022-Q3",
+     "value": 1504.37
+    },
+    {
+     "period": "2022-Q4",
+     "value": 1520.51
+    },
+    {
+     "period": "2023-Q1",
+     "value": 1526.51
+    },
+    {
+     "period": "2023-Q2",
+     "value": 1533.39
+    },
+    {
+     "period": "2023-Q3",
+     "value": 1554.22
+    },
+    {
+     "period": "2023-Q4",
+     "value": 1539.62
+    },
+    {
+     "period": "2024-Q1",
+     "value": 1553.91
+    },
+    {
+     "period": "2024-Q2",
+     "value": 1581.4
+    },
+    {
+     "period": "2024-Q3",
+     "value": 1608.19
+    },
+    {
+     "period": "2024-Q4",
+     "value": 1620.33
+    },
+    {
+     "period": "2025-Q1",
+     "value": 1677.14
+    },
+    {
+     "period": "2025-Q2",
+     "value": 1696.16
+    },
+    {
+     "period": "2025-Q3",
+     "value": 1700.97
+    },
+    {
+     "period": "2025-Q4",
+     "value": 1728.6
+    }
+   ],
+   "interpolatedQuarters": 0
+  }
+ }
+}

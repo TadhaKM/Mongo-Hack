@@ -5,6 +5,14 @@ import type {
   Amenity, Claim, Comparable, Evidence, GeocodeResult, Listing, LngLat, PlanningApplication,
   PropertyType, Source, TransportStop, Verdict,
 } from '../../app/types/api'
+// REAL rent figures (CSO PxStat RIQ02, RTB average rents), snapshotted from the database by `npm run snapshot:frontend`.
+// Where an area has a real figure it replaces the invented one; everything else in this file stays sample data.
+import REAL from './real-rents.json'
+
+interface RealArea { place: string; base2bed: number; latest: string; series: { period: string; value: number }[] }
+const REAL_AREAS = REAL.areas as Record<string, RealArea>
+/** e.g. 'Q4 2025', the latest quarter the real rent data covers */
+export const RENT_DATA_PERIOD = REAL.latestPeriod ? `${REAL.latestPeriod.slice(5)} ${REAL.latestPeriod.slice(0, 4)}` : 'Q2 2026'
 
 // ---------- helpers ----------
 
@@ -61,8 +69,10 @@ function areaFor(p: LngLat): string {
 // ---------- market model ----------
 
 /** 2-bed median for the area; other sizes scale from it. */
-const BASE_2BED_MEDIAN = 1980
-const BED_FACTOR: Record<number, number> = { 0: 0.62, 1: 0.78, 2: 1, 3: 1.25, 4: 1.5, 5: 1.7 }
+const BASE_2BED_MEDIAN = REAL_AREAS['Dublin 8'] ? round(REAL_AREAS['Dublin 8'].base2bed, 10) : 1980
+// 1, 3 and 4 beds use real ratios to the 2-bed average (Dublin, all property types); studios and 5+ beds are still sample values
+const RB = (REAL.bedroomRatios ?? {}) as Record<string, number>
+const BED_FACTOR: Record<number, number> = { 0: 0.62, 1: RB['1'] ?? 0.78, 2: 1, 3: RB['3'] ?? 1.25, 4: RB['4'] ?? 1.5, 5: 1.7 }
 const TYPE_FACTOR: Record<PropertyType, number> = { apartment: 1, house: 1.08, duplex: 1.04, shared_room: 0.42 }
 
 /** 2-bed median for an area (sample values). Dublin areas use the Dublin 8 figure. */
@@ -104,6 +114,7 @@ export const COUNTY_TOWNS: { county: string; area: string; lng: number; lat: num
   { county: 'Wexford', area: 'Wexford', lng: -6.459, lat: 52.336, median: 1250 },
   { county: 'Wicklow', area: 'Bray', lng: -6.098, lat: 53.203, median: 1800 },
 ]
+for (const t of COUNTY_TOWNS) { const r = REAL_AREAS[t.area]; if (r) t.median = round(r.base2bed, 10) }   // real 2-bed average replaces the sample figure
 const TOWN_STREETS = ['Main Street', 'Church Street', 'Bridge Street', 'Castle Street', 'Market Square', 'Mill Road', 'John Street', 'Abbey Street', 'New Road', 'Parnell Street']
 const LISTINGS_PER_TOWN = 8
 
@@ -142,7 +153,9 @@ export const DUBLIN_8_CENTER: LngLat = { lng: -6.283, lat: 53.338 }
 // ---------- sources ----------
 
 export const SOURCES: Source[] = [
-  { id: 'rtb', name: 'RTB Rent Index', publisher: 'Residential Tenancies Board', url: 'https://www.rtb.ie/data-hub', data_period: 'Q2 2026', retrieved_at: '2026-10-03' },
+  REAL.source
+    ? { id: 'rtb', name: REAL.source.title, publisher: REAL.source.organisation, url: REAL.source.url, data_period: RENT_DATA_PERIOD, retrieved_at: REAL.generated_at.slice(0, 10) }
+    : { id: 'rtb', name: 'RTB Rent Index', publisher: 'Residential Tenancies Board', url: 'https://www.rtb.ie/data-hub', data_period: 'Q2 2026', retrieved_at: '2026-10-03' },
   { id: 'cso', name: 'Census of Population 2022', publisher: 'Central Statistics Office', url: 'https://www.cso.ie/en/census/census2022/', data_period: '2022', retrieved_at: '2026-10-03' },
   { id: 'nta_gtfs', name: 'GTFS public transport timetables', publisher: 'National Transport Authority', url: 'https://www.transportforireland.ie/transitData/PT_Data.html', data_period: 'Sep 2026', retrieved_at: '2026-10-03' },
   { id: 'planning', name: 'National Planning Applications', publisher: 'Department of Housing, Local Government and Heritage', url: 'https://data.gov.ie/', data_period: 'Jan 2024 to Sep 2026', retrieved_at: '2026-10-03' },
@@ -297,7 +310,15 @@ export function comparablesFor(p: LngLat, bedrooms: number, type: PropertyType, 
   })
 }
 
-export function trendFor(median: number) {
+export function trendFor(median: number, area?: string) {
+  const real = area ? REAL_AREAS[area] : undefined
+  if (real) {
+    // the REAL quarterly series for this area, scaled so its latest quarter equals the (bedroom/type adjusted) median shown
+    const latest = real.series.at(-1)!.value
+    const series = real.series.map(s => ({ period: s.period, median: round((median * s.value) / latest, 10) }))
+    const yearAgo = series[series.length - 5]!.median
+    return { series, source_id: 'rtb', change_12m_pct: Math.round(((median - yearAgo) / yearAgo) * 1000) / 10 }
+  }
   // Quarterly medians rising about 6% over the last 12 months to today's median.
   const quarters = ['2022-Q3', '2022-Q4', '2023-Q1', '2023-Q2', '2023-Q3', '2023-Q4', '2024-Q1', '2024-Q2', '2024-Q3', '2024-Q4', '2025-Q1', '2025-Q2', '2025-Q3', '2025-Q4', '2026-Q1', '2026-Q2']
   const shape = [0.8, 0.81, 0.82, 0.835, 0.85, 0.855, 0.865, 0.88, 0.895, 0.905, 0.915, 0.935, 0.955, 0.97, 0.985, 1]

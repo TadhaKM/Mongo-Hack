@@ -77,7 +77,7 @@ function jump(sectionId: string) {
 <template>
   <div>
     <PanelHeader
-      :title="analysis?.input.address ?? 'RentCheck'"
+      :title="analysis?.input.address ?? 'mend.ai'"
       :subtitle="analysis?.status === 'failed' ? 'Check stopped' : analysis?.status === 'running' || !showReport ? 'Checking this rent…' : 'Rent check'"
     >
       <template #actions>

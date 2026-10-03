@@ -75,7 +75,7 @@ watch(() => [sel.selectedListingId.value, sel.activeAnalysisId.value, sel.droppe
             class="fixed inset-x-0 bottom-0 z-30 flex h-[calc(100dvh-72px)] flex-col rounded-t-2xl border bg-background shadow-[0_-8px_30px_rgb(0_0_0/0.12)] outline-none"
           >
             <DrawerHandle class="mx-auto mt-2 mb-1 h-1.5 w-12 shrink-0 rounded-full bg-muted-foreground/30" />
-            <DrawerTitle class="sr-only">RentCheck</DrawerTitle>
+            <DrawerTitle class="sr-only">mend.ai</DrawerTitle>
             <DrawerDescription class="sr-only">Rentals on the map and the property check</DrawerDescription>
             <div class="min-h-0 flex-1 overflow-y-auto overscroll-contain" :class="snap === 1 ? '' : 'overflow-hidden'">
               <PanelContent />

@@ -1,9 +1,0 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "backend": {
-      "root": "rentcheck_person4_backend",
-      "framework": "fastapi"
-    }
-  }
-}

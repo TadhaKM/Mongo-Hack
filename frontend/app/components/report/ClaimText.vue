@@ -7,7 +7,7 @@ const props = defineProps<{ claim: Claim }>()
 const evidence = useEvidence()
 // Guard: a claim with no evidence is never shown (brief A7).
 const hasEvidence = computed(() => props.claim.evidence_ids.length > 0)
-if (!hasEvidence.value && import.meta.dev) console.warn('[RentCheck] claim without evidence hidden:', props.claim)
+if (!hasEvidence.value && import.meta.dev) console.warn('[mend.ai] claim without evidence hidden:', props.claim)
 </script>
 
 <template>
