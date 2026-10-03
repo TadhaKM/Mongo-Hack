@@ -38,11 +38,24 @@ export function flyToSnapshot(map: MlMap, s: CameraSnapshot) {
 export function fitPoints(map: MlMap, points: LngLat[], desktop: boolean) {
   const b = boundsOf(points)
   if (!b) return
-  map.fitBounds(b, {
-    padding: panelPadding(desktop, 20),
-    pitch: map.getPitch(),
+  // fitBounds with pitch + an arbitrary orbit bearing zooms far too wide, so solve the
+  // camera top-down and ease there keeping the tilt.
+  const pitch = map.getPitch()
+  // The map keeps the padding of the last flyTo and cameraForBounds adds ours on top,
+  // so ask only for the difference and keep the map's padding (no jump).
+  const want = panelPadding(desktop, 20)
+  const has = map.getPadding()
+  const extra = {
+    top: Math.max(0, want.top - has.top), bottom: Math.max(0, want.bottom - has.bottom),
+    left: Math.max(0, want.left - has.left), right: Math.max(0, want.right - has.right),
+  }
+  const cam = map.cameraForBounds(b, { padding: extra, bearing: map.getBearing(), maxZoom: 16.5 })
+  if (!cam?.center || cam.zoom == null) return
+  map.easeTo({
+    center: cam.center,
+    zoom: cam.zoom,
+    pitch,
     bearing: map.getBearing(),
-    maxZoom: 16.5,
     duration: 1200,
   })
 }

@@ -103,6 +103,21 @@ function touches(a: Position[][], b: Position[][]): boolean {
   return (b[0] ?? []).some(v => metresToPolygon({ lng: v[0]!, lat: v[1]! }, a) < 0.5)
 }
 
+/** Copy of `ring` with every vertex moved `m` metres away from its centroid. */
+function inflateRing(ring: Position[], m: number): Position[] {
+  const n = ring.length - 1 || 1
+  let cx = 0, cy = 0
+  for (let i = 0; i < n; i++) { cx += ring[i]![0]!; cy += ring[i]![1]! }
+  cx /= n; cy /= n
+  const kx = 111320 * Math.cos((cy * Math.PI) / 180)
+  const ky = 110540
+  return ring.map(([x, y]) => {
+    const dx = (x! - cx) * kx, dy = (y! - cy) * ky
+    const d = Math.hypot(dx, dy) || 1
+    return [cx + (dx * (1 + m / d)) / kx, cy + (dy * (1 + m / d)) / ky]
+  })
+}
+
 function findFootprint(features: GeoJSONFeature[], p: LngLat): Feature<Polygon | MultiPolygon> | null {
   let hit: GeoJSONFeature | undefined
   let nearest: GeoJSONFeature | undefined
@@ -134,9 +149,11 @@ function findFootprint(features: GeoJSONFeature[], p: LngLat): Feature<Polygon |
       }
     }
   }
+  // Push walls ~0.4 m outward so they sit in front of the original building's walls (no z-fighting).
+  const inflated = coordinates.map(poly => poly.map(ring => inflateRing(ring, 0.4)))
   return {
     type: 'Feature',
-    geometry: coordinates.length === 1 ? { type: 'Polygon', coordinates: coordinates[0]! } : { type: 'MultiPolygon', coordinates },
+    geometry: inflated.length === 1 ? { type: 'Polygon', coordinates: inflated[0]! } : { type: 'MultiPolygon', coordinates: inflated },
     properties: { render_height: chosen.properties.render_height, render_min_height: chosen.properties.render_min_height },
   }
 }

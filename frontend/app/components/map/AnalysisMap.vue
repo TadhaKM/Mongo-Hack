@@ -6,9 +6,9 @@ import { useDebounceFn, useMediaQuery } from '@vueuse/core'
 import { toast } from 'vue-sonner'
 import type { ListingSummary, LngLat } from '~/types/api'
 import {
-  BBOX_DEBOUNCE_MS, CAMERA, DESKTOP_QUERY, DUBLIN_CENTER, PITCH_3D,
+  BBOX_DEBOUNCE_MS, CAMERA, DESKTOP_QUERY, DUBLIN_CENTER, PANEL_PADDING_LEFT, PITCH_3D,
 } from '~/lib/map/config'
-import { MAP_KEY, createMap, firstSymbolLayer, softenBuildings } from '~/lib/map/core'
+import { MAP_KEY, createMap, softenBuildings } from '~/lib/map/core'
 import { clearBuildingHighlight, highlightBuildingWhenSettled, removeBuildingHighlight } from '~/lib/map/building'
 import { fitPoints, flyToProperty, flyToSnapshot, panelPadding, snapshot, startOrbit, type CameraSnapshot } from '~/lib/map/camera'
 import { LISTINGS_SOURCE, PricePins, listingsGeoJSON } from '~/lib/map/pins'
@@ -73,6 +73,7 @@ onMounted(async () => {
   attachLongPress(m)
 
   map.value = m
+  if (import.meta.dev) (window as unknown as { __rcMap?: MlMap }).__rcMap = m
   // State restored from the URL before the map existed.
   if (sel.selectedListingId.value || sel.activeAnalysisId.value) onSelectionChange()
   if (sel.droppedPin.value) syncDropMarker()
@@ -92,7 +93,6 @@ function addListingLayers(m: MlMap) {
     type: 'geojson', data: listingsGeoJSON(props.listings),
     cluster: true, clusterRadius: 50, clusterMaxZoom: 14,
   })
-  const before = firstSymbolLayer(m)
   const accent = token('--brand', '#2563eb')
   m.addLayer({
     id: 'listing-clusters', type: 'circle', source: LISTINGS_SOURCE, filter: ['has', 'point_count'],
@@ -101,7 +101,7 @@ function addListingLayers(m: MlMap) {
       'circle-radius': ['step', ['get', 'point_count'], 16, 10, 20, 30, 26],
       'circle-stroke-width': 3, 'circle-stroke-color': '#fff',
     },
-  }, before)
+  })
   m.addLayer({
     id: 'listing-cluster-count', type: 'symbol', source: LISTINGS_SOURCE, filter: ['has', 'point_count'],
     layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-font': ['Noto Sans Bold'], 'text-size': 13, 'text-allow-overlap': true },
@@ -171,7 +171,8 @@ async function onSelectionChange() {
   if (id && !ui.visited.value.includes(id)) ui.visited.value = [...ui.visited.value, id]
   const t = ++flyToken
   clearBuildingHighlight(m)
-  flyToProperty(m, target, { desktop: desktop.value, flat: flat.value })
+  if (sel.activeAnalysisId.value) flyToAnalysis(target)
+  else flyToProperty(m, target, { desktop: desktop.value, flat: flat.value })
   m.once('moveend', async () => {
     if (t !== flyToken || !map.value) return
     await highlightBuildingWhenSettled(m, target)
@@ -227,9 +228,13 @@ watch(running, (now, before) => {
   const m = map.value
   if (!m) return
   if (now && !stopOrbit) {
-    // Let the fly-in finish first.
-    const begin = () => { if (running.value && !stopOrbit) stopOrbit = startOrbit(m, () => { stopOrbit = null }) }
-    m.isMoving() ? m.once('moveend', begin) : begin()
+    // Let any fly-in (possibly started later in this same tick) finish first.
+    const begin = () => {
+      if (!running.value || stopOrbit) return
+      if (m.isMoving()) m.once('moveend', begin)
+      else stopOrbit = startOrbit(m, () => { stopOrbit = null })
+    }
+    requestAnimationFrame(begin)
   } else if (!now) {
     stopOrbit?.()
     stopOrbit = null
@@ -245,6 +250,11 @@ function frameAnalysis() {
 }
 
 watch(sel.activeAnalysisId, (id, prev) => {
+  const home = propertyLocation.value
+  if (id && !prev && map.value && home) {
+    browseCam ??= snapshot(map.value)
+    flyToAnalysis(home)
+  }
   if (!id && prev) {
     stopOrbit?.()
     stopOrbit = null
@@ -252,6 +262,18 @@ watch(sel.activeAnalysisId, (id, prev) => {
     if (sel.selectedListingId.value || sel.droppedPin.value) onSelectionChange()
   }
 })
+
+/** Pull back so the radius and the layers filling in are in view while orbiting. */
+function flyToAnalysis(home: LngLat) {
+  const m = map.value
+  if (!m) return
+  m.flyTo({
+    center: [home.lng, home.lat], zoom: CAMERA.analysis.zoom,
+    pitch: flat.value ? 0 : CAMERA.analysis.pitch, bearing: m.getBearing(),
+    padding: desktop.value ? { left: PANEL_PADDING_LEFT, top: 0, right: 0, bottom: 0 } : { top: 0, left: 0, right: 0, bottom: 160 },
+    duration: 1200, essential: true,
+  })
+}
 
 // --- focusFeature ------------------------------------------------------------
 

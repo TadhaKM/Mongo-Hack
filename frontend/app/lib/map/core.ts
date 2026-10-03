@@ -54,10 +54,18 @@ export function softenBuildings(map: MlMap) {
   map.setPaintProperty(BUILDING_LAYER, 'fill-extrusion-opacity', BUILDING_SOFT_OPACITY)
 }
 
-/** Run `fn` now if the style is loaded, else once it loads. */
+/**
+ * Run `fn` once layers can be added. Only call with a map that has fired 'load'
+ * (AnalysisMap provides it after load). isStyleLoaded() is also false while any
+ * source is loading tiles, so don't gate on it: try, and retry on 'idle' if refused.
+ */
 export function whenStyleReady(map: MlMap, fn: () => void) {
-  if (map.isStyleLoaded()) fn()
-  else map.once('load', fn)
+  try {
+    fn()
+  } catch (e) {
+    if (!/style is not done loading/i.test(String((e as Error)?.message))) throw e
+    map.once('idle', () => whenStyleReady(map, fn))
+  }
 }
 
 export function ensureSource(map: MlMap, id: string, spec: SourceSpecification) {
