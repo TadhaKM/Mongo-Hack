@@ -67,7 +67,7 @@ onBeforeUnmount(() => clearTimeout(reconnectTimer))
 
 const SECTIONS = [
   { id: 'r-rent', label: 'Rent' }, { id: 'r-comparables', label: 'Comparables' }, { id: 'r-location', label: 'Location' },
-  { id: 'r-area', label: 'Area' }, { id: 'r-planning', label: 'Planning' }, { id: 'r-enquiry', label: 'Enquiry' }, { id: 'r-sources', label: 'Sources' },
+  { id: 'r-area', label: 'Area' }, { id: 'r-planning', label: 'Planning' }, { id: 'r-sources', label: 'Sources' },
 ]
 function jump(sectionId: string) {
   document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })

@@ -6,7 +6,7 @@ import type {
   PlanningResponse, PropertyType, ReportResponse, Stage, StageKey,
 } from '../../app/types/api'
 import {
-  COMPARABLES_FOUND, DEMO_LISTING_ID, LISTINGS, SOURCES, amenitiesNear, areaMedian, areaStats, comparablesFor,
+  COMPARABLES_FOUND, COUNTY_TOWNS, DEMO_LISTING_ID, DUBLIN_8_CENTER, GEOCODE_INDEX, distanceM, LISTINGS, SOURCES, amenitiesNear, areaBase, areaMedian, areaStats, comparablesFor,
   planningNear, quantile, transportNear, trendFor, verdictFor,
 } from './data'
 import { eur, metres, pct } from '../../app/lib/format'
@@ -33,10 +33,11 @@ const TIMELINE: TimelineStep[] = [
   },
   {
     stage: 'transport', start: 4400, end: 5700, running: 'Analysing transport…',
-    done: a => `${transportNear(a.location, 800).length} stops within 800 m`,
+    done: a => (transportNear(a.location, 800).length ? `${transportNear(a.location, 800).length} stops within 800 m` : 'No transport data for this area yet'),
+    detail: a => (transportNear(a.location, 2000).length ? '' : 'The sample transport data covers Dublin 8 only'),
     counts: a => ({ stops: transportNear(a.location, 800).length }),
   },
-  { stage: 'area', start: 5700, end: 6800, running: 'Reading census data…', done: () => 'Area profile built', detail: () => 'Census 2022, Merchants Quay C' },
+  { stage: 'area', start: 5700, end: 6800, running: 'Reading census data…', done: () => 'Area profile built', detail: a => (a.area.startsWith('Dublin') ? 'Census 2022, Merchants Quay C' : `Census 2022, ${a.area}`) },
   {
     stage: 'planning', start: 6800, end: 8300, running: 'Checking planning applications…',
     done: a => `${planningNear(a.location).length} nearby applications`,
@@ -47,6 +48,12 @@ const TIMELINE: TimelineStep[] = [
 const COMPLETE_AT = 10_500
 
 const store = new Map<string, StoredAnalysis>()
+
+/** For a dropped pin: the nearest sample area (Dublin 8 or a county town). */
+function nearestArea(p: LngLat): string {
+  const candidates = [{ area: 'Dublin 8', lng: DUBLIN_8_CENTER.lng, lat: DUBLIN_8_CENTER.lat }, ...COUNTY_TOWNS]
+  return candidates.reduce((best, c) => (distanceM(p, c) < distanceM(p, best) ? c : best)).area
+}
 
 // ---------- create / lookup ----------
 
@@ -74,8 +81,9 @@ export function createAnalysis(body: AnalyseRequest): StoredAnalysis | { error: 
       return { error: { code: 'VALIDATION', message: 'address, monthly_rent, bedrooms and property_type are required.' } }
     input = { ...body, address: body.address, monthly_rent: body.monthly_rent, bedrooms: body.bedrooms, property_type: body.property_type }
     const listing = LISTINGS.find(l => `geo_${l.id}` === body.place_id)
-    location = listing?.location ?? body.location ?? { lng: -6.283, lat: 53.338 }
-    area = listing?.area ?? 'Dublin 8'
+    const place = GEOCODE_INDEX.find(g => g.place_id === body.place_id)
+    location = listing?.location ?? place?.location ?? body.location ?? DUBLIN_8_CENTER
+    area = listing?.area ?? place?.area ?? nearestArea(location)
     id = `an_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`
   }
 
@@ -139,7 +147,7 @@ export function eventTimeline(a: StoredAnalysis): { at: number; event: AnalysisE
 // ---------- derived content ----------
 
 function comparablesOf(a: StoredAnalysis) {
-  const items = comparablesFor(a.location, a.input.bedrooms, a.input.property_type as PropertyType)
+  const items = comparablesFor(a.location, a.input.bedrooms, a.input.property_type as PropertyType, areaBase(a.area))
   const rents = items.map(c => c.rent).sort((x, y) => x - y)
   return {
     items,
@@ -154,7 +162,7 @@ function buildSummary(a: StoredAnalysis) {
   const differencePct = Math.round((differenceEur / stats.median) * 1000) / 10
   const percentile = Math.round((items.filter(c => c.rent < asking).length / items.length) * 100)
   const verdict = verdictFor(differencePct)
-  const trend = trendFor(areaMedian(a.input.bedrooms, a.input.property_type as PropertyType))
+  const trend = trendFor(areaMedian(a.input.bedrooms, a.input.property_type as PropertyType, areaBase(a.area)))
   const typeLabel = a.input.bedrooms === 0 ? 'studios' : `${a.input.bedrooms}-bed ${a.input.property_type.replace('_', ' ')}s`
 
   const evidence: Evidence[] = [
@@ -194,7 +202,7 @@ function buildSummary(a: StoredAnalysis) {
 }
 
 function buildArea(a: StoredAnalysis) {
-  const stats = areaStats()
+  const stats = areaStats(a.area)
   const renting = stats.find(s => s.key === 'renting')!
   const vacancy = stats.find(s => s.key === 'vacancy_rate')!
   const evidence: Evidence[] = [
@@ -221,6 +229,7 @@ export function buildAnalysis(a: StoredAnalysis): Analysis {
     'Sample data: this demo uses fixtures shaped like RTB, CSO, NTA and planning data, not live figures.',
     'RTB figures reflect registered tenancies, not current asking prices.',
     ...(a.input.floor_area_m2 ? [] : ['Floor area was not provided, so comparables were matched on bedrooms and type only.']),
+    ...(transportNear(a.location, 2000).length ? [] : ['Transport stops in this demo are sampled for Dublin 8 only, so none are shown here.']),
     'Planning status may have changed since the data was retrieved.',
   ]
 
@@ -265,7 +274,7 @@ export function buildLocation(a: StoredAnalysis): LocationResponse {
   const luas = transport.find(s => s.mode === 'luas')
   const claims: Claim[] = [
     ...(luas ? [{ id: 'c_luas', text: `The Luas ${luas.routes[0]} Line (${luas.name}) is ${luas.walk_min} minutes' walk away.`, evidence_ids: ['e_luas'] }] : []),
-    { id: 'c_stops', text: `${transportNear(a.location, 800).length} public transport stops are within 800 m.`, evidence_ids: ['e_stops'] },
+    ...(transport.length ? [{ id: 'c_stops', text: `${transportNear(a.location, 800).length} public transport stops are within 800 m.`, evidence_ids: ['e_stops'] }] : []),
   ]
   return { transport, amenities: amenitiesNear(a.location), claims, source_ids: ['nta_gtfs', 'osm'] }
 }

@@ -17,6 +17,9 @@ const AMENITY = { supermarket: ShoppingCart, gp: Stethoscope, pharmacy: Pill, sc
 
 <template>
   <div class="space-y-4">
+    <p v-if="!groups.length" class="rounded-xl border border-dashed p-3 text-sm text-muted-foreground">
+      No public transport stops in the data for this area yet.
+    </p>
     <div v-for="g in groups" :key="g.mode" class="space-y-1">
       <p class="flex items-center gap-1.5 text-xs font-medium" :class="TRANSPORT_MODE[g.mode].text">
         <component :is="TRANSPORT_MODE[g.mode].icon" class="size-4" /> {{ TRANSPORT_MODE[g.mode].label }}

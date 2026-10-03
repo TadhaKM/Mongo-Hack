@@ -55,7 +55,6 @@ const SECTIONS = [
   { id: 'r-location', label: 'Getting around' },
   { id: 'r-area', label: 'The area' },
   { id: 'r-planning', label: 'Planning nearby' },
-  { id: 'r-enquiry', label: 'Ask the landlord' },
   { id: 'r-sources', label: 'Where this comes from' },
 ]
 const active = ref('r-rent')

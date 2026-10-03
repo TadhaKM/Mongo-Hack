@@ -65,8 +65,76 @@ const BASE_2BED_MEDIAN = 1980
 const BED_FACTOR: Record<number, number> = { 0: 0.62, 1: 0.78, 2: 1, 3: 1.25, 4: 1.5, 5: 1.7 }
 const TYPE_FACTOR: Record<PropertyType, number> = { apartment: 1, house: 1.08, duplex: 1.04, shared_room: 0.42 }
 
-export function areaMedian(bedrooms: number, type: PropertyType): number {
-  return round(BASE_2BED_MEDIAN * (BED_FACTOR[bedrooms] ?? 1) * TYPE_FACTOR[type], 10)
+/** 2-bed median for an area (sample values). Dublin areas use the Dublin 8 figure. */
+export function areaBase(area: string): number {
+  return COUNTY_TOWNS.find(t => t.area === area)?.median ?? BASE_2BED_MEDIAN
+}
+
+export function areaMedian(bedrooms: number, type: PropertyType, base = BASE_2BED_MEDIAN): number {
+  return round(base * (BED_FACTOR[bedrooms] ?? 1) * TYPE_FACTOR[type], 10)
+}
+
+// ---------- county towns (sample data outside Dublin) ----------
+
+/** One main town per county outside Dublin, with a rough sample 2-bed median. Positions are approximate. */
+export const COUNTY_TOWNS: { county: string; area: string; lng: number; lat: number; median: number }[] = [
+  { county: 'Carlow', area: 'Carlow', lng: -6.926, lat: 52.836, median: 1300 },
+  { county: 'Cavan', area: 'Cavan', lng: -7.360, lat: 53.990, median: 1100 },
+  { county: 'Clare', area: 'Ennis', lng: -8.983, lat: 52.844, median: 1250 },
+  { county: 'Cork', area: 'Cork City', lng: -8.470, lat: 51.898, median: 1700 },
+  { county: 'Donegal', area: 'Letterkenny', lng: -7.734, lat: 54.950, median: 1000 },
+  { county: 'Galway', area: 'Galway City', lng: -9.057, lat: 53.271, median: 1650 },
+  { county: 'Kerry', area: 'Tralee', lng: -9.702, lat: 52.270, median: 1200 },
+  { county: 'Kildare', area: 'Naas', lng: -6.667, lat: 53.216, median: 1750 },
+  { county: 'Kilkenny', area: 'Kilkenny', lng: -7.255, lat: 52.654, median: 1350 },
+  { county: 'Laois', area: 'Portlaoise', lng: -7.300, lat: 53.034, median: 1250 },
+  { county: 'Leitrim', area: 'Carrick-on-Shannon', lng: -8.090, lat: 53.947, median: 950 },
+  { county: 'Limerick', area: 'Limerick City', lng: -8.630, lat: 52.664, median: 1500 },
+  { county: 'Longford', area: 'Longford', lng: -7.799, lat: 53.727, median: 1000 },
+  { county: 'Louth', area: 'Dundalk', lng: -6.405, lat: 54.000, median: 1400 },
+  { county: 'Mayo', area: 'Castlebar', lng: -9.299, lat: 53.856, median: 1050 },
+  { county: 'Meath', area: 'Navan', lng: -6.682, lat: 53.653, median: 1550 },
+  { county: 'Monaghan', area: 'Monaghan', lng: -6.968, lat: 54.249, median: 1050 },
+  { county: 'Offaly', area: 'Tullamore', lng: -7.493, lat: 53.274, median: 1150 },
+  { county: 'Roscommon', area: 'Roscommon', lng: -8.190, lat: 53.633, median: 1000 },
+  { county: 'Sligo', area: 'Sligo', lng: -8.476, lat: 54.271, median: 1150 },
+  { county: 'Tipperary', area: 'Clonmel', lng: -7.704, lat: 52.355, median: 1100 },
+  { county: 'Waterford', area: 'Waterford City', lng: -7.110, lat: 52.259, median: 1300 },
+  { county: 'Westmeath', area: 'Athlone', lng: -7.940, lat: 53.423, median: 1250 },
+  { county: 'Wexford', area: 'Wexford', lng: -6.459, lat: 52.336, median: 1250 },
+  { county: 'Wicklow', area: 'Bray', lng: -6.098, lat: 53.203, median: 1800 },
+]
+const TOWN_STREETS = ['Main Street', 'Church Street', 'Bridge Street', 'Castle Street', 'Market Square', 'Mill Road', 'John Street', 'Abbey Street', 'New Road', 'Parnell Street']
+const LISTINGS_PER_TOWN = 8
+
+function buildCountyListings(): Listing[] {
+  const items: Listing[] = []
+  COUNTY_TOWNS.forEach((town, t) => {
+    const rand = seeded(100 + t)
+    const slug = town.county.toLowerCase()
+    for (let i = 1; i <= LISTINGS_PER_TOWN; i++) {
+      const type = TYPES[Math.floor(rand() * TYPES.length)]!
+      const bedrooms = type === 'shared_room' ? 1 : [1, 2, 2, 2, 3, 3, 4][Math.floor(rand() * 7)]!
+      const angle = rand() * Math.PI * 2
+      const radius = 200 + Math.sqrt(rand()) * 1800
+      const location = offset({ lng: town.lng, lat: town.lat }, Math.sin(angle) * radius, Math.cos(angle) * radius)
+      const median = areaMedian(bedrooms, type, town.median)
+      const rent = round(median * (0.84 + rand() * 0.34), 25)
+      const diff = ((rent - median) / median) * 100
+      items.push({
+        id: `lst_${slug}_${String(i).padStart(2, '0')}`,
+        rent, bedrooms, property_type: type, area: town.area, location,
+        verdict: verdictFor(diff), diff_pct: Math.round(diff * 10) / 10, is_sample: true,
+        address: `${type === 'house' ? '' : `Apt ${1 + Math.floor(rand() * 20)}, `}${1 + Math.floor(rand() * 80)} ${TOWN_STREETS[Math.floor(rand() * TOWN_STREETS.length)]}, ${town.area}, Co. ${town.county}`,
+        floor_area_m2: type === 'shared_room' ? null : round(30 + bedrooms * 24 + rand() * 20, 1),
+        furnished: FURNISHED[Math.floor(rand() * FURNISHED.length)]!,
+        listing_url: null,
+        area_median: median,
+        nearest_stop: null, // our transport sample covers Dublin 8 only
+      })
+    }
+  })
+  return items
 }
 
 export const DUBLIN_8_CENTER: LngLat = { lng: -6.283, lat: 53.338 }
@@ -132,7 +200,8 @@ function buildListings(): Listing[] {
   })
   for (const l of items) {
     const stop = nearestStop(l.location)
-    l.nearest_stop = { name: stop.name, mode: stop.mode, walk_min: Math.max(1, Math.round(distanceM(l.location, stop.location) / 80)) }
+    const d = distanceM(l.location, stop.location)
+    l.nearest_stop = d <= 2000 ? { name: stop.name, mode: stop.mode, walk_min: Math.max(1, Math.round(d / 80)) } : null
   }
   return items
 }
@@ -201,9 +270,9 @@ export function planningNear(p: LngLat): PlanningApplication[] {
 /** 42 candidates are found; 37 pass the filters (same bedrooms, within 18 months and 1.5 km). */
 export const COMPARABLES_FOUND = 42
 
-export function comparablesFor(p: LngLat, bedrooms: number, type: PropertyType, seed = 37): Comparable[] {
+export function comparablesFor(p: LngLat, bedrooms: number, type: PropertyType, base = BASE_2BED_MEDIAN, seed = 37): Comparable[] {
   const rand = seeded(seed)
-  const median = areaMedian(bedrooms, type)
+  const median = areaMedian(bedrooms, type, base)
   // Shape chosen so a 2-bed apartment gives median 1,980 · p10 1,750 · p90 2,250.
   const ratios = [
     0.854, 0.869, 0.879, 0.884, 0.889, 0.904, 0.914, 0.929, 0.939, 0.944, 0.949, 0.955, 0.962, 0.97, 0.975, 0.98, 0.985, 0.992,
@@ -237,18 +306,30 @@ export function trendFor(median: number) {
   return { series, source_id: 'rtb', change_12m_pct: Math.round(((median - yearAgo) / yearAgo) * 1000) / 10 }
 }
 
-export function areaStats() {
+export function areaStats(area = 'Dublin 8') {
+  const town = COUNTY_TOWNS.find(t => t.area === area)
+  if (!town) {
+    return [
+      { key: 'population', label: 'Population', value: 4_812, unit: 'count' as const, national: null, geography: 'Merchants Quay C (ED)', year: 2022, source_id: 'cso' },
+      { key: 'renting', label: 'Households renting', value: 0.58, unit: 'pct' as const, national: 0.19, geography: 'Merchants Quay C (ED)', year: 2022, source_id: 'cso' },
+      { key: 'vacancy_rate', label: 'Vacancy rate', value: 0.054, unit: 'pct' as const, national: 0.078, geography: 'Merchants Quay C (ED)', year: 2022, source_id: 'cso' },
+      { key: 'population_change', label: 'Population change since 2016', value: 0.112, unit: 'pct' as const, national: 0.081, geography: 'Merchants Quay C (ED)', year: 2022, source_id: 'cso' },
+    ]
+  }
+  // Town-level sample figures, scaled loosely from the town's rent level.
+  const k = (town.median - 950) / (1800 - 950)
+  const geography = `${town.area} (town)`
   return [
-    { key: 'population', label: 'Population', value: 4_812, unit: 'count' as const, national: null, geography: 'Merchants Quay C (ED)', year: 2022, source_id: 'cso' },
-    { key: 'renting', label: 'Households renting', value: 0.58, unit: 'pct' as const, national: 0.19, geography: 'Merchants Quay C (ED)', year: 2022, source_id: 'cso' },
-    { key: 'vacancy_rate', label: 'Vacancy rate', value: 0.054, unit: 'pct' as const, national: 0.078, geography: 'Merchants Quay C (ED)', year: 2022, source_id: 'cso' },
-    { key: 'population_change', label: 'Population change since 2016', value: 0.112, unit: 'pct' as const, national: 0.081, geography: 'Merchants Quay C (ED)', year: 2022, source_id: 'cso' },
+    { key: 'population', label: 'Population', value: Math.round(9_000 + k * 120_000), unit: 'count' as const, national: null, geography, year: 2022, source_id: 'cso' },
+    { key: 'renting', label: 'Households renting', value: Math.round((0.16 + k * 0.18) * 100) / 100, unit: 'pct' as const, national: 0.19, geography, year: 2022, source_id: 'cso' },
+    { key: 'vacancy_rate', label: 'Vacancy rate', value: Math.round((0.11 - k * 0.05) * 1000) / 1000, unit: 'pct' as const, national: 0.078, geography, year: 2022, source_id: 'cso' },
+    { key: 'population_change', label: 'Population change since 2016', value: Math.round((0.04 + k * 0.08) * 1000) / 1000, unit: 'pct' as const, national: 0.081, geography, year: 2022, source_id: 'cso' },
   ]
 }
 
 // ---------- geocoding ----------
 
-export const LISTINGS: Listing[] = buildListings()
+export const LISTINGS: Listing[] = [...buildListings(), ...buildCountyListings()]
 
 const EXTRA_ADDRESSES: GeocodeResult[] = [
   { place_id: 'geo_guinness', label: 'St James\'s Gate, Dublin 8, D08 VF8H', location: { lng: -6.28690, lat: 53.34180 }, area: 'Dublin 8' },
@@ -257,9 +338,14 @@ const EXTRA_ADDRESSES: GeocodeResult[] = [
   { place_id: 'geo_smithfield', label: 'Smithfield Square, Dublin 7', location: { lng: -6.27830, lat: 53.34800 }, area: 'Dublin 7' },
 ]
 
+const TOWN_ADDRESSES: GeocodeResult[] = COUNTY_TOWNS.map(t => ({
+  place_id: `geo_town_${t.county.toLowerCase()}`, label: `${t.area}, Co. ${t.county}`, location: { lng: t.lng, lat: t.lat }, area: t.area,
+}))
+
 export const GEOCODE_INDEX: GeocodeResult[] = [
-  ...LISTINGS.map(l => ({ place_id: `geo_${l.id}`, label: l.address, location: l.location, area: l.area })),
   ...EXTRA_ADDRESSES,
+  ...TOWN_ADDRESSES,
+  ...LISTINGS.map(l => ({ place_id: `geo_${l.id}`, label: l.address, location: l.location, area: l.area })),
 ]
 
 export type { Claim, Evidence }
