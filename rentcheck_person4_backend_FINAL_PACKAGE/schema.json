@@ -1,0 +1,87 @@
+{
+  "property": {
+    "_id": "property_<id>",
+    "address": {
+      "raw": "string",
+      "normalised": "string",
+      "eircode": "string|null",
+      "postal_area": "string|null"
+    },
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        "longitude",
+        "latitude"
+      ]
+    },
+    "geography": {
+      "county": {
+        "code": "string|null",
+        "name": "string|null"
+      },
+      "local_authority": {
+        "code": "string|null",
+        "name": "string|null"
+      },
+      "electoral_division": {
+        "code": "string|null",
+        "name": "string|null"
+      },
+      "local_electoral_area": {
+        "code": "string|null",
+        "name": "string|null"
+      },
+      "small_area": {
+        "code": "string|null",
+        "name": "string|null"
+      },
+      "rtb_area": {
+        "code": "string|null",
+        "name": "string|null"
+      }
+    },
+    "property_attributes": {
+      "property_type": "string|null",
+      "bedrooms": "integer|null"
+    }
+  },
+  "evidence_record": {
+    "source": {
+      "organisation": "string|null",
+      "dataset": "string",
+      "source_url": "string|null",
+      "retrieved_at": "datetime",
+      "dataset_date": "string|number|null",
+      "pipeline_version": "string"
+    },
+    "validation": {
+      "status": "ok|flagged",
+      "issues": [
+        "string"
+      ]
+    }
+  },
+  "daft_live_result": {
+    "storage": "live_only_no_persistence",
+    "source": {
+      "organisation": "Daft.ie",
+      "dataset": "Daft API V3 rental/sale listings",
+      "source_url": "https://api.daft.ie/doc/v3/",
+      "terms_url": "https://api.daft.ie/doc/terms/terms.html"
+    },
+    "result_fields": {
+      "ad_id": "integer|null",
+      "daft_url": "string|null",
+      "property_type": "string|null",
+      "bedrooms": "integer|null",
+      "bathrooms": "integer|null",
+      "rent": "number|null",
+      "rent_collection_period": "weekly|monthly|null",
+      "monthly_rent_eur": "number|null",
+      "price_eur": "number|null",
+      "latitude": "number|null",
+      "longitude": "number|null",
+      "distance_m": "number|null"
+    }
+  }
+}
