@@ -3,7 +3,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import '~/lib/map/map.css'
 import { Marker, type Map as MlMap, type GeoJSONSource, type MapMouseEvent } from 'maplibre-gl'
 import { useDebounceFn, useMediaQuery } from '@vueuse/core'
-import { FileText, Mail, MapPinPlus, PersonStanding, Route, Sparkles } from '@lucide/vue'
+import { FileText, Heart, Mail, MapPinPlus, PersonStanding, Route, Sparkles } from '@lucide/vue'
 import RadialMenu, { type RadialItem } from './RadialMenu.vue'
 import LandlordCard from './LandlordCard.vue'
 import CommuteCard from './CommuteCard.vue'
@@ -21,6 +21,7 @@ import { token } from '~/lib/map/colors'
 import { roundBBox, type BBox } from '~/lib/map/geo'
 import { FeatureRegistry, REGISTRY_KEY } from '~/lib/map/registry'
 import { useMapUi } from '~/lib/map/state'
+import { useSaved } from '~/lib/map/saved'
 import { pulseAnalysis } from '~/lib/map/layer'
 import { parseFeatureId } from '~/composables/useMapSelection'
 
@@ -34,6 +35,7 @@ provide(REGISTRY_KEY, registry)
 
 const sel = useMapSelection()
 const ui = useMapUi()
+const shortlist = useSaved()
 const desktop = useMediaQuery(DESKTOP_QUERY)
 const flat = computed(() => !(ui.is3D.value ?? desktop.value))
 
@@ -158,6 +160,7 @@ function syncPinState() {
     selectedId: sel.selectedListingId.value,
     hoveredId: hovered?.startsWith('listing:') ? parseFeatureId(hovered).id : null,
     visited: new Set(ui.visited.value),
+    saved: new Set(shortlist.saved.value.map(x => x.id)),
     onlySelected: !!sel.activeAnalysisId.value,
   })
   const m = map.value
@@ -167,7 +170,7 @@ function syncPinState() {
     m.setLayoutProperty('listing-cluster-count', 'visibility', vis)
   }
 }
-watch([sel.selectedListingId, sel.hoveredFeature, sel.activeAnalysisId, ui.visited], syncPinState, { deep: true })
+watch([sel.selectedListingId, sel.hoveredFeature, sel.activeAnalysisId, ui.visited, shortlist.saved], syncPinState, { deep: true })
 
 // --- selection: fly-in + building highlight ---------------------------------
 
@@ -218,6 +221,7 @@ const radialItems = computed<RadialItem[]>(() => {
     const a = analysisFor(r.listingId)
     return [
       { key: 'landlord', label: 'Send to landlord', icon: Mail },
+      { key: 'save', label: shortlist.isSaved(r.listingId) ? 'Saved · remove' : 'Save to shortlist', icon: Heart },
       ...(a?.status === 'complete'
         ? [{ key: 'report', label: 'Full report', icon: FileText }]
         : a ? [] : [{ key: 'check-rent', label: 'Check this rent', icon: Sparkles }]),
@@ -268,6 +272,10 @@ function onRadialPick(key: string) {
   // Prefer the full Listing (has the address) when it's the selected one.
   const listing = !r.listingId ? null : selectedListing.value?.id === r.listingId ? selectedListing.value : props.listings.find(l => l.id === r.listingId) ?? null
   if (key === 'landlord' && r.listingId) landlord.value = { listingId: r.listingId, x: r.x, y: r.y }
+  else if (key === 'save' && listing) {
+    const added = shortlist.toggle(listing)
+    toast(added ? 'Saved to your shortlist' : 'Removed from your shortlist')
+  }
   else if (key === 'check-rent' && r.listingId) void checkRent(r.listingId)
   else if (key === 'report' && r.listingId) {
     const a = analysisFor(r.listingId)

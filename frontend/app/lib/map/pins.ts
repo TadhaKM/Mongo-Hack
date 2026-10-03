@@ -9,6 +9,7 @@ export interface PinState {
   hoveredId: string | null
   selectedId: string | null
   visited: Set<string>
+  saved: Set<string>
   /** While an analysis runs only the selected pin is shown. */
   onlySelected: boolean
 }
@@ -30,7 +31,7 @@ interface PinEntry { marker: Marker; el: HTMLElement; pill: HTMLButtonElement; v
 export class PricePins {
   private pins = new Map<string, PinEntry>()
   private listings = new Map<string, ListingSummary>()
-  private state: PinState = { hoveredId: null, selectedId: null, visited: new Set(), onlySelected: false }
+  private state: PinState = { hoveredId: null, selectedId: null, visited: new Set(), saved: new Set(), onlySelected: false }
   private scheduled = false
   /** The first batch of pins drops in with a GSAP ripple; later ones use the CSS fade. */
   private introPlayed = false
@@ -150,6 +151,12 @@ export class PricePins {
     pill.textContent = eur(l.rent)
     pill.setAttribute('aria-label', `${eur(l.rent)}, ${l.bedrooms} bed ${l.property_type.replace('_', ' ')} in ${l.area}`)
     el.appendChild(pill)
+    // Heart badge for shortlisted rentals (static markup, shown via .is-saved).
+    const heart = document.createElement('span')
+    heart.className = 'rc-pin__heart'
+    heart.setAttribute('aria-hidden', 'true')
+    heart.innerHTML = '<svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.5 3 5 6.4 5c2 0 3.6 1.1 4.6 2.6C12 6.1 13.6 5 15.6 5 19 5 21.1 8.5 19.6 11.8 17.5 16.4 12 21 12 21z"/></svg>'
+    el.appendChild(heart)
     pill.addEventListener('mouseenter', () => this.handlers.hover(l.id))
     pill.addEventListener('mouseleave', () => this.handlers.hover(null))
     pill.addEventListener('click', (e) => {
@@ -176,6 +183,7 @@ export class PricePins {
     p.el.classList.toggle('is-selected', selected)
     p.el.classList.toggle('is-hovered', hovered && !selected)
     p.el.classList.toggle('is-visited', visited.has(id) && !selected)
+    p.el.classList.toggle('is-saved', this.state.saved.has(id))
     p.el.style.zIndex = selected ? '30' : hovered ? '20' : '1'
     if (p.verdict !== l.verdict || p.pill.textContent !== eur(l.rent)) {
       p.pill.textContent = eur(l.rent)
