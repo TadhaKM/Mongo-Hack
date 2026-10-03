@@ -485,7 +485,8 @@ watch(ui.recentre, () => {
 
 <template>
   <div class="absolute inset-0">
-    <div ref="container" class="h-full w-full" />
+    <!-- isolate: pin z-indexes stay inside the map, so menus, cards and hints always sit above them. -->
+    <div ref="container" class="isolate h-full w-full" />
     <slot v-if="map" />
     <RentHeatLayer v-if="map && ui.heat.value && !sel.activeAnalysisId.value" :items="listings" />
     <HeatLegend
@@ -500,6 +501,7 @@ watch(ui.recentre, () => {
       :x="radial.x"
       :y="radial.y"
       :items="radialItems"
+      :hub="!radial.listingId"
       @pick="onRadialPick"
       @closed="radial = null"
     />

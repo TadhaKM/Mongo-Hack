@@ -7,7 +7,7 @@ export interface RadialItem { key: string; label: string; icon: Component }
 
 // Right-click / long-press menu on the map. Items bloom out from the point and,
 // on close, fold back in reverse with their own ease (GSAP easeReverse).
-const props = defineProps<{ x: number; y: number; items: RadialItem[] }>()
+const props = withDefaults(defineProps<{ x: number; y: number; items: RadialItem[]; hub?: boolean }>(), { hub: true })
 const emit = defineEmits<{ pick: [key: string]; closed: [] }>()
 
 const RADIUS = 76
@@ -17,6 +17,16 @@ let tl: gsap.core.Timeline | null = null
 let closing = false
 
 /** Spread items on a circle starting at the top; keep the arc on-screen near edges. */
+/** Label sits outward from the ring, so it never covers the pin in the middle. */
+function labelStyle(i: number) {
+  const a = angleFor(i)
+  const cos = Math.cos(a), sin = Math.sin(a)
+  const d = 30 // px from the item's centre
+  const tx = cos > 0.35 ? '0%' : cos < -0.35 ? '-100%' : '-50%'
+  const ty = sin > 0.35 ? '0%' : sin < -0.35 ? '-100%' : '-50%'
+  return { left: `calc(50% + ${cos * d}px)`, top: `calc(50% + ${sin * d}px)`, translate: `${tx} ${ty}` }
+}
+
 function angleFor(i: number) {
   const n = props.items.length
   const nearTop = props.y < RADIUS + 70
@@ -27,7 +37,8 @@ function angleFor(i: number) {
 onMounted(() => {
   const els = itemEls.value
   tl = gsap.timeline({ paused: true, onReverseComplete: () => emit('closed') })
-  tl.fromTo(root.value!.querySelector('.rc-radial__hub'), { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.2, ease: 'power2.out', easeReverse: 'power2.in' })
+  const hubEl = root.value!.querySelector('.rc-radial__hub')
+  if (hubEl) tl.fromTo(hubEl, { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.2, ease: 'power2.out', easeReverse: 'power2.in' })
   tl.fromTo(els, { x: 0, y: 0, scale: 0.4, autoAlpha: 0 }, {
     x: (i: number) => Math.cos(angleFor(i)) * RADIUS,
     y: (i: number) => Math.sin(angleFor(i)) * RADIUS,
@@ -78,7 +89,7 @@ defineExpose({ close })
     role="menu"
     aria-label="Map actions"
   >
-    <div class="rc-radial__hub" />
+    <div v-if="hub" class="rc-radial__hub" />
     <button
       v-for="(item, i) in items"
       :key="item.key"
@@ -90,7 +101,7 @@ defineExpose({ close })
       @click.stop="pick(item.key)"
     >
       <component :is="item.icon" class="size-5" />
-      <span class="rc-radial__label">{{ item.label }}</span>
+      <span class="rc-radial__label" :style="labelStyle(i)">{{ item.label }}</span>
     </button>
   </div>
 </template>
@@ -112,7 +123,7 @@ defineExpose({ close })
 }
 .rc-radial__item:hover, .rc-radial__item:focus-visible { background: var(--brand); color: #fff; outline: none; }
 .rc-radial__label {
-  position: absolute; top: calc(100% + 6px); left: 50%; translate: -50% 0;
+  position: absolute;
   white-space: nowrap; padding: 2px 8px; border-radius: 999px;
   background: var(--ink, #1b2430); color: #fff; font-size: 12px; font-weight: 600;
   opacity: 0; pointer-events: none; transition: opacity 120ms ease;
