@@ -6,7 +6,7 @@ import {
 import { ensureMapWorker } from './worker'
 
 /** Provided by AnalysisMap; null until the style has loaded. Layer components inject this. */
-export const MAP_KEY: InjectionKey<ShallowRef<MlMap | null>> = Symbol('rentcheck-map')
+export const MAP_KEY: InjectionKey<ShallowRef<MlMap | null>> = Symbol('mend-map')
 
 export interface CreateMapResult {
   map: MlMap

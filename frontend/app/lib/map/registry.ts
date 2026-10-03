@@ -30,4 +30,4 @@ export class FeatureRegistry {
   }
 }
 
-export const REGISTRY_KEY: InjectionKey<FeatureRegistry> = Symbol('rentcheck-feature-registry')
+export const REGISTRY_KEY: InjectionKey<FeatureRegistry> = Symbol('mend-feature-registry')
