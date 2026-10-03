@@ -7,8 +7,10 @@
   "scripts": {
     "db:indexes": "node db/scripts/createIndexes.js",
     "db:seed": "node db/scripts/seed.js",
-    "db:test": "node db/test/run.js && node db/test/comparables.test.js",
-    "db:test:comparables": "node db/test/comparables.test.js"
+    "db:test": "node db/test/run.js && node db/test/comparables.test.js && node db/test/sync.test.js",
+    "db:test:comparables": "node db/test/comparables.test.js",
+    "db:sync": "node db/scripts/syncFromBackend.js",
+    "db:test:sync": "node db/test/sync.test.js"
   },
   "dependencies": {
     "mongodb": "^6.10.0"

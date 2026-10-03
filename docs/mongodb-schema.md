@@ -1,8 +1,10 @@
 # RentCheck AI: MongoDB Database Schema (v2, authoritative)
 
-Database: **`rentcheck_engine`**. Implemented and tested in `db/` (`npm run db:test`: 49 checks against a real mongod 7.0.14). This replaces the v1 model in [mongodb-data-model.md](mongodb-data-model.md).
+Database: **`rentcheck_engine`**. Implemented and tested in `db/` (`npm run db:test`: 61 checks against a real mongod 7.0.14). This replaces the v1 model in [mongodb-data-model.md](mongodb-data-model.md).
 
-> **Two databases, on purpose.** Person 4's API (`rentcheck_person4_backend/`) keeps its own schema in **`rentcheck`** (`location`, `rent_index`, `small_areas`, ...), and that is what the live app and the agents use. This schema lives in **`rentcheck_engine`**. The two share collection names (`properties`, `analyses`, `transport_stops`, ...) with different fields, and these validators would reject Person 4's writes, so they must never point at the same database.
+> **Two databases, on purpose.** Person 4's API (`rentcheck_person4_backend/`) keeps its own schema in **`rentcheck`** (`location`, `rent_index`, `small_areas`, ...), and that is what the live app and the agents use. This schema lives in **`rentcheck_engine`**. The two share collection names (`properties`, `analyses`, `transport_stops`, ...) with different fields, and these validators would reject Person 4's writes, so they must never point at the same database. `npm run db:sync` copies Person 4's data into this schema (`db/scripts/syncFromBackend.js`, tested by `npm run db:test:sync`):
+> boundaries become `areas` (with `parents` resolved by polygon and Census embedded on small areas), `rent_index` becomes `rental_indexes`, and `transport_stops`, `planning_applications` and vacancy (`area_stats`) are converted field by field.
+> Rows that cannot be represented faithfully are skipped and counted, never guessed. Not synced: `property_sales` (Person 4's PPR rows have no coordinates and no full-market-price flag), `properties`/`analyses` (runtime data, each side writes its own), and `rental_observations` (Person 4 has no listing-level rents, so the comparable engine reports none).
 
 **What changed from v1, and why**
 
