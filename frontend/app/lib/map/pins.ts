@@ -1,6 +1,7 @@
 import { Marker, type Map as MlMap, type MapSourceDataEvent } from 'maplibre-gl'
 import type { ListingSummary, Verdict } from '~/types/api'
 import { eur } from '~/lib/format'
+import { gsap, reducedMotion } from '~/lib/motion'
 
 export const LISTINGS_SOURCE = 'listings'
 
@@ -24,6 +25,8 @@ export class PricePins {
   private listings = new Map<string, ListingSummary>()
   private state: PinState = { hoveredId: null, selectedId: null, visited: new Set(), onlySelected: false }
   private scheduled = false
+  /** The first batch of pins drops in with a GSAP ripple; later ones use the CSS fade. */
+  private introPlayed = false
 
   private map: MlMap
   private handlers: { hover: (id: string | null) => void; select: (id: string) => void }
@@ -95,6 +98,7 @@ export class PricePins {
         this.pins.delete(id)
       }
     }
+    const created: PinEntry[] = []
     for (const id of want) {
       const listing = this.listings.get(id)
       if (!listing) continue
@@ -102,9 +106,32 @@ export class PricePins {
       if (!entry) {
         entry = this.create(listing)
         this.pins.set(id, entry)
+        created.push(entry)
       }
       this.paint(id, entry, listing)
     }
+    if (!this.introPlayed && created.length > 1) this.playIntro(created)
+  }
+
+  /** Staggered drop-in rippling out from the middle of the map. */
+  private playIntro(entries: PinEntry[]) {
+    this.introPlayed = true
+    if (reducedMotion()) return
+    const c = this.map.getContainer().getBoundingClientRect()
+    const cx = c.left + c.width / 2, cy = c.top + c.height / 2
+    const dist = (e: PinEntry) => {
+      const r = e.el.getBoundingClientRect()
+      return Math.hypot(r.left - cx, r.top - cy)
+    }
+    const pills = entries.sort((a, b) => dist(a) - dist(b)).map(e => {
+      e.el.classList.remove('rc-pin--enter')
+      return e.pill
+    })
+    gsap.from(pills, {
+      y: -12, autoAlpha: 0, duration: 0.45, ease: 'back.out(1.7)',
+      stagger: Math.min(0.02, 0.6 / pills.length),
+      clearProps: 'transform,opacity,visibility',
+    })
   }
 
   private create(l: ListingSummary): PinEntry {
