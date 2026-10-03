@@ -12,7 +12,7 @@ export const SAMPLE = {
 };
 
 export const sampleScript = () => `// Comparable-rental search, step 1 of the widening ladder (1000 m, 90 days). Generated; do not edit by hand.
-// Run in mongosh against the rentcheck database:  load("rentalComparables.mongosh.js")
+// Run in mongosh against the rentcheck_engine database:  load("rentalComparables.mongosh.js")
 db.rental_observations.aggregate(${toMongosh(buildComparablePipeline(SAMPLE))})
 `;
 

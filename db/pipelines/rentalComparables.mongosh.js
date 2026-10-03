@@ -1,5 +1,5 @@
 // Comparable-rental search, step 1 of the widening ladder (1000 m, 90 days). Generated; do not edit by hand.
-// Run in mongosh against the rentcheck database:  load("rentalComparables.mongosh.js")
+// Run in mongosh against the rentcheck_engine database:  load("rentalComparables.mongosh.js")
 db.rental_observations.aggregate([
   {"$geoNear":{"near":{"type":"Point","coordinates":[-6.2551,53.3264]},"key":"geo","distanceField":"distM","maxDistance":1000,"spherical":true,"query":{"measure":"advertised","rent.amount":{"$gt":0},"bedrooms":2,"propertyType":{"$in":["apartment","studio"]},"observedAt":{"$gte":ISODate("2025-10-03T06:00:00.000Z"),"$lte":ISODate("2026-10-03T12:00:00.000Z")}}}},
   {"$set":{"ageDays":{"$dateDiff":{"startDate":"$observedAt","endDate":ISODate("2026-10-03T12:00:00.000Z"),"unit":"day"}}}},

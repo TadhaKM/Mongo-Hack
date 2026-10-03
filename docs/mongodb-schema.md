@@ -1,6 +1,8 @@
 # RentCheck AI: MongoDB Database Schema (v2, authoritative)
 
-Database: **`rentcheck`**. Implemented and tested in `db/` (`npm run db:test`: 49 checks against a real mongod 7.0.14). This replaces the v1 model in [mongodb-data-model.md](mongodb-data-model.md).
+Database: **`rentcheck_engine`**. Implemented and tested in `db/` (`npm run db:test`: 49 checks against a real mongod 7.0.14). This replaces the v1 model in [mongodb-data-model.md](mongodb-data-model.md).
+
+> **Two databases, on purpose.** Person 4's API (`rentcheck_person4_backend/`) keeps its own schema in **`rentcheck`** (`location`, `rent_index`, `small_areas`, ...), and that is what the live app and the agents use. This schema lives in **`rentcheck_engine`**. The two share collection names (`properties`, `analyses`, `transport_stops`, ...) with different fields, and these validators would reject Person 4's writes, so they must never point at the same database.
 
 **What changed from v1, and why**
 
@@ -629,8 +631,8 @@ Source: `db/scripts/createIndexes.js` (also applies the validators from `db/sche
 
 ```js
 // Idempotent. Safe to run on every deploy.   node db/scripts/createIndexes.js
-// Database: rentcheck. See docs/mongodb-schema.md for what each index serves.
-export const DB_NAME = "rentcheck";
+// Database: rentcheck_engine (Person 4's API keeps "rentcheck"). See docs/mongodb-schema.md for what each index serves.
+export const DB_NAME = "rentcheck_engine";
 
 export const INDEXES = {
   sources: [],   // _id is the slug; the collection is tiny
@@ -703,7 +705,7 @@ export async function createIndexes(db) {
 ```
 
 ### C. Recommended database name
-`rentcheck`
+`rentcheck_engine` (`rentcheck` belongs to Person 4's API; see the note at the top)
 
 ### D. Recommended collection names
 `sources`, `areas`, `properties`, `rental_observations`, `rental_indexes`, `transport_stops`, `planning_applications`, `property_sales`, `area_stats`, `analyses`. Plural snake_case, one noun each; `rental_observations` vs `rental_indexes` are named for what they are so that the wrong one cannot be picked by accident.
