@@ -1,0 +1,27 @@
+{
+  "property": {
+    "_id": "property_<id>",
+    "address": {"raw": "string", "normalised": "string", "eircode": "string|null", "postal_area": "string|null"},
+    "location": {"type": "Point", "coordinates": ["longitude", "latitude"]},
+    "geography": {
+      "county": {"code": "string|null", "name": "string|null"},
+      "local_authority": {"code": "string|null", "name": "string|null"},
+      "electoral_division": {"code": "string|null", "name": "string|null"},
+      "local_electoral_area": {"code": "string|null", "name": "string|null"},
+      "small_area": {"code": "string|null", "name": "string|null"},
+      "rtb_area": {"code": "string|null", "name": "string|null"}
+    },
+    "property_attributes": {"property_type": "string|null", "bedrooms": "integer|null"}
+  },
+  "evidence_record": {
+    "source": {
+      "organisation": "string|null",
+      "dataset": "string",
+      "source_url": "string|null",
+      "retrieved_at": "datetime",
+      "dataset_date": "string|number|null",
+      "pipeline_version": "string"
+    },
+    "validation": {"status": "ok|flagged", "issues": ["string"]}
+  }
+}
