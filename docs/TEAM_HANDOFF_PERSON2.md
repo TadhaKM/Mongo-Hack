@@ -34,6 +34,10 @@ Person 1's `db/` layer (schema v2) reuses collection names that Person 4's backe
 `analyses`, `transport_stops`, `planning_applications`, `property_sales`), and applies strict validators. It now
 runs in its own database, **`rentcheck_engine`**. The backend and agents stay on **`rentcheck`**
 (`MONGODB_DATABASE`). Don't point both at the same database until the schemas are merged.
+To run Person 1's engine on the backend's real data, run `npm run db:sync` from the repo root after ingesting
+(source `BACKEND_MONGODB_URI`/`BACKEND_MONGODB_DB`, default `rentcheck`; target `MONGODB_URI`/`MONGODB_DB`, default
+`rentcheck_engine`). It is idempotent and prints what it skipped and why. Sales are not synced: PPR rows have no
+coordinates. Listings are not synced either: none are stored. See the note at the top of `docs/mongodb-schema.md`.
 
 > **Update (Person 1):** the same real rent data (CSO RIQ02) is now loaded into both databases, and the backend reaches the engine through `/engine/*` (set `ENGINE_URL`). See [real-data-and-integration.md](real-data-and-integration.md).
 
