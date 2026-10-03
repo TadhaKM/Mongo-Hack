@@ -6,6 +6,7 @@ import RentTrendChart from '../charts/RentTrendChart.vue'
 import AreaSection from './AreaSection.vue'
 import ClaimText from './ClaimText.vue'
 import ComparablesTable from './ComparablesTable.vue'
+import DraftEnquiry from './DraftEnquiry.vue'
 import PlanningSection from './PlanningSection.vue'
 import ReportSection from './ReportSection.vue'
 import SectionFooter from './SectionFooter.vue'
@@ -99,6 +100,11 @@ const lowConfidence = computed(() => props.analysis.summary?.confidence.level ==
         <PlanningSection :items="planning.items" />
         <SectionFooter :source-ids="planning.source_ids" />
       </template>
+    </ReportSection>
+
+    <!-- Draft enquiry: the closing beat. Not printed. -->
+    <ReportSection v-if="!print && analysis.status === 'complete'" id="r-enquiry" title="Ask the landlord">
+      <DraftEnquiry :analysis="analysis" />
     </ReportSection>
 
     <!-- Sources -->

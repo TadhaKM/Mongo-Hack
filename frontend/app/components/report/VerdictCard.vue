@@ -2,6 +2,7 @@
 import type { Analysis } from '~/types/api'
 import { eur, metres, pct, period, verdictLabel } from '~/lib/format'
 import { VERDICT_STYLE } from '~/lib/verdict'
+import { scrambleTo } from '~/lib/motion'
 import ClaimText from './ClaimText.vue'
 import ConfidencePill from './ConfidencePill.vue'
 import GradientOrb from './GradientOrb.vue'
@@ -9,6 +10,16 @@ import RentRating from './RentRating.vue'
 
 const props = defineProps<{ summary: NonNullable<Analysis['summary']>; animate?: boolean }>()
 const style = computed(() => VERDICT_STYLE[props.summary.verdict])
+// Text replacement: the pill resolves from "Checking" into the verdict as the report appears.
+const verdictEl = ref<HTMLElement>()
+let swap: ReturnType<typeof scrambleTo> = null
+onMounted(() => {
+  if (!props.animate || !verdictEl.value) return
+  verdictEl.value.textContent = 'Checking'
+  swap = scrambleTo(verdictEl.value, verdictLabel(props.summary.verdict), { duration: 0.9, delay: 0.5, chars: 'upperCase' })
+})
+onBeforeUnmount(() => swap?.kill())
+
 const orb = computed(() => ({ below_market: 'mint', in_line: 'lavender', above_market: 'peach' } as const)[props.summary.verdict])
 
 // Say the difference in money first: that's what a renter feels every month.
@@ -34,7 +45,7 @@ const subline = computed(() => {
       <div class="relative space-y-6">
         <div class="flex items-start justify-between gap-3">
           <p class="type-caption-upper inline-flex items-center gap-1.5 rounded-full bg-background/80 px-2.5 py-1 text-foreground">
-            <component :is="style.icon" class="size-3.5" :class="style.text" /> {{ verdictLabel(summary.verdict) }}
+            <component :is="style.icon" class="size-3.5" :class="style.text" /> <span ref="verdictEl">{{ verdictLabel(summary.verdict) }}</span>
           </p>
           <ConfidencePill :confidence="summary.confidence" />
         </div>

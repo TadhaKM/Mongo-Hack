@@ -65,7 +65,9 @@ export function createAnalysis(body: AnalyseRequest): StoredAnalysis | { error: 
     }
     location = listing.location
     area = listing.area
-    id = listing.id === DEMO_LISTING_ID ? 'an_demo' : `an_${listing.id.replace('lst_', '')}_${Date.now().toString(36)}`
+    // Unique per run, so two people testing the demo pin never restart each other's check.
+    // (GET /analysis/an_demo still works: unknown ids come back as a finished demo analysis.)
+    id = `an_${listing.id.replace('lst_', '')}_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`
   }
   else {
     if (!body.address || body.monthly_rent == null || body.bedrooms == null || !body.property_type)
@@ -74,7 +76,7 @@ export function createAnalysis(body: AnalyseRequest): StoredAnalysis | { error: 
     const listing = LISTINGS.find(l => `geo_${l.id}` === body.place_id)
     location = listing?.location ?? body.location ?? { lng: -6.283, lat: 53.338 }
     area = listing?.area ?? 'Dublin 8'
-    id = `an_${Date.now().toString(36)}`
+    id = `an_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 5)}`
   }
 
   // Test hook for error states: put "FAIL_PLANNING" or "FAIL_ALL" in the address.

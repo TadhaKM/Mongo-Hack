@@ -1,31 +1,37 @@
 <script setup lang="ts">
 import { Check, TriangleAlert } from '@lucide/vue'
 import type { Stage } from '~/types/api'
-import { countTo, gsap, reducedMotion } from '~/lib/motion'
+import { countTo, gsap, reducedMotion, scrambleTo } from '~/lib/motion'
 
 const props = defineProps<{ stage: Stage }>()
 
-// When a stage finishes: stamp the tick in and count the first number in its label up from 0.
-const shownLabel = ref(props.stage.label)
+// A done label is split around its first number: the words scramble in, the number counts up.
+const parts = computed(() => {
+  const label = props.stage.status === 'failed' ? `Skipped: ${props.stage.label.replace(/…$/, '').toLowerCase()}` : props.stage.label
+  // Only a leading count ("42 comparable properties found") animates; "Dublin 8" or "Q2 2026" stay text.
+  const m = props.stage.status === 'done' ? /^(\d+)\s+(.*)$/.exec(label) : null
+  if (!m) return { before: label, num: null as number | null, after: '' }
+  return { before: '', num: Number(m[1]), after: m[2]! }
+})
+const shownNum = ref<number | null>(parts.value.num)
+const beforeEl = ref<HTMLElement>()
+const afterEl = ref<HTMLElement>()
 const tick = ref<HTMLElement>()
-let tween: gsap.core.Tween | null = null
+const tweens: (gsap.core.Tween | null)[] = []
 
-watch(() => [props.stage.status, props.stage.label] as const, async ([status, label], old) => {
-  tween?.kill()
-  const match = status === 'done' ? /\d+/.exec(label) : null
-  if (!match || !import.meta.client) {
-    shownLabel.value = label
-  }
-  else {
-    const n = Number(match[0])
-    tween = countTo(0, n, v => (shownLabel.value = label.replace(match[0], String(Math.round(v)))), { duration: 0.7 })
-  }
-  if (status === 'done' && old && old[0] !== 'done' && !reducedMotion()) {
-    await nextTick()
-    if (tick.value) gsap.from(tick.value, { scale: 0, rotate: -40, duration: 0.45, ease: 'back.out(3)' })
-  }
-}, { immediate: true })
-onBeforeUnmount(() => tween?.kill())
+watch(() => props.stage.status, async (status, old) => {
+  tweens.forEach(t => t?.kill())
+  tweens.length = 0
+  shownNum.value = parts.value.num
+  if (status !== 'done' || !old || old === 'done' || !import.meta.client) return
+  await nextTick()
+  // Text: scramble from the running wording into the result. Figure: count up.
+  if (parts.value.before) tweens.push(scrambleTo(beforeEl.value, parts.value.before, { duration: 0.6 }))
+  if (parts.value.after) tweens.push(scrambleTo(afterEl.value, parts.value.after, { duration: 0.65 }))
+  if (parts.value.num != null) tweens.push(countTo(0, parts.value.num, v => (shownNum.value = Math.round(v)), { duration: 0.7 }))
+  if (tick.value && !reducedMotion()) tweens.push(gsap.from(tick.value, { scale: 0, rotate: -40, duration: 0.45, ease: 'back.out(3)' }))
+})
+onBeforeUnmount(() => tweens.forEach(t => t?.kill()))
 </script>
 
 <template>
@@ -51,7 +57,7 @@ onBeforeUnmount(() => tween?.kill())
           'text-verdict-above': stage.status === 'failed',
         }"
       >
-        {{ stage.status === 'failed' ? `Skipped: ${stage.label.replace(/…$/, '').toLowerCase()}` : shownLabel }}
+        <span v-if="parts.num != null" class="tabular-nums">{{ shownNum }}&nbsp;</span><span ref="beforeEl">{{ parts.before }}</span><span ref="afterEl">{{ parts.after }}</span>
       </p>
       <p v-if="stage.detail && (stage.status === 'done' || stage.status === 'failed')" class="text-xs text-muted-foreground">
         {{ stage.detail }}

@@ -4,7 +4,7 @@ import type {
   AnalyseRequest, AnalyseResponse, Analysis, AnalysisEvent, ComparablesResponse, LocationResponse,
   PlanningResponse, ReportResponse, StageKey,
 } from '~/types/api'
-import { apiBase, apiFetch } from './client'
+import { ApiRequestError, apiBase, apiFetch } from './client'
 
 export function useCreateAnalysis() {
   return useMutation({
@@ -48,6 +48,8 @@ function subscribe(id: string, client: QueryClient): Subscription {
       // complete / failed: close before the server does, so EventSource doesn't auto-reconnect.
       source.close()
       sub.source = null
+      // Poll from here on: if the refetch still says "running" (stream and state disagree), polling recovers it.
+      sub.polling.value = true
       void client.invalidateQueries({ queryKey: analysisKey(id) })
     }
   }
@@ -122,6 +124,9 @@ function useSection<T>(name: string, id: MaybeRefOrGetter<string | null>, stage:
     queryFn: ({ signal }) => apiFetch<T>(`/analysis/${toValue(id)}/${name}`, { signal }),
     enabled: computed(() => !!toValue(id) && done.value),
     staleTime: Infinity,
+    // NOT_READY means the stage hasn't landed server-side yet: keep asking for a little while.
+    retry: (count, err) => (err instanceof ApiRequestError && err.code === 'NOT_READY' ? count < 15 : count < 1),
+    retryDelay: 1000,
   })
 }
 
