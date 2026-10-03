@@ -3,7 +3,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 import httpx
-from app.ingestion.base import DatasetImporter
+from app.ingestion.base import DatasetImporter, ImportResult
 from app.ingestion.utils import first
 
 OFFICIAL_POINTS = "https://services.arcgis.com/NzlPQPKn5QF9v2US/arcgis/rest/services/IrishPlanningApplications/FeatureServer/0/query"
@@ -24,18 +24,19 @@ class PlanningImporter(DatasetImporter):
             geom = feature.get("geometry")
             point = self._to_point(geom)
             if not point: continue
-            ref = first(props, "application_ref", "planning_ref", "applicationnumber", "app_no", "appnumber", default=None)
+            ref = first(props, "application_ref", "planning_ref", "applicationnumber", "ApplicationNumber", "app_no", "appnumber", default=None)
             if ref is None:
                 ref = props.get("OBJECTID") or props.get("objectid")
             docs.append({
                 "_record_key": f"{self.dataset_id}:{ref}",
                 "application_ref": ref,
                 "location": point,
-                "application_date": first(props, "application_date", "date_received", "received_date", "date", default=None),
-                "decision": first(props, "decision", "decision_description", default=None),
-                "status": first(props, "status", "current_status", default=None),
-                "proposal": first(props, "proposal", "description", "developmentdescription", default=None),
-                "local_authority": first(props, "local_authority", "planning_authority", "la_name", default=None),
+                "application_date": first(props, "application_date", "ReceivedDate", "date_received", "received_date", "date", default=None),
+                "decision": first(props, "decision", "Decision", "decision_description", default=None),
+                "status": first(props, "status", "ApplicationStatus", "current_status", default=None),
+                "proposal": first(props, "proposal", "description", "DevelopmentDescription", default=None),
+                "num_residential_units": first(props, "NumResidentialUnits", "num_residential_units", default=None),
+                "local_authority": first(props, "local_authority", "PlanningAuthority", "planning_authority", "la_name", default=None),
                 "raw": props,
                 "source": self.source_metadata(source_url)
             })

@@ -8,7 +8,9 @@ services:
       - mongo_data:/data/db
 
   api:
-    build: .
+    build:
+      context: ..
+      dockerfile: rentcheck_person4_backend/Dockerfile
     restart: unless-stopped
     ports:
       - "8000:8000"

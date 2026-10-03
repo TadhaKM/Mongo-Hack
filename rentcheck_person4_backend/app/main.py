@@ -1,3 +1,5 @@
+import logging
+import os
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,6 +23,15 @@ app.include_router(properties_router)
 app.include_router(analysis_router)
 app.include_router(agent_router)
 app.include_router(system_router)
+
+# Person 2's AI agents (../agents). Mounted in-process: they call these services directly and save
+# reports into this backend's `analyses` collection, so GET /analysis/{id}/report includes `report` + `agent`.
+os.environ.setdefault("TOOL_CLIENT", "inprocess")
+try:
+    from rentcheck_agents.api import router as ai_router
+    app.include_router(ai_router)
+except ImportError as exc:  # agents package not installed: the data API still works
+    logging.getLogger(__name__).warning("AI agent routes not mounted (%s). Install with: pip install -e ../agents", exc)
 
 @app.get("/health", tags=["system"])
 def health():

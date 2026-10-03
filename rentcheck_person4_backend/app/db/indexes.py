@@ -4,7 +4,7 @@ def ensure_indexes() -> None:
     db = get_db()
     for name in ["properties", "transport_stops", "planning_applications", "property_sales"]:
         db[name].create_index([("location", "2dsphere")], name="location_2dsphere")
-    for name in ["small_areas", "electoral_divisions", "local_electoral_areas", "local_authorities", "counties"]:
+    for name in ["small_areas", "electoral_divisions", "local_electoral_areas", "local_authorities", "counties", "rtb_areas"]:
         db[name].create_index([("geometry", "2dsphere")], name="geometry_2dsphere")
     db.rent_index.create_index(
         [("geography.code", 1), ("period.year", 1), ("period.quarter", 1), ("property.bedrooms", 1), ("property.type", 1)],

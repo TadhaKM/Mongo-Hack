@@ -102,7 +102,8 @@ async def generate_structured(output_model: type[T], system: str, prompt: str, t
                         return output_model.model_validate_json(resp.text or ""), model
                     except Exception as exc2:
                         errors.append(f"{model} (no thinking): {str(exc2)[:200]}")
-                if "429" in msg or "RESOURCE_EXHAUSTED" in msg:
+                # rate limit or temporary overload ("503 UNAVAILABLE ... high demand"): back off, retry, then fall back
+                if any(s in msg for s in ("429", "RESOURCE_EXHAUSTED", "503", "UNAVAILABLE")):
                     await asyncio.sleep(1.5 * (attempt + 1))
                     continue
                 break

@@ -10,6 +10,7 @@ def resolve_geographies(lon: float, lat: float) -> dict[str, Any]:
         ("local_electoral_areas", "local_electoral_area"),
         ("local_authorities", "local_authority"),
         ("counties", "county"),
+        ("rtb_areas", "rtb_area"),  # RTB rent-index locations as polygons; codes must equal rent_index.geography.code
     ]:
         doc = collection(collection_name).find_one({"geometry": {"$geoIntersects": {"$geometry": point}}}, {"code": 1, "name": 1})
         result[output_name] = {"code": doc.get("code"), "name": doc.get("name")} if doc else {"code": None, "name": None}

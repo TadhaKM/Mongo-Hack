@@ -22,10 +22,11 @@ def read_csv_rows(path: Path) -> Iterable[dict]:
             yield {canonical_key(k): v.strip() if isinstance(v, str) else v for k, v in row.items()}
 
 def first(row: dict, *names: str, default=None):
+    canon = {canonical_key(str(k)): v for k, v in row.items()}
     for name in names:
         key = canonical_key(name)
-        if key in row and row[key] not in (None, ""):
-            return row[key]
+        if key in canon and canon[key] not in (None, ""):
+            return canon[key]
     return default
 
 def float_or_none(value):

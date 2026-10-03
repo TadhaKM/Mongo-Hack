@@ -16,6 +16,7 @@ def nearby_planning(property_doc: dict, radius_m: int = 1000, limit: int = 100) 
             "decision": doc.get("decision"),
             "status": doc.get("status"),
             "proposal": doc.get("proposal"),
+            "num_residential_units": doc.get("num_residential_units"),
             "distance_m": dist,
             "source": doc.get("source", {})
         })
