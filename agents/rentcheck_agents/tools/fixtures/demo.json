@@ -1,0 +1,2540 @@
+{
+ "_note": "DEMO FIXTURE. Illustrative values shaped exactly like Person 4's backend responses. Not real statistics.",
+ "areas": [
+  {
+   "key": "dublin8",
+   "center": [
+    -6.29,
+    53.339
+   ],
+   "radius_m": 3500,
+   "geography": {
+    "small_area": {
+     "code": "DEMO-SA-D08",
+     "name": "Demo small area (Dublin 8)"
+    },
+    "electoral_division": {
+     "code": "DEMO-ED",
+     "name": "Demo ED"
+    },
+    "local_electoral_area": {
+     "code": "DEMO-LEA",
+     "name": "South West Inner City (demo)"
+    },
+    "local_authority": {
+     "code": "DCC",
+     "name": "Dublin City Council"
+    },
+    "county": {
+     "code": "D",
+     "name": "Dublin"
+    },
+    "rtb_area": {
+     "code": "DEMO-D08",
+     "name": "Dublin 8 (demo area)"
+    }
+   }
+  }
+ ],
+ "fallback_geography": {
+  "small_area": {
+   "code": null,
+   "name": null
+  },
+  "electoral_division": {
+   "code": null,
+   "name": null
+  },
+  "local_electoral_area": {
+   "code": null,
+   "name": null
+  },
+  "local_authority": {
+   "code": null,
+   "name": null
+  },
+  "county": {
+   "code": null,
+   "name": null
+  },
+  "rtb_area": {
+   "code": null,
+   "name": null
+  }
+ },
+ "rent_index": [
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1690,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1710,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1732,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1742,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1766,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1778,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1793,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1808,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1829,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1839,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1849,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1864,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2026,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 1
+   },
+   "rent": {
+    "monthly_eur": 1879,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2026-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2010,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2034,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2060,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2072,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2100,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2115,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2133,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2151,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2175,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2187,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2199,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2217,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2026,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2235,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2026-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2420,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2449,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2480,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2495,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2529,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2546,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2568,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2589,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2618,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2633,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2647,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2669,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2026,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2691,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2026-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 1
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2080,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 2
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2105,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 3
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2132,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 4
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2144,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 1
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2174,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 2
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2188,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 3
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2207,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 4
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2226,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 1
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2251,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 2
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2263,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 3
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2276,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 4
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2294,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2026,
+    "quarter": 1
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 2313,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2026-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 1
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2390,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 2
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2419,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 3
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2450,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2023,
+    "quarter": 4
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2464,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2023-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 1
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2498,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 2
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2514,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 3
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2536,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2024,
+    "quarter": 4
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2557,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2024-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 1
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2586,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 2
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2600,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 3
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2615,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 4
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2636,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-D08",
+    "name": "Dublin 8 (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2026,
+    "quarter": 1
+   },
+   "property": {
+    "type": "house",
+    "bedrooms": 3
+   },
+   "rent": {
+    "monthly_eur": 2658,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2026-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-CORK",
+    "name": "Cork City (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 2
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 1795,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q2",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-CORK",
+    "name": "Cork City (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 3
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 1805,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q3",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-CORK",
+    "name": "Cork City (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2025,
+    "quarter": 4
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 1820,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2025-Q4",
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "geography": {
+    "code": "DEMO-CORK",
+    "name": "Cork City (demo area)",
+    "type": "rtb_rental_area"
+   },
+   "period": {
+    "year": 2026,
+    "quarter": 1
+   },
+   "property": {
+    "type": "apartment",
+    "bedrooms": 2
+   },
+   "rent": {
+    "monthly_eur": 1835,
+    "measure": "average"
+   },
+   "validation": {
+    "status": "ok",
+    "issues": []
+   },
+   "source": {
+    "dataset": "RTB/ESRI Rent Index",
+    "organisation": "Residential Tenancies Board / ESRI",
+    "source_url": "https://rtb.ie/data-insights/rtb-data-hub/rtb-esri-rent-index-data-set/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2026-Q1",
+    "pipeline_version": "demo-fixture"
+   }
+  }
+ ],
+ "transport_stops": [
+  {
+   "stop_id": "DEMO-LUAS-FAT",
+   "name": "Fatima (Luas)",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.2925,
+     53.3384
+    ]
+   },
+   "transport_modes": [
+    "tram"
+   ],
+   "route_ids": [
+    "Red"
+   ],
+   "source": {
+    "dataset": "NTA GTFS",
+    "organisation": "National Transport Authority",
+    "source_url": "https://www.transportforireland.ie/transitData/PT_Data.html",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "stop_id": "DEMO-LUAS-JAM",
+   "name": "James's (Luas)",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.2933,
+     53.3419
+    ]
+   },
+   "transport_modes": [
+    "tram"
+   ],
+   "route_ids": [
+    "Red"
+   ],
+   "source": {
+    "dataset": "NTA GTFS",
+    "organisation": "National Transport Authority",
+    "source_url": "https://www.transportforireland.ie/transitData/PT_Data.html",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "stop_id": "DEMO-LUAS-RIA",
+   "name": "Rialto (Luas)",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.2973,
+     53.3378
+    ]
+   },
+   "transport_modes": [
+    "tram"
+   ],
+   "route_ids": [
+    "Red"
+   ],
+   "source": {
+    "dataset": "NTA GTFS",
+    "organisation": "National Transport Authority",
+    "source_url": "https://www.transportforireland.ie/transitData/PT_Data.html",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "stop_id": "DEMO-BUS-1",
+   "name": "South Circular Road",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.2885,
+     53.3372
+    ]
+   },
+   "transport_modes": [
+    "bus"
+   ],
+   "route_ids": [
+    "9",
+    "122"
+   ],
+   "source": {
+    "dataset": "NTA GTFS",
+    "organisation": "National Transport Authority",
+    "source_url": "https://www.transportforireland.ie/transitData/PT_Data.html",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "stop_id": "DEMO-BUS-2",
+   "name": "Dolphin's Barn",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.293,
+     53.333
+    ]
+   },
+   "transport_modes": [
+    "bus"
+   ],
+   "route_ids": [
+    "27",
+    "56A",
+    "77A"
+   ],
+   "source": {
+    "dataset": "NTA GTFS",
+    "organisation": "National Transport Authority",
+    "source_url": "https://www.transportforireland.ie/transitData/PT_Data.html",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "stop_id": "DEMO-BUS-3",
+   "name": "St James's Hospital",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.295,
+     53.341
+    ]
+   },
+   "transport_modes": [
+    "bus"
+   ],
+   "route_ids": [
+    "13",
+    "40",
+    "123"
+   ],
+   "source": {
+    "dataset": "NTA GTFS",
+    "organisation": "National Transport Authority",
+    "source_url": "https://www.transportforireland.ie/transitData/PT_Data.html",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "stop_id": "DEMO-RAIL-HEU",
+   "name": "Heuston",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.2944,
+     53.3464
+    ]
+   },
+   "transport_modes": [
+    "rail"
+   ],
+   "route_ids": [
+    "Intercity",
+    "Commuter"
+   ],
+   "source": {
+    "dataset": "NTA GTFS",
+    "organisation": "National Transport Authority",
+    "source_url": "https://www.transportforireland.ie/transitData/PT_Data.html",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  }
+ ],
+ "planning_applications": [
+  {
+   "application_ref": "DEMO/1001/25",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.287,
+     53.3405
+    ]
+   },
+   "application_date": "2025-03-14",
+   "decision": "Grant permission",
+   "status": "Decision made",
+   "proposal": "Large-scale residential development (LRD) comprising 212 no. apartments in two blocks of 7-9 storeys, with communal open space and basement car parking.",
+   "source": {
+    "dataset": "National Planning Applications",
+    "organisation": "Department of Housing, Local Government and Heritage",
+    "source_url": "https://services.arcgis.com/NzlPQPKn5QF9v2US/arcgis/rest/services/IrishPlanningApplications/FeatureServer",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "application_ref": "DEMO/1187/25",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.2952,
+     53.336
+    ]
+   },
+   "application_date": "2025-06-02",
+   "decision": "Further information requested",
+   "status": "Under consideration",
+   "proposal": "Change of use from office to student accommodation (148 bed spaces) with ancillary amenity space.",
+   "source": {
+    "dataset": "National Planning Applications",
+    "organisation": "Department of Housing, Local Government and Heritage",
+    "source_url": "https://services.arcgis.com/NzlPQPKn5QF9v2US/arcgis/rest/services/IrishPlanningApplications/FeatureServer",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "application_ref": "DEMO/0844/24",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.2905,
+     53.3395
+    ]
+   },
+   "application_date": "2024-11-20",
+   "decision": "Grant permission",
+   "status": "Decision made",
+   "proposal": "Single storey rear extension to existing dwelling.",
+   "source": {
+    "dataset": "National Planning Applications",
+    "organisation": "Department of Housing, Local Government and Heritage",
+    "source_url": "https://services.arcgis.com/NzlPQPKn5QF9v2US/arcgis/rest/services/IrishPlanningApplications/FeatureServer",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "application_ref": "DEMO/0402/26",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.282,
+     53.337
+    ]
+   },
+   "application_date": "2026-02-09",
+   "decision": null,
+   "status": "Received",
+   "proposal": "Demolition of existing warehouse and construction of 48 no. apartments and a ground floor retail unit.",
+   "source": {
+    "dataset": "National Planning Applications",
+    "organisation": "Department of Housing, Local Government and Heritage",
+    "source_url": "https://services.arcgis.com/NzlPQPKn5QF9v2US/arcgis/rest/services/IrishPlanningApplications/FeatureServer",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  },
+  {
+   "application_ref": "DEMO/0119/21",
+   "location": {
+    "type": "Point",
+    "coordinates": [
+     -6.299,
+     53.342
+    ]
+   },
+   "application_date": "2021-04-01",
+   "decision": "Refuse permission",
+   "status": "Decision made",
+   "proposal": "Construction of a 6-storey hotel with 120 bedrooms.",
+   "source": {
+    "dataset": "National Planning Applications",
+    "organisation": "Department of Housing, Local Government and Heritage",
+    "source_url": "https://services.arcgis.com/NzlPQPKn5QF9v2US/arcgis/rest/services/IrishPlanningApplications/FeatureServer",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": null,
+    "pipeline_version": "demo-fixture"
+   }
+  }
+ ],
+ "census_saps": [
+  {
+   "small_area_code": "DEMO-SA-D08",
+   "values": {
+    "population_total": 412,
+    "private_rented_pct": 47.5,
+    "car_available_pct": 44.0,
+    "households_total": 189
+   },
+   "source": {
+    "dataset": "census_2022_saps",
+    "organisation": "Central Statistics Office",
+    "source_url": "https://www.cso.ie/en/census/census2022/census2022smallareapopulationstatistics/",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2022",
+    "pipeline_version": "demo-fixture"
+   }
+  }
+ ],
+ "vacancy": [
+  {
+   "geography": {
+    "code": "DEMO-SA-D08"
+   },
+   "values": {
+    "vacancy_rate_pct": 6.1
+   },
+   "data_year": 2022,
+   "source": {
+    "dataset": "cso_fp010",
+    "organisation": "Central Statistics Office",
+    "source_url": "https://data.gov.ie/dataset/fp010-housing-stock-and-vacant-dwellings-2022",
+    "retrieved_at": "2026-10-03T10:00:00+00:00",
+    "dataset_date": "2022",
+    "pipeline_version": "demo-fixture"
+   }
+  }
+ ],
+ "property_sales": []
+}
