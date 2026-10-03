@@ -17,5 +17,7 @@ export function useMapUi() {
     sameBedroomsOnly: useState<boolean>('map:same-beds', () => false),
     /** Bumped by the recentre control. */
     recentre: useState<number>('map:recentre', () => 0),
+    /** Zoom button requests; `n` makes repeats observable. */
+    zoomBy: useState<{ delta: number; n: number } | null>('map:zoom', () => null),
   }
 }

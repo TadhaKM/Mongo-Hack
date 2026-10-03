@@ -55,9 +55,10 @@ export function setHoverState(map: MlMap | null, source: string, prev: string | 
 }
 
 /** Animate a paint property from 0 to `to` (uses MapLibre paint transitions). */
-export function fadeIn(map: MlMap, layer: string, prop: string, to: number, duration = 600) {
+export function fadeIn(map: MlMap, layer: string, prop: 'circle-opacity' | 'circle-stroke-opacity' | 'fill-opacity' | 'line-opacity', to: number, duration = 600) {
   if (!map.getLayer(layer)) return
-  map.setPaintProperty(layer, `${prop}-transition`, { duration, delay: 0 })
+  // `*-transition` keys are valid at runtime but missing from MapLibre's paint typings.
+  map.setPaintProperty(layer, `${prop}-transition` as typeof prop, { duration, delay: 0 } as never)
   map.setPaintProperty(layer, prop, 0)
   requestAnimationFrame(() => {
     if (map.getLayer(layer)) map.setPaintProperty(layer, prop, to)

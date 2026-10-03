@@ -273,6 +273,10 @@ watch(flat, (isFlat) => {
   map.value?.easeTo({ pitch: isFlat ? 0 : PITCH_3D, duration: 600 })
 })
 
+watch(ui.zoomBy, (req) => {
+  if (req) map.value?.easeTo({ zoom: map.value.getZoom() + req.delta, duration: 300 })
+})
+
 watch(ui.recentre, () => {
   const m = map.value
   if (!m) return
