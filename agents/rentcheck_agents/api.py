@@ -57,6 +57,6 @@ async def health():
     return {"status": "ok", "tool_client": s.tool_client, "llm": llm_available(), "model": s.gemini_model}
 
 
-app = FastAPI(title="RentCheck AI agents", version="0.1.0")
+app = FastAPI(title="mend.ai agents", version="0.1.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 app.include_router(router)

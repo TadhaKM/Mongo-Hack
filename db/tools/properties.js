@@ -38,9 +38,9 @@ export async function getOrCreateProperty(db, input, { geoMethod = "geocoder", g
 }
 
 /** input = { address, latitude, longitude, monthlyRent, bedrooms, propertyType, floorArea, analysisDate, eircode? } */
-export async function startAnalysis(db, input, geocode = {}) {
+export async function startAnalysis(db, input, geocode = {}, { dataPolicy } = {}) {
   const property = await getOrCreateProperty(db, input, geocode);
   const { createAnalysis } = await import("./index.js");
-  const analysisId = await createAnalysis(db, { propertyId: property._id, input });
+  const analysisId = await createAnalysis(db, { propertyId: property._id, input, dataPolicy });
   return { analysisId, propertyId: property._id, property };
 }

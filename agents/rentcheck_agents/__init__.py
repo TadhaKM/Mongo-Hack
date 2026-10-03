@@ -1,4 +1,4 @@
-"""RentCheck AI agent layer.
+"""mend.ai agent layer.
 
     from rentcheck_agents import run_analysis, analyse
     async for event in run_analysis(PropertyInput(...)): ...

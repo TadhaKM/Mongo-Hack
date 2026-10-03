@@ -1,4 +1,4 @@
-# RentCheck AI: MongoDB Comparable-Rental Engine
+# mend.ai: MongoDB Comparable-Rental Engine
 
 > **Schema v2 (current): see [mongodb-schema.md](mongodb-schema.md).** The old `rents` collection was split into `rental_observations` (individual advertised or registered rents; `measure` is a required top-level field) and `rental_indexes` (official area averages; value field `avgRent`, period field `periodStart`). The code in `db/` is authoritative.
 

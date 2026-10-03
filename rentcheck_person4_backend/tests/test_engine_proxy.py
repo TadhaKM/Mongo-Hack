@@ -20,7 +20,7 @@ def test_engine_routes_are_in_the_public_contract():
 
 
 def test_engine_disabled_until_configured(monkeypatch):
-    monkeypatch.delenv("ENGINE_URL", raising=False)
+    monkeypatch.setenv("ENGINE_URL", "")   # an env var beats any .env file
     get_settings.cache_clear()
     r = client.post("/engine/tools/rentContext", json={"params": {}})
     assert r.status_code == 503 and "ENGINE_URL" in r.json()["detail"]

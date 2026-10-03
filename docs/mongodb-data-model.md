@@ -1,4 +1,4 @@
-# RentCheck AI: MongoDB Data Model (v1, hackathon)
+# mend.ai: MongoDB Data Model (v1, hackathon)
 
 > **SUPERSEDED.** This is the v1 model. **Schema v2 (current): see [mongodb-schema.md](mongodb-schema.md).** The old `rents` collection was split into `rental_observations` (individual advertised or registered rents; `measure` is a required top-level field) and `rental_indexes` (official area averages; value field `avgRent`, period field `periodStart`). Wherever this document says `rents`, `kind:"listing"` or `kind:"index_cell"`, read `rental_observations` with `measure:"advertised"`, or `rental_indexes` with `measure:"index_mean"`. The code in `db/` is authoritative.
 

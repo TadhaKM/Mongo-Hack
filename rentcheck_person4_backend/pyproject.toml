@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "rentcheck-person4-backend"
 version = "0.1.0"
-description = "RentCheck AI backend and Irish open-data ingestion framework"
+description = "mend.ai backend and Irish open-data ingestion framework"
 requires-python = ">=3.11"
 dependencies = [
   "fastapi>=0.115,<1",

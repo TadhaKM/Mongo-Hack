@@ -1,4 +1,4 @@
-# RentCheck AI — Agent layer design (Person 2)
+# mend.ai — Agent layer design (Person 2)
 
 Code: `agents/` (Python package `rentcheck_agents`). Run: `cd agents && uv sync && uv run python scripts/demo.py`.
 

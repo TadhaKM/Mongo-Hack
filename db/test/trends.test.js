@@ -1,12 +1,14 @@
 // Time-series trend tests against a real mongod. `npm run db:test:trends`
 // Every expected number is recomputed independently in JS from the same deterministic history.
+// These tests use SYNTHETIC seed data, so they must opt in; the default policy (real_only) would block every result.
+process.env.DATA_POLICY = "allow_synthetic";
 import assert from "node:assert/strict";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { MongoClient } from "mongodb";
 import { createIndexes } from "../scripts/createIndexes.js";
 import { applyValidators } from "../schemas/validators.js";
 import { seed, seedHistory } from "../scripts/seed.js";
-import { startAnalysis, callTool, TOOLS } from "../tools/index.js";
+import { startAnalysis, callTool, getAnalysis, TOOLS } from "../tools/index.js";
 import { rebuildObservationSeries, buildTrendPipeline, startOfPeriod, addPeriods } from "../tools/trends.js";
 import { TREND_V1 } from "../config/trendConfig.js";
 import { Ledger } from "../lib/envelope.js";
@@ -181,7 +183,7 @@ try {
     assert.ok(p.retrievedAt instanceof Date); assert.equal(p.records, s0.records); assert.equal(p.systemOfRecord, "rental_observations");
     const pt = s0.points.find((x) => x.sufficient); assert.equal(pt.recordIdSample.length, 3); assert.equal(pt.obsIdSample.length, 3); assert.ok(pt.versions.length >= 1);
   });
-  const ev = r.evidence.find((e) => e.claim.startsWith("Median advertised rent"));
+  const ev = r.evidence.find((e) => (e.claimRaw ?? e.claim).startsWith("Median advertised rent"));
   const oid = ev.refs[0].docId;
   const { ObjectId } = await import("mongodb");
   const refDoc = await db.collection("rental_observations").findOne({ _id: ObjectId.createFromHexString(oid) });
@@ -189,7 +191,7 @@ try {
     assert.ok(refDoc && refDoc.measure === "advertised");
     assert.equal(ev.context.measure, "advertised"); assert.equal(ev.context.areaLevel, "lea"); assert.equal(ev.context.areaId, LEA.id); assert.equal(ev.context.model, "trend-v1");
     assert.deepEqual(ev.sourceIds, ["listings"]); assert.equal(ev.value, s0.points.filter((p) => p.sufficient).at(-1).medianRent);
-    assert.ok(r.evidence.some((e) => e.claim.startsWith("Year-on-year")) && r.evidence.some((e) => e.claim.startsWith("Change in median")));
+    assert.ok(r.evidence.some((e) => (e.claimRaw ?? e.claim).startsWith("Year-on-year")) && r.evidence.some((e) => (e.claimRaw ?? e.claim).startsWith("Change in median")));
   });
   const none = await run({ scope: LEA, bedrooms: 4 });
   check("no data: status none, no series, evidence says 0, nothing invented", () => { assert.equal(none.data.status, "none"); assert.equal(none.data.series.length, 0); assert.equal(none.evidence[0].value, 0); });
@@ -197,12 +199,12 @@ try {
   // ---- storage through callTool + verification
   const { analysisId: aid } = await startAnalysis(db, { address: "12 Example Rd, Ranelagh", latitude: C.lat, longitude: C.lng, bedrooms: 2, propertyType: "apartment", analysisDate: now.toISOString() });
   const viaTool = await callTool(db, aid, "rentalTrend", { analysisDate: now, scope: LEA, bedrooms: 2, propertyType: "apartment", sourceId: "listings" });
-  const stored = await db.collection("analyses").findOne({ _id: aid });
-  const sev = stored.evidence.find((e) => e.claim.startsWith("Median advertised rent"));
+  const stored = await getAnalysis(db, aid);
+  const sev = stored.evidence.find((e) => (e.claimRaw ?? e.claim).startsWith("Median advertised rent"));
   const ver = await callTool(db, aid, "verifyClaims", { analysisId: aid, claims: [{ id: sev.id, asserted: sev.value }, { id: sev.id, asserted: sev.value + 100 }] });
-  check("stored through callTool with query parameters; verifyClaims accepts the true median and rejects an altered one", () => {
+  check("stored through callTool with query parameters; verifyClaims refuses synthetic evidence whether the number is right or altered", () => {
     assert.equal(sev.queryParameters.bedrooms, 2); assert.equal(sev.geographicScope.level, "lea"); assert.ok(sev.observationPeriod.from);
-    assert.equal(stored.results.rentalTrend.series.length, viaTool.data.series.length); assert.deepEqual(ver.data.results.map((x) => x.status), ["verified", "mismatch"]);
+    assert.equal(stored.results.rentalTrend.series.length, viaTool.data.series.length); assert.deepEqual(ver.data.results.map((x) => x.status), ["not_real_data", "not_real_data"]);
   });
 
   // ---- index use on the time-series collection

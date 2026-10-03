@@ -1,4 +1,6 @@
 // HTTP gateway tests against a real mongod. `npm run db:test:server`
+// These tests use SYNTHETIC seed data, so they must opt in; the default policy (real_only) would block every result.
+process.env.DATA_POLICY = "allow_synthetic";
 import assert from "node:assert/strict";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { MongoClient } from "mongodb";
@@ -32,9 +34,9 @@ try {
   const c = await call("POST", "/tools/rentalComparables", { analysisId: a.json.analysisId, params: { latitude: C.lat, longitude: C.lng, bedrooms: 2, propertyType: "apartment", monthlyRent: 2350, floorArea: 68 } });
   const stored = await call("GET", `/analyses/${a.json.analysisId}`);
   check("with an analysisId the result and its evidence are stored on the analysis", () => { assert.equal(c.json.data.status, "sufficient"); assert.equal(stored.json.results.rentalComparables.medianRent, c.json.data.medianRent); assert.ok(stored.json.evidence.every((e) => e.queryParameters && e.generatedAt)); });
-  const med = stored.json.evidence.find((e) => e.claim.startsWith("Median comparable"));
+  const med = stored.json.evidence.find((e) => (e.claimRaw ?? e.claim).startsWith("Median comparable"));
   const v = await call("POST", "/tools/verifyClaims", { analysisId: a.json.analysisId, params: { analysisId: a.json.analysisId, claims: [{ id: med.id, asserted: med.value }, { id: med.id, asserted: med.value + 50 }] } });
-  check("verifyClaims over HTTP accepts the stored number and rejects an altered one", () => assert.deepEqual(v.json.data.results.map((r) => r.status), ["verified", "mismatch"]));
+  check("verifyClaims over HTTP refuses synthetic evidence", () => assert.deepEqual(v.json.data.results.map((r) => r.status), ["not_real_data", "not_real_data"]));   // synthetic seed data can never be verified; tamper detection on real data is in realdata.test.js and provenance.test.js
 
   const bad = await call("POST", "/tools/nearbyTransport", { params: { lng: 53.3, lat: -6.2 } });
   check("bad input (swapped lat/lng) is a 422 with the reason, not a 500", () => { assert.equal(bad.status, 422); assert.match(bad.json.error, /outside Ireland/); });

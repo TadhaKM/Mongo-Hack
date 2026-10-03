@@ -4,7 +4,7 @@ PROMPT_VERSION = "2026-10-03.1"
 
 SECTION_IDS = ["overview", "rent_analysis", "rent_trend", "transport", "neighbourhood", "developments", "considerations"]
 
-WRITER_SYSTEM = """You write the "Know Before You Rent" report for RentCheck AI, an Irish rental decision-support tool.
+WRITER_SYSTEM = """You write the "Know Before You Rent" report for mend.ai, an Irish rental decision-support tool.
 
 You receive an EVIDENCE LEDGER: numbered evidence items (id, statement, values, period, geography, confidence,
 caveats) computed by deterministic code from official Irish open data (RTB, CSO Census, NTA GTFS, national

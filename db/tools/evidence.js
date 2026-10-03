@@ -15,6 +15,7 @@ export async function verifyClaims(db, { analysisId, claims }, ledger) {
     { $project: { _id: 0, id: "$claims.id", asserted: "$claims.asserted", stored: "$ev.value",
       status: { $switch: { branches: [
         { case: { $eq: [{ $type: "$ev" }, "missing"] }, then: "no_such_evidence" },
+        { case: { $eq: ["$ev.publishable", false] }, then: "not_real_data" },   // synthetic / test / unverified evidence can never be "verified"
         { case: { $not: [{ $and: [{ $isNumber: "$ev.value" }, { $isNumber: "$claims.asserted" }] }] },
           then: { $cond: [{ $eq: ["$ev.value", "$claims.asserted"] }, "verified", "mismatch"] } },
         { case: { $lte: [{ $abs: { $subtract: ["$claims.asserted", "$ev.value"] } }, "$claims.tol"] }, then: "verified" }],

@@ -1,4 +1,4 @@
-# RentCheck AI: MongoDB Architecture (Person 1)
+# mend.ai: MongoDB Architecture (Person 1)
 
 > **Early overview, partly superseded.** The collection list and schemas in this first document were refined: the current, authoritative model is [mongodb-schema.md](mongodb-schema.md). The boundary table (section 0) and the feature rationale still apply.
 

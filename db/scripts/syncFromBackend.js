@@ -93,10 +93,21 @@ function areaKm2(geometry) {
   return Math.round((polys.reduce((a, p) => a + poly(p), 0) / 1e6) * 1000) / 1000;
 }
 
+/**
+ * Real, or not? Person 4's demo seeds and the test fixtures carry real-looking source metadata, so the record itself
+ * (its key/code/id) is checked too. Anything that cannot be shown to come from a named publisher at a real URL is "synthetic":
+ * default-deny, because a wrong "real" is the failure that matters.
+ */
+export function classify(p4Source, recordId) {
+  const text = [recordId, p4Source?.dataset, p4Source?.pipeline_version, p4Source?.source_url, p4Source?.organisation].join(" ").toLowerCase();
+  if (/demo|fixture|synthetic|example\.org|mock|\btest\b|seed/.test(text)) return "synthetic";
+  return p4Source?.source_url && p4Source?.organisation ? "real" : "synthetic";
+}
+
 function src(sourceId, recordId, p4Source, now) {
   const retrievedAt = parseDate(p4Source?.retrieved_at) ?? now;
   const version = p4Source?.dataset_date != null ? String(p4Source.dataset_date) : `retrieved-${retrievedAt.toISOString().slice(0, 10)}`;
-  return { sourceId, recordId: String(recordId), version, retrievedAt };
+  return { sourceId, recordId: String(recordId), version, retrievedAt, ingestedAt: now, transform: "syncFromBackend.js@1", dataClass: classify(p4Source, recordId) };
 }
 
 function validPoint(geo) {
@@ -279,9 +290,9 @@ export async function syncFromBackend(source, target, { now = new Date() } = {})
   const srcOps = [...seenSources].map(([_id, { first, collections }]) => {
     const retrievedAt = parseDate(first?.retrieved_at) ?? now;
     return { replaceOne: { filter: { _id }, upsert: true, replacement: {
-      title: first?.dataset ?? _id, ...(first?.organisation && { organisation: first.organisation }), ...(first?.source_url && { url: first.source_url }),
-      version: src(_id, "", first, now).version, retrievedAt, recordIdField: "_record_key", collections: [...collections],
-      notes: "Synced from Person 4's database by db/scripts/syncFromBackend.js. Licence not recorded at ingestion." } } };
+      title: first?.dataset ?? _id, organisation: first?.organisation ?? "unknown organisation", ...(first?.source_url && { url: first.source_url }),
+      licence: "not recorded at ingestion", dataClass: classify(first, ""), version: src(_id, "", first, now).version, retrievedAt, recordIdField: "_record_key", collections: [...collections],
+      notes: "Synced from Person 4's database by db/scripts/syncFromBackend.js. Licence not recorded at ingestion. The data class of each RECORD is set individually (demo rows are synthetic)." } } };
   });
   await write(target, "sources", srcOps, (report.sources = newStat()));
   report.sources.read = srcOps.length;

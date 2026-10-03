@@ -1,12 +1,15 @@
 // Runs every tool against a real in-memory mongod loaded with synthetic seed data.
 // `npm run db:test`   (first run downloads a mongod binary)
+// These tests use SYNTHETIC seed data, so they must opt in; the default policy (real_only) would block every result.
+process.env.DATA_POLICY = "allow_synthetic";
 import assert from "node:assert/strict";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { MongoClient } from "mongodb";
 import { createIndexes } from "../scripts/createIndexes.js";
 import { applyValidators } from "../schemas/validators.js";
 import { seed } from "../scripts/seed.js";
-import { startAnalysis, callTool, completeAnalysis } from "../tools/index.js";
+import { startAnalysis, callTool, completeAnalysis, TOOLS as TOOLS_DIRECT } from "../tools/index.js";
+import { Ledger } from "../lib/envelope.js";
 
 const mongod = await MongoMemoryServer.create({ binary: { version: process.env.MONGOMS_VERSION ?? "7.0.14" } });
 const client = await MongoClient.connect(mongod.getUri());
@@ -36,6 +39,8 @@ try {
   const tr = await callTool(db, aid, "nearbyTransport", { ...here, radiusM: 500 });
   show("nearbyTransport", tr.data);
   check("A transport within 500 m excludes far stops", () => { assert.equal(tr.data.total.stops, 5); assert.ok(tr.data.total.nearestM < 200); assert.ok(tr.data.total.score > 0); });
+  const empty = await TOOLS_DIRECT.nearbyTransport(db, { lng: -9.0, lat: 52.0, radiusM: 500 }, new Ledger());
+  check("A transport: no stops in range returns no data and no score (not a made-up score)", () => { assert.equal(empty.data, null); assert.equal(empty.evidence.length, 0); assert.match(empty.warnings[0], /No transport stops/); });
   const ns = await callTool(db, aid, "nearestStops", here);
   check("D nearest stop per mode includes DART beyond 500 m", () => { const m = Object.fromEntries(ns.data.nearestByMode.map((x) => [x.mode, x.distM])); assert.ok(m.luas < 250); assert.ok(m.dart > 500); });
 
@@ -86,17 +91,17 @@ try {
   check("evidence ids are unique and sequential", () => { const ids = stored.evidence.map((e) => e.id); assert.equal(new Set(ids).size, ids.length); assert.equal(ids[0], "ev1"); assert.ok(stored.evidence.length > 15); });
 
   // Op 7: tamper with one claim
-  const find = (tool, claimStart) => stored.evidence.find((e) => e.tool === tool && e.claim.startsWith(claimStart));
+  const find = (tool, claimStart) => stored.evidence.find((e) => e.tool === tool && (e.claimRaw ?? e.claim).startsWith(claimStart));
   const meanEv = find("benchmarkRent", "Latest RTB mean"), stopsEv = find("nearbyTransport", "Transport stops within");
   const ver = await callTool(db, aid, "verifyClaims", { analysisId: aid, claims: [
     { id: meanEv.id, asserted: meanEv.value, tol: 1 },
     { id: stopsEv.id, asserted: stopsEv.value + 3 },
     { id: "ev999", asserted: 50 },
-    { id: find("benchmarkRent", "Asking rent band").id, asserted: stored.evidence.find((e) => e.claim.startsWith("Asking rent band")).value }] });
+    { id: find("benchmarkRent", "Asking rent band").id, asserted: stored.evidence.find((e) => (e.claimRaw ?? e.claim).startsWith("Asking rent band")).value }] });
   show("verifyClaims", ver.data);
-  check("7 verifyClaims flags tampered and unknown claims", () => {
+  check("7 verifyClaims: claims on SYNTHETIC evidence are never verified (even when correct or tampered); unknown ids are flagged", () => {
     const s = Object.fromEntries(ver.data.results.map((r) => [r.id, r.status]));
-    assert.equal(s[meanEv.id], "verified"); assert.equal(s[stopsEv.id], "mismatch"); assert.equal(s.ev999, "no_such_evidence"); assert.equal(ver.data.allVerified, false); });
+    assert.equal(s[meanEv.id], "not_real_data"); assert.equal(s[stopsEv.id], "not_real_data"); assert.equal(s.ev999, "no_such_evidence"); assert.equal(ver.data.allVerified, false); });
 
   const fr = await callTool(db, aid, "evidenceFreshness", { analysisId: aid, levels: ["lea", "rtb_zone"] });
   show("evidenceFreshness", fr.data.items.slice(0, 3));

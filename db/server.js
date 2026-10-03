@@ -3,14 +3,17 @@
 //
 //   GET  /health
 //   POST /analyses            { input, geocode? }                      -> { analysisId, propertyId }
-//   GET  /analyses/:id                                                  -> stored analysis (results + evidence)
+//   GET  /analyses/:id                                                  -> stored analysis (results joined in, evidence embedded)
+//   GET  /analyses/:id/readiness                                        -> can this analysis be shown as real Irish data?
+//   GET  /analyses/:id/evidence/:evidenceId/explain                     -> why does the database say this? (query, records, sources)
+//   GET  /query-runs/:id        POST /query-runs/:id/reproduce          -> the recorded queries; re-run them and compare
 //   POST /tools/:name         { params, analysisId? }                   -> { ok, data, evidence[], coverage, warnings[] }
 //                             with analysisId the result and evidence are stored on that analysis (callTool)
 import "./lib/env.js";
 import http from "node:http";
 import { ObjectId } from "mongodb";
-import { Ledger } from "./lib/envelope.js";
-import { TOOLS, startAnalysis, callTool } from "./tools/index.js";
+import { TOOLS, startAnalysis, callTool, runTool, getAnalysis, explainEvidence, reproduceQueryRun, reportReadiness } from "./tools/index.js";
+import { policyFromEnv } from "./lib/provenance.js";
 
 const send = (res, code, body) => {
   res.writeHead(code, { "content-type": "application/json", "access-control-allow-origin": "*", "access-control-allow-headers": "content-type", "access-control-allow-methods": "GET,POST,OPTIONS" });
@@ -26,23 +29,31 @@ export function createServer(db) {
     const url = new URL(req.url, "http://x"); const path = url.pathname.replace(/\/+$/, "") || "/";
     try {
       if (req.method === "OPTIONS") return send(res, 204, {});
-      if (req.method === "GET" && path === "/health") { await db.command({ ping: 1 }); return send(res, 200, { status: "ok", database: db.databaseName, tools: Object.keys(TOOLS) }); }
+      if (req.method === "GET" && path === "/health") { await db.command({ ping: 1 }); return send(res, 200, { status: "ok", database: db.databaseName, dataPolicy: policyFromEnv(), tools: Object.keys(TOOLS) }); }
       if (req.method === "POST" && path === "/analyses") {
-        const { input, geocode } = await readJson(req);
+        const { input, geocode, dataPolicy } = await readJson(req);
         if (!input) return send(res, 422, { error: "input is required" });
-        const { analysisId, propertyId } = await startAnalysis(db, input, geocode);
+        const { analysisId, propertyId } = await startAnalysis(db, input, geocode, { dataPolicy });
         return send(res, 201, { analysisId, propertyId });
       }
       let m = path.match(/^\/analyses\/([0-9a-f]{24})$/);
       if (req.method === "GET" && m) {
-        const doc = await db.collection("analyses").findOne({ _id: new ObjectId(m[1]) });
+        const doc = await getAnalysis(db, m[1]);
         return doc ? send(res, 200, doc) : send(res, 404, { error: "analysis not found" });
       }
+      m = path.match(/^\/analyses\/([0-9a-f]{24})\/readiness$/);
+      if (req.method === "GET" && m) { const r = await reportReadiness(db, m[1]); return send(res, r.ok ? 200 : 404, r); }
+      m = path.match(/^\/analyses\/([0-9a-f]{24})\/evidence\/([A-Za-z0-9_-]+)\/explain$/);
+      if (req.method === "GET" && m) { const r = await explainEvidence(db, { analysisId: m[1], evidenceId: m[2], recordLimit: +(url.searchParams.get("recordLimit") ?? 100) }); return send(res, r.ok ? 200 : 404, r); }
+      m = path.match(/^\/query-runs\/([0-9a-f]{24})$/);
+      if (req.method === "GET" && m) { const r = await db.collection("query_runs").findOne({ _id: new ObjectId(m[1]) }); return r ? send(res, 200, r) : send(res, 404, { error: "query run not found" }); }
+      m = path.match(/^\/query-runs\/([0-9a-f]{24})\/reproduce$/);
+      if (req.method === "POST" && m) { const r = await reproduceQueryRun(db, m[1]); return send(res, r.ok ? 200 : 404, r); }
       m = path.match(/^\/tools\/([A-Za-z]+)$/);
       if (req.method === "POST" && m) {
         if (!TOOLS[m[1]]) return send(res, 404, { error: `unknown tool '${m[1]}'`, tools: Object.keys(TOOLS) });
-        const { params = {}, analysisId } = await readJson(req);
-        const out = analysisId ? await callTool(db, analysisId, m[1], params) : await TOOLS[m[1]](db, params, new Ledger());
+        const { params = {}, analysisId, dataPolicy } = await readJson(req);
+        const out = analysisId ? await callTool(db, analysisId, m[1], params) : await runTool(db, m[1], params, { dataPolicy: dataPolicy ?? policyFromEnv() });
         return send(res, 200, out);
       }
       return send(res, 404, { error: "not found" });

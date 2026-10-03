@@ -1,4 +1,4 @@
-# RentCheck AI: MongoDB Time-Series and Rent Trends
+# mend.ai: MongoDB Time-Series and Rent Trends
 
 Answers: **"How has rent changed around this property?"**
 

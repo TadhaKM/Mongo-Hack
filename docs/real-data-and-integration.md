@@ -65,7 +65,7 @@ On a real `mongod`, with the real data loaded through both pipelines:
 | Engine: `rentContext` for the same point | place used and its distance, asking EUR 2,600 vs the average with the difference and band, multi-year trend with year-on-year, surrounding places; about 10 evidence items with ids |
 | Engine over HTTP, and through the backend proxy | same envelope; bad input is a 422, unknown tool a 404, engine down a 502, not configured a 503 |
 
-Test totals: engine 100, backend 12, agents 28. Run `npm run db:test`, then `pytest` in `rentcheck_person4_backend` and `agents`.
+Test totals: engine 137, backend 12, agents 28. Run `npm run db:test`, then `pytest` in `rentcheck_person4_backend` and `agents`.
 
 ## 5. For each teammate
 

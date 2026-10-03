@@ -1,13 +1,13 @@
 {
-  "name": "rentcheck-db",
+  "name": "mend-ai-db",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "RentCheck AI: MongoDB data intelligence layer (Person 1)",
+  "description": "mend.ai: MongoDB data intelligence layer (Person 1)",
   "scripts": {
     "db:indexes": "node db/scripts/createIndexes.js",
     "db:seed": "node db/scripts/seed.js",
-    "db:test": "node db/test/run.js && node db/test/comparables.test.js && node db/test/trends.test.js && node db/test/server.test.js && node db/test/sync.test.js && node db/test/realdata.test.js",
+    "db:test": "node db/test/run.js && node db/test/comparables.test.js && node db/test/trends.test.js && node db/test/server.test.js && node db/test/sync.test.js && node db/test/provenance.test.js && node db/test/realdata.test.js",
     "db:test:comparables": "node db/test/comparables.test.js",
     "db:test:trends": "node db/test/trends.test.js",
     "db:test:server": "node db/test/server.test.js",
@@ -19,7 +19,8 @@
     "db:import:riq02": "node db/scripts/importRiq02.js",
     "db:geocode:riq02": "node db/scripts/geocodeRiq02Locations.js",
     "atlas:check": "node db/scripts/atlas.js check",
-    "atlas:setup": "node db/scripts/atlas.js setup"
+    "atlas:setup": "node db/scripts/atlas.js setup",
+    "db:test:provenance": "node db/test/provenance.test.js"
   },
   "dependencies": {
     "d3-delaunay": "^6.0.4",

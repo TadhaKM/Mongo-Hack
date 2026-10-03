@@ -1,5 +1,7 @@
 // Sync tests: Person 4-shaped documents (rentcheck_person4_backend/scripts/seed_demo.py and app/ingestion/*) in one
 // database, synced into this schema in another, then read back through the db tools.   `npm run db:test:sync`
+// These tests use SYNTHETIC seed data, so they must opt in; the default policy (real_only) would block every result.
+process.env.DATA_POLICY = "allow_synthetic";
 import assert from "node:assert/strict";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { MongoClient } from "mongodb";

@@ -1,4 +1,4 @@
-# RentCheck AI — Person 4 Handoff
+# mend.ai — Person 4 Handoff
 
 ## What this folder is
 

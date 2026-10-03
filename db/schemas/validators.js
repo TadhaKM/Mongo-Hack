@@ -11,9 +11,11 @@ const point = {
   bsonType: "object", required: ["type", "coordinates"],
   properties: { type: { enum: ["Point"] }, coordinates: { bsonType: "array", minItems: 2, maxItems: 2, items: num } },
 };
+const dataClass = { enum: ["real", "synthetic", "test"] };
+// every loaded record says where it came from, when it was fetched and written, by which transformation, and whether it is real
 const src = {
-  bsonType: "object", required: ["sourceId", "recordId", "version", "retrievedAt"],
-  properties: { sourceId: str, recordId: str, version: str, retrievedAt: date,
+  bsonType: "object", required: ["sourceId", "recordId", "version", "retrievedAt", "ingestedAt", "transform", "dataClass"],
+  properties: { sourceId: str, recordId: str, version: str, retrievedAt: date, ingestedAt: date, transform: str, dataClass,
     geoMethod: { enum: ["source_coords", "eircode", "address_match", "centroid", "polygon"] },
     geoConfidence: { ...num, minimum: 0, maximum: 1 } },
 };
@@ -59,9 +61,26 @@ export const VALIDATORS = {
       areaId: str, origin: { enum: ["user_input", "listing", "register"] }, createdAt: date, updatedAt: date },
   },
   analyses: {
-    bsonType: "object", required: ["propertyId", "input", "status", "createdAt", "evidence", "results"],
+    bsonType: "object", required: ["propertyId", "input", "status", "createdAt", "evidence", "resultRefs", "dataPolicy"],
     properties: { propertyId: { bsonType: "objectId" }, status: { enum: ["running", "complete", "failed"] }, createdAt: date,
-      evidence: { bsonType: "array", items: { bsonType: "object", required: ["id", "tool", "claim", "value", "generatedAt"] } } },
+      dataPolicy: { enum: ["real_only", "allow_synthetic"] }, publishable: { bsonType: "bool" },
+      evidence: { bsonType: "array", items: { bsonType: "object", required: ["id", "tool", "claim", "value", "generatedAt", "dataClass", "publishable"] } } },
+  },
+  // dataset registry: a "real" source must name its URL and licence
+  sources: {
+    bsonType: "object", required: ["title", "organisation", "version", "retrievedAt", "dataClass"],
+    properties: { title: str, organisation: str, version: str, retrievedAt: date, dataClass, url: str, licence: str },
+    anyOf: [{ properties: { dataClass: { enum: ["synthetic", "test"] } } }, { required: ["url", "licence"] }],
+  },
+  // one document per tool execution: the exact queries and parameters behind a result
+  query_runs: {
+    bsonType: "object", required: ["tool", "params", "paramsHash", "dataPolicy", "dataClass", "status", "queries", "startedAt", "engine"],
+    properties: { tool: str, status: { enum: ["ok", "blocked"] }, dataPolicy: { enum: ["real_only", "allow_synthetic"] }, startedAt: date, queries: { bsonType: "array" } },
+  },
+  // one document per analysis x tool: the (possibly large) result, linked to the query run that produced it
+  analysis_results: {
+    bsonType: "object", required: ["analysisId", "tool", "queryId", "status", "dataClass", "publishable", "createdAt"],
+    properties: { analysisId: { bsonType: "objectId" }, queryId: { bsonType: "objectId" }, status: { enum: ["ok", "blocked"] }, publishable: { bsonType: "bool" }, createdAt: date },
   },
 };
 

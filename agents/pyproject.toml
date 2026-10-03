@@ -1,7 +1,7 @@
 [project]
 name = "rentcheck-agents"
 version = "0.1.0"
-description = "RentCheck AI agent layer: evidence-backed rental analysis on top of the RentCheck backend tools"
+description = "mend.ai agent layer: evidence-backed rental analysis on top of the RentCheck backend tools"
 requires-python = ">=3.11"
 dependencies = [
   "google-genai>=2.28,<3",

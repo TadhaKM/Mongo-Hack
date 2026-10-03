@@ -1,4 +1,4 @@
-# RentCheck AI — Person 4 Backend
+# mend.ai — Person 4 Backend
 
 A hackathon-ready backend and ingestion framework for Irish rental intelligence.
 

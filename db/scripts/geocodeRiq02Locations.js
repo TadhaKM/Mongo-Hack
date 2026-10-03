@@ -27,7 +27,7 @@ for (const [i, loc] of todo.entries()) {
   const url = `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=3&countrycodes=ie&q=${encodeURIComponent(q)}`;
   let result = null;
   try {
-    const res = await fetch(url, { headers: { "User-Agent": "rentcheck-ai-hackathon/0.1 (student project; contact via GitHub TadhaKM/Mongo-Hack)" } });
+    const res = await fetch(url, { headers: { "User-Agent": "mend-ai-hackathon/0.1 (student project; contact via GitHub TadhaKM/Mongo-Hack)" } });
     const hits = res.ok ? await res.json() : [];
     // first hit inside the right box (Dublin names must be in County Dublin)
     const hit = hits.find((h) => inBox(IRELAND, +h.lat, +h.lon) && (!isDublin || inBox(DUBLIN, +h.lat, +h.lon)));

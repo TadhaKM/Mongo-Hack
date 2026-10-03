@@ -1,4 +1,4 @@
-# rentcheck_agents — RentCheck AI agent layer (Person 2)
+# rentcheck_agents — mend.ai agent layer (Person 2)
 
 Evidence-backed "Know Before You Rent" analysis. The pipeline is:
 - Deterministic investigators call Person 4's backend tools (never MongoDB directly).

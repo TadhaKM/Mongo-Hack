@@ -1,4 +1,4 @@
-# RentCheck AI: MongoDB Database Schema (v2, authoritative)
+# mend.ai: MongoDB Database Schema (v2, authoritative)
 
 Database: **`rentcheck_engine`**. Implemented and tested in `db/` (`npm run db:test`: 61 checks against a real mongod 7.0.14). This replaces the v1 model in [mongodb-data-model.md](mongodb-data-model.md).
 
@@ -382,7 +382,7 @@ The validator forbids `rent`, `measure` and `avgRent` on this collection.
 **Indexes:** `{geo:"2dsphere", saleDate:-1, fullMarketPrice:1}`, `{areaId:1, saleDate:-1}`, `{"src.recordId":1}` unique.
 **GeoJSON:** `geo`.
 
-**How RentCheck may use sales without treating them as rent**
+**How mend.ai may use sales without treating them as rent**
 
 | Allowed | How it is labelled |
 |---|---|

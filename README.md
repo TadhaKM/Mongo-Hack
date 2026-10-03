@@ -1,4 +1,4 @@
-# RentCheck AI
+# mend.ai
 
 "Know Before You Rent": evidence-backed rental analysis for Irish properties. Every number in a report is computed in MongoDB or from a cited official dataset, and every claim can be checked against stored evidence.
 
@@ -67,11 +67,13 @@ Never commit `.env`: it holds the database password and the Atlas Model API key.
 
 | Command | Checks | Needs |
 |---|---|---|
-| `npm run db:test` | 100 (engine, comparables, trends, gateway, real data) | downloads a `mongod` binary once; the real-data test needs `data/raw/riq02.json` (run the importer once) and skips itself otherwise |
+| `npm run db:test` | 137 (engine, comparables, trends, gateway, sync, provenance, real data) | downloads a `mongod` binary once; the real-data test needs `data/raw/riq02.json` (run the importer once) and skips itself otherwise |
 | `cd rentcheck_person4_backend && pytest` | 12 | none (mongomock) |
 | `cd agents && pytest` | 28 | none |
 
-Individual engine suites: `npm run db:test:comparables`, `db:test:trends`, `db:test:server`, `db:test:real`.
+Individual engine suites: `npm run db:test:comparables`, `db:test:trends`, `db:test:server`, `db:test:sync`, `db:test:provenance`, `db:test:real`.
+
+Evidence, provenance and the synthetic-data guard: [docs/mongodb-evidence-provenance.md](docs/mongodb-evidence-provenance.md). By default (`DATA_POLICY=real_only`) the engine returns **no figures** built from synthetic, test or unverified data; the seed data and the demo fixtures are synthetic. Set `DATA_POLICY=allow_synthetic` only for development.
 
 ## Real data in the repository
 

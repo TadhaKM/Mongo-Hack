@@ -112,7 +112,7 @@ try {
   const { analysisId: aid } = await startAnalysis(db, { address: "Trinity College Dublin", latitude: trinity.lat, longitude: trinity.lng, bedrooms: 2, propertyType: "apartment", monthlyRent: 2600 });
   await callTool(db, aid, "rentContext", { ...trinity, propertyType: "apartment", bedrooms: 2, askingRent: 2600 });
   const stored = await db.collection("analyses").findOne({ _id: aid });
-  const ev = stored.evidence.find((e) => e.claim.startsWith("Latest RTB average registered rent"));
+  const ev = stored.evidence.find((e) => (e.claimRaw ?? e.claim).startsWith("Latest RTB average registered rent"));
   const ver = await callTool(db, aid, "verifyClaims", { analysisId: aid, claims: [{ id: ev.id, asserted: ev.value }, { id: ev.id, asserted: ev.value + 100 }] });
   check("real figures are stored as evidence and verifyClaims rejects an altered one", () => assert.deepEqual(ver.data.results.map((r) => r.status), ["verified", "mismatch"]));
 

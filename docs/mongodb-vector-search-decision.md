@@ -1,4 +1,4 @@
-# Should RentCheck AI Use MongoDB Vector Search?
+# Should mend.ai Use MongoDB Vector Search?
 
 **Short answer: not for the core product. Nothing here is a MUST USE.** Comparables, trends, geography, transport, planning and verification are all structured, numeric or spatial problems that MongoDB already solves exactly and explainably. Vector Search earns a place in only one narrow case (retrieving authoritative tenant-guidance text), and even there a deterministic lookup should come first.
 
@@ -47,7 +47,7 @@ So the only large *official* text corpus is planning proposals, and listing desc
 - **Verdict:** DO NOT USE separately. Fold it into #1 if a description is ever supplied.
 
 ### 3. Similar planning applications
-- **Useful?** No. The questions RentCheck asks are "how much housing is coming nearby, in what state?". That is answered exactly by `status`, `development.residentialUnits` and `applicationDate`. The one thing a model adds is categorising free-text proposals ("student accommodation", "build-to-rent", "demolition", "co-living").
+- **Useful?** No. The questions mend.ai asks are "how much housing is coming nearby, in what state?". That is answered exactly by `status`, `development.residentialUnits` and `applicationDate`. The one thing a model adds is categorising free-text proposals ("student accommodation", "build-to-rent", "demolition", "co-living").
 - **What is embedded?** `proposal`.
 - **Better approach:** classify once at ingest with keyword rules (or one LLM pass) into a normal field `development.category`. It is deterministic, filterable, countable, explainable, free at query time, and needs no index. If free-text search is wanted, Atlas Search (keyword) is the proportionate tool.
 - **Difficulty / worth it:** vector index on a large collection for no extra answer. **DO NOT USE.**

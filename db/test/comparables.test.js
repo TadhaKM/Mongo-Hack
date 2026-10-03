@@ -1,11 +1,13 @@
 // Comparable-engine tests against a real mongod. `npm run db:test:comparables`
+// These tests use SYNTHETIC seed data, so they must opt in; the default policy (real_only) would block every result.
+process.env.DATA_POLICY = "allow_synthetic";
 import assert from "node:assert/strict";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { MongoClient } from "mongodb";
 import { createIndexes } from "../scripts/createIndexes.js";
 import { applyValidators } from "../schemas/validators.js";
 import { seed } from "../scripts/seed.js";
-import { startAnalysis, callTool, TOOLS } from "../tools/index.js";
+import { startAnalysis, callTool, getAnalysis, TOOLS } from "../tools/index.js";
 import { Ledger } from "../lib/envelope.js";
 import { COMP_V1 } from "../config/comparableScoring.js";
 
@@ -68,7 +70,7 @@ try {
   check("evidence covers count, median, mean, min, max, difference; carries refs and sources", () => {
     const claims = r.evidence.map((e) => e.claim).join("|");
     for (const s of ["Comparable listings used", "Median comparable", "Average comparable", "Lowest", "Highest", "Target rent minus", "Target rent versus", "Distance to nearest"]) assert.ok(claims.includes(s), s);
-    const med = r.evidence.find((e) => e.claim.startsWith("Median comparable"));
+    const med = r.evidence.find((e) => (e.claimRaw ?? e.claim).startsWith("Median comparable"));
     assert.equal(med.value, d.medianRent); assert.equal(med.refs.length, d.comparableCount); assert.deepEqual(med.sourceIds, ["listings"]); assert.equal(med.context.model, "comp-v1");
   });
   const r2 = await run(input);
@@ -95,13 +97,13 @@ try {
   const near = (dx) => ({ type: "Point", coordinates: [C.lng + dx, C.lat] });
   const mk = (n, bedrooms, amt, dx) => ({ measure: "advertised", areaId: "sa:268001001", propertyType: "apartment", bedrooms,
     rent: { amount: amt, period: "month" }, address: `thin-${bedrooms}-${n}`, geo: near(dx), observedAt: new Date(Date.now() - 864e5 * 3),
-    src: { sourceId: "listings", recordId: `thin-${bedrooms}-${n}`, version: "t", retrievedAt: new Date(), geoConfidence: 0.9 } });
+    src: { sourceId: "listings", recordId: `thin-${bedrooms}-${n}`, version: "t", retrievedAt: new Date(), ingestedAt: new Date(), transform: "test@1", dataClass: "synthetic", geoConfidence: 0.9 } });
   await db.collection("rental_observations").insertMany([mk(1, 3, 3000, 0.0003), mk(2, 3, 3200, 0.0006)]);
   const two = await run({ ...input, bedrooms: 3 });
   check("2 comparables: status insufficient, comparables listed, statistics withheld", () => {
     assert.equal(two.data.status, "insufficient"); assert.equal(two.data.comparableCount, 2); assert.equal(two.data.comparables.length, 2);
     assert.equal(two.data.medianRent, null); assert.equal(two.data.minRent, null); assert.ok(two.data.withheld); assert.ok(two.warnings.some((w) => w.includes("withheld")));
-    assert.ok(!two.evidence.some((e) => e.claim.startsWith("Median")));
+    assert.ok(!two.evidence.some((e) => (e.claimRaw ?? e.claim).startsWith("Median")));
   });
   await db.collection("rental_observations").insertMany([mk(3, 3, 3100, 0.0009), mk(4, 3, 3300, 0.0012)]);
   const four = await run({ ...input, bedrooms: 3, monthlyRent: 3500 });
@@ -134,16 +136,16 @@ try {
 
   const { analysisId: aid } = await startAnalysis(db, { ...input, address: "12 Example Rd, Ranelagh" });
   const viaTool = await callTool(db, aid, "rentalComparables", input);
-  const stored = await db.collection("analyses").findOne({ _id: aid });
+  const stored = await getAnalysis(db, aid);
   check("callTool stores results and evidence on the analysis with unique ids", () => {
     const ids = stored.evidence.map((e) => e.id); assert.equal(new Set(ids).size, ids.length); assert.equal(stored.results.rentalComparables.medianRent, viaTool.data.medianRent);
   });
-  const med = stored.evidence.find((e) => e.claim.startsWith("Median comparable"));
+  const med = stored.evidence.find((e) => (e.claimRaw ?? e.claim).startsWith("Median comparable"));
   const ver = await callTool(db, aid, "verifyClaims", { analysisId: aid, claims: [{ id: med.id, asserted: med.value }, { id: med.id, asserted: med.value + 150 }] });
-  check("verifyClaims accepts the real median and rejects an altered one", () => assert.deepEqual(ver.data.results.map((x) => x.status), ["verified", "mismatch"]));
+  check("verifyClaims refuses synthetic evidence whether the number is right or altered", () => assert.deepEqual(ver.data.results.map((x) => x.status), ["not_real_data", "not_real_data"]));   // synthetic seed data can never be verified; tamper detection on real data is in realdata.test.js and provenance.test.js
 
   // Measurement types cannot be mixed: the database itself rejects the dangerous inserts.
-  const base = { areaId: "sa:268001001", propertyType: "apartment", bedrooms: 2, src: { sourceId: "t", recordId: "x", version: "1", retrievedAt: new Date() } };
+  const base = { areaId: "sa:268001001", propertyType: "apartment", bedrooms: 2, src: { sourceId: "t", recordId: "x", version: "1", retrievedAt: new Date(), ingestedAt: new Date(), transform: "test@1", dataClass: "synthetic" } };
   const rejects = async (coll, doc) => { try { await db.collection(coll).insertOne(doc); return false; } catch (e) { return e.code === 121; } };
   const pt0 = { type: "Point", coordinates: [C.lng, C.lat] };
   const bad = {
@@ -155,7 +157,7 @@ try {
   };
   for (const [name, rejected] of Object.entries(bad)) check(`validator rejects: ${name}`, () => assert.ok(rejected));
 
-  const ev = stored.evidence.find((e) => e.claim.startsWith("Median comparable"));
+  const ev = stored.evidence.find((e) => (e.claimRaw ?? e.claim).startsWith("Median comparable"));
   check("stored evidence carries query parameters, geographic scope, observation period and timestamp", () => {
     assert.equal(ev.queryParameters.bedrooms, 2); assert.equal(ev.geographicScope.level, "point"); assert.equal(ev.geographicScope.radiusM, 1000);
     assert.ok(ev.observationPeriod.windowDays > 0); assert.ok(ev.generatedAt instanceof Date); assert.equal(ev.evidenceType, "rentalComparables");

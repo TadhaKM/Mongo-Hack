@@ -1,4 +1,4 @@
-# RentCheck AI: What MongoDB Computes Before the AI Sees Anything
+# mend.ai: What MongoDB Computes Before the AI Sees Anything
 
 > **Schema v2 (current): see [mongodb-schema.md](mongodb-schema.md).** The old `rents` collection is now two: `rental_observations` (individual advertised or registered rents; required top-level `measure`) and `rental_indexes` (official area averages; value field `avgRent`, period field `periodStart`). The code in `db/` is authoritative.
 

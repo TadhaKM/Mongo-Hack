@@ -95,7 +95,8 @@ export async function nearbyTransport(db, { lng, lat, radiusM = 500 }, ledger) {
       { $min: [50, { $multiply: ["$total.peakTph", 2.5] }] },
     ] }, 0] } } },
   ]).toArray();
-  if (!r.total) {
+  // with no stops the $facet leaves a `total` that only holds the computed score, so test the stop count, not the object
+  if (!r.total?.stops) {
     return noData(scope, `No transport stops within ${radiusM} m.`, { geoMatch: "radius", confidence: "high" });
   }
   const refs = r.nearest.map((s) => ref("transport_stops", s._id));

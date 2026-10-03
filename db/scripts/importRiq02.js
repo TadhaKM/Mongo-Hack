@@ -22,6 +22,7 @@ const LOCS = new URL("../../data/derived/riq02_locations.json", import.meta.url)
 const OUT = new URL("../../data/derived/", import.meta.url);
 const API = "https://ws.cso.ie/public/api.restful/PxStat.Data.Cube_API.ReadDataset/RIQ02/JSON-stat/2.0/en";
 const SOURCE_ID = "cso_riq02";
+const TRANSFORM = "importRiq02.js@1.0";   // bump when the mapping changes (bedroom/type mapping, county vs place, geocoding)
 const COUNTIES = new Set("carlow cavan clare cork donegal dublin galway kerry kildare kilkenny laois leitrim limerick longford louth mayo meath monaghan offaly roscommon sligo tipperary waterford westmeath wexford wicklow".split(" "));
 // RIQ02 mixes levels: "Dublin" is the whole county, "Rialto, Dublin 8" a neighbourhood. They must never be compared as like with like.
 export const levelOf = (label) => (COUNTIES.has(clean(label).toLowerCase()) ? "county" : "rtb_zone");
@@ -66,7 +67,7 @@ export async function build({ since = SINCE } = {}) {
   const cellOf = new Map(reliable.map((p, i) => [p.code, cells[i]]));
 
   const now = new Date(), version = cube.meta.updated?.slice(0, 10) ?? "unknown";
-  const src = (recordId) => ({ sourceId: SOURCE_ID, recordId, version, retrievedAt: now });
+  const src = (recordId) => ({ sourceId: SOURCE_ID, recordId, version, retrievedAt: now, ingestedAt: now, transform: TRANSFORM, dataClass: "real" });
   const areas = cube.locations.filter((l) => placeOf(l.code)).map((l) => {
     const p = placeOf(l.code), ring = cellOf.get(l.code);
     return {
@@ -100,7 +101,7 @@ export async function build({ since = SINCE } = {}) {
   const feature = (a) => ({ type: "Feature", properties: { code: a.code, name: a.name, geoMethod: a.geoMethod, note: "Nearest-place region around a geocoded centroid; approximate, not an official boundary" }, geometry: a.geometry });
   const geojson = { type: "FeatureCollection", features: areas.filter((a) => a.geometry).map(feature) };
   const source = {
-    _id: SOURCE_ID, title: "RTB Average Monthly Rent Report (RIQ02)", organisation: "Residential Tenancies Board, published by the Central Statistics Office",
+    _id: SOURCE_ID, dataClass: "real", transform: TRANSFORM, title: "RTB Average Monthly Rent Report (RIQ02)", organisation: "Residential Tenancies Board, published by the Central Statistics Office",
     url: "https://data.cso.ie/table/RIQ02", downloadUrl: API, licence: "CC BY 4.0 (CSO open data)", version, publishedAt: new Date(cube.meta.updated), retrievedAt: now,
     recordIdField: "location|propertyType|bedrooms|quarter", geographyLevel: "rtb_zone and county", collections: ["rental_indexes", "areas"],
     coverage: { from: cube.quarters[0].start, to: cube.quarters.at(-1).start },

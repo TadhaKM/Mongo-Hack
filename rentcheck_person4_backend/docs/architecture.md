@@ -1,4 +1,4 @@
-# RentCheck AI — Backend Architecture
+# mend.ai — Backend Architecture
 
 ```text
                          OFFICIAL IRISH DATA

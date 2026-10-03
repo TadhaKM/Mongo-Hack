@@ -6,6 +6,16 @@ export const DB_NAME = "rentcheck_engine";
 export const INDEXES = {
   sources: [],   // _id is the slug; the collection is tiny
 
+  // provenance: one run per tool execution, one result per analysis x tool
+  query_runs: [
+    [{ analysisId: 1, startedAt: -1 }, { name: "analysis_started" }],
+    [{ tool: 1, startedAt: -1 }, { name: "tool_started" }],
+  ],
+  analysis_results: [
+    [{ analysisId: 1, tool: 1 }, { unique: true, name: "analysis_tool" }],
+    [{ queryId: 1 }, { name: "queryId" }],
+  ],
+
   areas: [
     [{ geometry: "2dsphere", level: 1 }, { name: "geometry_level" }],                 // point-in-polygon ($geoIntersects)
     [{ centroid: "2dsphere", level: 1 }, { name: "centroid_level" }],                 // nearest zones ($geoNear)

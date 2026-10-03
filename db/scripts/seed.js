@@ -16,7 +16,8 @@ const qStart = (back) => {
 };
 const qLabel = (d) => `${d.getUTCFullYear()}Q${Math.floor(d.getUTCMonth() / 3) + 1}`;
 const daysAgo = (n) => new Date(NOW.getTime() - n * 864e5);
-const src = (sourceId, recordId, version = "seed", extra = {}) => ({ sourceId, recordId, version, retrievedAt: NOW, ...extra });
+// Everything this file creates is SYNTHETIC: invented numbers shaped like Irish datasets. It is marked so the engine never presents it as real.
+const src = (sourceId, recordId, version = "seed", extra = {}) => ({ sourceId, recordId, version, retrievedAt: NOW, ingestedAt: NOW, transform: "seed.js@1", dataClass: "synthetic", ...extra });
 
 import "../lib/env.js";
 export function buildSeed() {
@@ -30,8 +31,8 @@ export function buildSeed() {
     ["rtb_terminations", "RTB Notices of Termination", "Residential Tenancies Board", "lea", "area_period_ground"],
     ["listings", "Rental Listings (sample)", "Sample provider", "point", "listing_id"],
   ].map(([_id, title, organisation, geographyLevel, recordIdField]) => ({
-    _id, title, organisation, url: `https://example.org/${_id}`, licence: "CC-BY-4.0", version: "seed",
-    retrievedAt: NOW, recordIdField, geographyLevel,
+    _id, title: `${title} (SYNTHETIC SAMPLE)`, organisation: `SYNTHETIC SAMPLE imitating: ${organisation}`, url: `https://example.org/synthetic/${_id}`,
+    licence: "n/a (synthetic)", version: "seed", dataClass: "synthetic", retrievedAt: NOW, recordIdField, geographyLevel,
     coverage: { from: new Date(Date.UTC(2007, 0, 1)), to: _id === "cso_vacancy" ? new Date(Date.UTC(2022, 3, 1)) : qStart(1) },
   }));
 
@@ -197,7 +198,7 @@ export function buildHistory(now = new Date()) {
     docs.push({
       measure, rent: { amount, period: "month" }, bedrooms: beds, propertyType: type, floorAreaM2: 50 + Math.floor(rnd() * 30), geo, areaId,
       observedAt, address: `${source} ${type} ${beds}-bed ${i}-${k}`,
-      src: { sourceId: source, recordId: `${source}-${type}-${beds}-${areaId}-${i}-${k}`, version: "hist-seed", retrievedAt: now, geoMethod: "address_match", geoConfidence: 0.9 },
+      src: { sourceId: source, recordId: `${source}-${type}-${beds}-${areaId}-${i}-${k}`, version: "hist-seed", retrievedAt: now, ingestedAt: now, transform: "seed.js@1", dataClass: "synthetic", geoMethod: "address_match", geoConfidence: 0.9 },
     });
   };
   const sa1 = [C.lng - 0.003, C.lat - 0.002, C.lng + 0.003, C.lat + 0.002];
