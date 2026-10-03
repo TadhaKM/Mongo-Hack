@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { BedDouble, Building2, Bus, ChevronDown, CircleDashed, Euro, Landmark, Users } from '@lucide/vue'
+import { BedDouble, Building2, Bus, ChevronDown, CircleDashed, Euro, Landmark, MapPin, Users } from '@lucide/vue'
 import type { PropertyType } from '~/types/api'
 import { PopoverClose } from 'reka-ui'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import { eur, propertyType } from '~/lib/format'
 import { useMapUi, type AnalysisLayerKey } from '~/lib/map/state'
+import { COUNTIES } from '~/lib/map/counties'
 
 const ui = useMapUi()
 const sel = useMapSelection()
@@ -21,7 +22,14 @@ function set<K extends keyof typeof ui.filters.value>(key: K, value: (typeof ui.
 }
 
 const bedsLabel = computed(() => ui.filters.value.bedrooms ? `${ui.filters.value.bedrooms === 3 ? '3+' : ui.filters.value.bedrooms} bed` : 'Beds')
-const rentLabel = computed(() => ui.filters.value.max_rent ? `Up to ${eur(ui.filters.value.max_rent)}` : 'Max rent')
+const rentLabel = computed(() => ui.filters.value.max_rent ? `≤ ${eur(ui.filters.value.max_rent)}` : 'Rent')
+/** County is a camera move: fly there and let the on-screen listings update. */
+function pickCounty(name: string | null) {
+  ui.county.value = name
+  const c = COUNTIES.find(x => x.name === name)
+  if (c) ui.fitBBox.value = { bbox: c.bbox, n: (ui.fitBBox.value?.n ?? 0) + 1 }
+}
+
 const typeLabel = computed(() => ui.filters.value.type ? propertyType(ui.filters.value.type) : 'Type')
 
 const LAYERS: { key: AnalysisLayerKey; label: string; icon: unknown }[] = [
@@ -34,13 +42,13 @@ function toggleLayer(key: AnalysisLayerKey) {
   ui.layers.value = { ...ui.layers.value, [key]: !ui.layers.value[key] }
 }
 
-const chip = 'inline-flex h-9 shrink-0 items-center gap-1.5 rounded-full border bg-background px-3 text-sm font-medium shadow-md transition-colors hover:bg-muted'
+const chip = 'inline-flex h-9 shrink-0 items-center gap-1 rounded-full border bg-background px-2.5 text-sm font-medium shadow-md transition-colors hover:bg-muted'
 const on = 'border-brand bg-brand text-brand-foreground hover:bg-brand/90'
 const option = 'flex min-h-10 w-full items-center rounded-md px-3 text-left text-sm hover:bg-muted'
 </script>
 
 <template>
-  <div class="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:none]">
+  <div class="-mx-1 flex gap-1.5 overflow-x-auto px-1 pb-1 [scrollbar-width:none]">
     <!-- During an analysis: layer toggles -->
     <template v-if="sel.activeAnalysisId.value">
       <button
@@ -65,6 +73,19 @@ const option = 'flex min-h-10 w-full items-center rounded-md px-3 text-left text
 
     <!-- Browsing: listing filters -->
     <template v-else>
+      <Popover>
+        <PopoverTrigger :class="[chip, ui.county.value ? on : '']">
+          <MapPin class="size-3.5" /> {{ ui.county.value ? `Co. ${ui.county.value}` : 'County' }} <ChevronDown class="size-3.5 opacity-60" />
+        </PopoverTrigger>
+        <PopoverContent align="start" class="w-48 p-1">
+          <div class="max-h-72 overflow-y-auto overscroll-contain">
+            <PopoverClose as-child><button type="button" :class="option" @click="pickCounty(null)">Any county</button></PopoverClose>
+            <PopoverClose v-for="c in COUNTIES" :key="c.name" as-child>
+              <button type="button" :class="[option, ui.county.value === c.name ? 'font-semibold text-brand' : '']" @click="pickCounty(c.name)">{{ c.name }}</button>
+            </PopoverClose>
+          </div>
+        </PopoverContent>
+      </Popover>
       <Popover>
         <PopoverTrigger :class="[chip, ui.filters.value.bedrooms ? on : '']">
           <BedDouble class="size-3.5" /> {{ bedsLabel }} <ChevronDown class="size-3.5 opacity-60" />

@@ -17,6 +17,10 @@ export function useMapUi() {
     sameBedroomsOnly: useState<boolean>('map:same-beds', () => false),
     /** Bumped by the recentre control. */
     recentre: useState<number>('map:recentre', () => 0),
+    /** County picked in the filters (a camera move, not an API filter). Cleared when the user pans away. */
+    county: useState<string | null>('map:county', () => null),
+    /** Request to frame a bbox; `n` makes repeats observable. */
+    fitBBox: useState<{ bbox: BBox; n: number } | null>('map:fit', () => null),
     /** Zoom button requests; `n` makes repeats observable. */
     zoomBy: useState<{ delta: number; n: number } | null>('map:zoom', () => null),
   }

@@ -83,6 +83,8 @@ onMounted(async () => {
   updateBBox()
   m.on('contextmenu', (e: MapMouseEvent) => openRadial(e.point, e.lngLat))
   m.on('movestart', closeRadial)
+  // A county pick is a camera move: once the user drags away it no longer describes the view.
+  m.on('dragstart', () => { ui.county.value = null })
   m.on('click', closeRadial)
   attachLongPress(m)
 
@@ -400,6 +402,13 @@ watch(sel.focusRequest, (req) => {
 
 watch(flat, (isFlat) => {
   map.value?.easeTo({ pitch: isFlat ? 0 : PITCH_3D, duration: 600 })
+})
+
+watch(ui.fitBBox, (req) => {
+  const m = map.value
+  if (!m || !req) return
+  const [w, south, e, n] = req.bbox
+  fitPoints(m, [{ lng: w, lat: south }, { lng: e, lat: n }], desktop.value)
 })
 
 watch(ui.zoomBy, (req) => {
