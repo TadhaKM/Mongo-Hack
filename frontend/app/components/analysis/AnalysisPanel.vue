@@ -82,7 +82,7 @@ function jump(sectionId: string) {
     >
       <template #actions>
         <Button v-if="showReport && analysis?.status === 'complete'" as-child size="sm" variant="outline" class="shrink-0">
-          <NuxtLink :to="`/analysis/${analysisId}/report`" target="_blank"><FileText class="size-3.5" /> Full report</NuxtLink>
+          <NuxtLink :to="`/analysis/${analysisId}/report`"><FileText class="size-3.5" /> Full report</NuxtLink>
         </Button>
       </template>
     </PanelHeader>
