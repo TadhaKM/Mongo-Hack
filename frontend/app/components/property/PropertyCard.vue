@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Building2, Ruler, Sofa, Sparkles } from '@lucide/vue'
+import { Ruler, Sofa, Sparkles } from '@lucide/vue'
 import { toast } from 'vue-sonner'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -8,6 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { beds, eur, pct, propertyType, walk } from '~/lib/format'
 import { TRANSPORT_MODE } from '~/lib/transport'
 import { VERDICT_STYLE } from '~/lib/verdict'
+import ListingPhoto from './ListingPhoto.vue'
 import PanelHeader from './PanelHeader.vue'
 
 const props = defineProps<{ listingId: string }>()
@@ -47,18 +48,17 @@ async function runCheck() {
     </div>
 
     <div v-else class="space-y-4 p-4">
-      <!-- Photo placeholder -->
-      <div class="relative flex h-24 items-center lg:h-36 justify-center overflow-hidden rounded-lg bg-gradient-to-br from-stone-100 via-stone-200 to-stone-300 dark:from-stone-800 dark:via-stone-800 dark:to-stone-700">
-        <Building2 class="size-10 text-hairline-strong" stroke-width="1.25" />
+      <!-- Illustrative photo (not the actual listing) -->
+      <ListingPhoto :listing-id="listing.id" :type="listing.property_type" height="h-32 lg:h-44">
         <TooltipProvider v-if="listing.is_sample">
           <Tooltip>
             <TooltipTrigger as-child>
               <Badge variant="secondary" class="type-caption-upper absolute top-3 left-3 cursor-help rounded-full bg-background px-2.5 py-1 text-[11px]">Sample listing</Badge>
             </TooltipTrigger>
-            <TooltipContent>Demo data based on RTB area medians, not a live advert</TooltipContent>
+            <TooltipContent>Demo data based on RTB area medians, not a live advert. The photo is illustrative.</TooltipContent>
           </Tooltip>
         </TooltipProvider>
-      </div>
+      </ListingPhoto>
 
       <div>
         <p class="type-display-md text-foreground tabular-nums">

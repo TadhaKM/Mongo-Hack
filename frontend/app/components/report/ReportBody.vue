@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Analysis, ComparablesResponse, LocationResponse, PlanningResponse } from '~/types/api'
 import { beds, eur, propertyType } from '~/lib/format'
+import ListingPhoto from '../property/ListingPhoto.vue'
 import RentDistributionChart from '../charts/RentDistributionChart.vue'
 import RentTrendChart from '../charts/RentTrendChart.vue'
 import AreaSection from './AreaSection.vue'
@@ -36,6 +37,7 @@ const lowConfidence = computed(() => props.analysis.summary?.confidence.level ==
   <div class="divide-y">
     <!-- Property summary -->
     <ReportSection v-if="!hideSummary" id="r-summary" title="The property">
+      <ListingPhoto v-if="analysis.input.property_id && !print" :listing-id="analysis.input.property_id" :type="analysis.input.property_type" height="h-36" />
       <div class="flex items-baseline justify-between gap-2">
         <p class="type-display-md text-foreground tabular-nums">{{ eur(analysis.input.monthly_rent) }}<span class="text-sm font-normal text-muted-foreground"> /month</span></p>
         <p class="text-sm text-muted-foreground">{{ analysis.property.area }}</p>

@@ -1,0 +1,72 @@
+[
+  {
+    "key": "apartment-1",
+    "type": "apartment",
+    "file": "apartment-1.jpg",
+    "title": "Modern apartments in Hardwicke Street - geograph.org.uk - 1898445.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Modern_apartments_in_Hardwicke_Street_-_geograph.org.uk_-_1898445.jpg",
+    "author": "Eric Jones",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+    "key": "apartment-3",
+    "type": "apartment",
+    "file": "apartment-3.jpg",
+    "title": "Jan2026. Mary Aikenhead House, Dublin, Ireland 01.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Jan2026._Mary_Aikenhead_House,_Dublin,_Ireland_01.jpg",
+    "author": "Ridiculopathy",
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+    "key": "house-3",
+    "type": "house",
+    "file": "house-3.jpg",
+    "title": "Upper Mayor Street. Located in Dublin Docklands between Spencer Dock and the Point Depot (3412221485).jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Upper_Mayor_Street._Located_in_Dublin_Docklands_between_Spencer_Dock_and_the_Point_Depot_(3412221485).jpg",
+    "author": "William Murphy from Dublin, Ireland",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+    "key": "house-1",
+    "type": "house",
+    "file": "house-1.jpg",
+    "title": "Victorian terraced houses in Shandon Crescen.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Victorian_terraced_houses_in_Shandon_Crescen.jpg",
+    "author": "William Murphy",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+    "key": "house-2",
+    "type": "house",
+    "file": "house-2.jpg",
+    "title": "The Coombe, Dublin.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:The_Coombe,_Dublin.jpg",
+    "author": "Brian Flanagan",
+    "license": "CC BY-SA 3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+    "key": "duplex-1",
+    "type": "duplex",
+    "file": "duplex-1.jpg",
+    "title": "Georgian houses in Fitzwilliam Square - geograph.org.uk - 228783.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Georgian_houses_in_Fitzwilliam_Square_-_geograph.org.uk_-_228783.jpg",
+    "author": "Margaret Clough",
+    "license": "CC BY-SA 2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+    "key": "apartment-2",
+    "type": "apartment",
+    "file": "apartment-2.jpg",
+    "title": "Dublin - Pearse House - 20220915113616.jpeg",
+    "source": "https://commons.wikimedia.org/wiki/File:Dublin_-_Pearse_House_-_20220915113616.jpeg",
+    "author": "Dwmalone",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  }
+]
