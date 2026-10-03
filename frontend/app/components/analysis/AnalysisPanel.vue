@@ -6,8 +6,10 @@ import EvidenceProvider from '../evidence/EvidenceProvider.vue'
 import PanelHeader from '../property/PanelHeader.vue'
 import ReportBody from '../report/ReportBody.vue'
 import AnalysisFailed from './AnalysisFailed.vue'
+import GradientOrb from '../report/GradientOrb.vue'
 import StageRow from './StageRow.vue'
 import { useStageQueue } from './useStageQueue'
+import { gsap, reducedMotion } from '~/lib/motion'
 
 const props = defineProps<{ analysisId: string }>()
 const id = computed(() => props.analysisId)
@@ -17,6 +19,27 @@ const { data: location } = useLocationData(id)
 const { data: planning } = usePlanning(id)
 
 const { stages, settled, animated } = useStageQueue(analysis)
+
+// Progress rail: fills down the stage list as stages finish.
+const rail = ref<HTMLElement>()
+const doneShare = computed(() => {
+  const list = stages.value
+  if (!list.length) return 0
+  const finished = list.filter(s => s.status === 'done' || s.status === 'failed').length
+  return finished / list.length
+})
+watch(doneShare, (share) => {
+  if (!rail.value) return
+  if (reducedMotion()) rail.value.style.transform = `scaleY(${share})`
+  else gsap.to(rail.value, { scaleY: share, duration: 0.5, ease: 'power2.out' })
+})
+
+// Report entrance: sections rise in once, only after a live run.
+const reportEl = ref<HTMLElement>()
+watch(reportEl, (el) => {
+  if (!el || !animated.value || reducedMotion()) return
+  gsap.from(el.querySelectorAll('section'), { y: 18, autoAlpha: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out', clearProps: 'all' })
+})
 
 // Switch to the report once every stage has visibly finished, with a short beat for the last tick.
 const showReport = ref(false)
@@ -53,7 +76,7 @@ function jump(sectionId: string) {
   <div>
     <PanelHeader
       :title="analysis?.input.address ?? 'RentCheck'"
-      :subtitle="analysis?.status === 'failed' ? 'Check failed' : analysis?.status === 'running' || !showReport ? 'Checking this property…' : 'Know before you rent'"
+      :subtitle="analysis?.status === 'failed' ? 'Check stopped' : analysis?.status === 'running' || !showReport ? 'Checking this rent…' : 'Rent check'"
     >
       <template #actions>
         <Button v-if="showReport && analysis?.status === 'complete'" as-child size="sm" variant="outline" class="shrink-0">
@@ -77,15 +100,21 @@ function jump(sectionId: string) {
       leave-to-class="opacity-0"
     >
       <!-- Agent progress: the stages are the loading UI -->
-      <div v-if="!showReport" key="progress" class="p-4">
-        <p class="mb-2 text-sm text-muted-foreground">RentCheck is investigating this property.</p>
-        <ol aria-live="polite">
+      <div v-if="!showReport" key="progress" class="relative overflow-hidden p-5">
+        <GradientOrb tone="lavender" :size="300" drift class="-top-28 -right-24" />
+        <GradientOrb tone="sky" :size="220" drift class="top-48 -left-28 opacity-60" />
+        <p class="type-display-sm relative mb-1 text-foreground">Checking this rent</p>
+        <p class="relative mb-5 text-sm text-muted-foreground">Against public rental, transport, census and planning data.</p>
+        <ol aria-live="polite" class="relative">
+          <!-- rail behind the stage dots -->
+          <span aria-hidden="true" class="absolute top-4 bottom-4 left-[9.5px] w-px bg-border" />
+          <span ref="rail" aria-hidden="true" class="absolute top-4 bottom-4 left-[9px] w-[2px] origin-top scale-y-0 bg-brand" />
           <StageRow v-for="s in stages" :key="s.stage" :stage="s" />
         </ol>
         <p v-if="showReconnecting" class="mt-3 text-xs text-muted-foreground">Reconnecting…</p>
       </div>
 
-      <div v-else key="report">
+      <div v-else ref="reportEl" key="report">
       <EvidenceProvider :evidence="analysis.evidence" :sources="analysis.sources">
         <nav class="sticky top-[53px] z-[5] flex gap-1 overflow-x-auto border-b bg-background/95 px-3 py-2 backdrop-blur [scrollbar-width:none]">
           <button
@@ -98,7 +127,7 @@ function jump(sectionId: string) {
             {{ s.label }}
           </button>
         </nav>
-        <ReportBody :analysis="analysis" :comparables="comparables" :location="location" :planning="planning" />
+        <ReportBody :analysis="analysis" :comparables="comparables" :location="location" :planning="planning" :animate="animated" />
       </EvidenceProvider>
       </div>
     </Transition>

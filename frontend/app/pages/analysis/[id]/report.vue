@@ -34,16 +34,16 @@ const DISCLAIMER = 'RentCheck is a decision-support tool, not a valuation or leg
 </script>
 
 <template>
-  <div class="min-h-dvh bg-muted/40 print:bg-white">
-    <main class="mx-auto max-w-3xl bg-background shadow-sm print:max-w-none print:shadow-none">
+  <div class="min-h-dvh bg-canvas py-0 print:bg-white sm:py-8">
+    <main class="mx-auto max-w-3xl overflow-hidden bg-background shadow-soft print:max-w-none print:shadow-none sm:rounded-2xl sm:border">
       <!-- Header (also printed) -->
       <header class="flex items-start justify-between gap-4 border-b px-6 py-5">
         <div>
-          <p class="text-xs font-semibold tracking-wider text-brand uppercase">RentCheck AI · Know before you rent</p>
-          <h1 class="mt-1 font-heading text-2xl font-semibold">{{ report?.analysis.input.address ?? 'Rental report' }}</h1>
+          <p class="type-caption-upper text-muted-foreground">RentCheck AI · Know before you rent</p>
+          <h1 class="type-display-md mt-2 text-foreground">{{ report?.analysis.input.address ?? 'Rental report' }}</h1>
           <p v-if="report" class="text-sm text-muted-foreground">Generated {{ day(report.generated_at) }} · {{ DISCLAIMER }}</p>
         </div>
-        <Button class="no-print shrink-0" variant="outline" :disabled="!report" @click="printReport">
+        <Button class="no-print shrink-0 rounded-full border-hairline-strong" variant="outline" :disabled="!report" @click="printReport">
           <Download class="size-4" /> Download PDF
         </Button>
       </header>

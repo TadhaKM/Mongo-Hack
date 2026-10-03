@@ -33,7 +33,7 @@ const value = computed({
       v-for="opt in options"
       :key="key(opt.value)"
       :value="key(opt.value)"
-      class="h-10 min-w-11 flex-1 rounded-md border px-3 text-sm font-medium transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none data-[state=on]:border-brand data-[state=on]:bg-brand/10 data-[state=on]:text-brand"
+      class="h-10 min-w-11 flex-1 rounded-full border border-hairline-strong px-3 text-[15px] font-medium text-foreground transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-brand focus-visible:outline-none data-[state=on]:border-brand data-[state=on]:bg-brand data-[state=on]:text-brand-foreground"
       :class="invalid ? 'border-destructive' : ''"
     >
       {{ opt.label }}

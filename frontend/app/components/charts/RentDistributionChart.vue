@@ -19,12 +19,13 @@ const bins = computed<Bin[]>(() => {
 })
 
 const css = (name: string) => (import.meta.client ? getComputedStyle(document.documentElement).getPropertyValue(name).trim() : '')
-const brand = computed(() => css('--brand') || '#2563eb')
-const muted = computed(() => css('--verdict-inline') || '#64748b')
+const ink = computed(() => css('--brand') || '#3d2db5')
+const bar = computed(() => css('--hairline-strong') || '#d6d3d1')
+const muted = computed(() => css('--muted-foreground') || '#777169')
 
 const x = (d: Bin) => d.x
 const y = [(d: Bin) => d.count]
-const color = (d: Bin) => (props.asking >= d.from && props.asking < d.from + BIN ? brand.value : muted.value)
+const color = (d: Bin) => (props.asking >= d.from && props.asking < d.from + BIN ? ink.value : bar.value)
 const xDomain = computed<[number, number]>(() => [bins.value[0]!.from, bins.value.at(-1)!.from + BIN])
 </script>
 
@@ -34,7 +35,7 @@ const xDomain = computed<[number, number]>(() => [bins.value[0]!.from, bins.valu
       <VisXYContainer :data="bins" :height="170" :x-domain="xDomain" :margin="{ top: 26, right: 8, left: 4, bottom: 0 }">
         <VisStackedBar :x="x" :y="y" :color="color" :data-step="BIN" :bar-padding="0.12" :rounded-corners="3" />
         <VisPlotline axis="x" :value="median" :color="muted" :line-width="1.5" line-style="dash" :label-text="`Median ${eur(median)}`" label-position="top-left" :label-offset-y="-14" :label-size="11" :label-color="muted" />
-        <VisPlotline axis="x" :value="asking" :color="brand" :line-width="2" :label-text="`Asking ${eur(asking)}`" label-position="top-right" :label-offset-y="-14" :label-size="11" :label-color="brand" />
+        <VisPlotline axis="x" :value="asking" :color="ink" :line-width="2" :label-text="`Asking ${eur(asking)}`" label-position="top-right" :label-offset-y="-14" :label-size="11" :label-color="ink" />
         <VisAxis type="x" :tick-format="(v: number) => eur(v)" :num-ticks="4" :grid-line="false" :tick-text-font-size="'11px'" />
         <VisAxis type="y" :num-ticks="3" :tick-format="(v: number) => (Number.isInteger(v) ? String(v) : '')" :tick-text-font-size="'11px'" />
       </VisXYContainer>

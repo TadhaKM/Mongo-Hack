@@ -19,7 +19,7 @@ const sel = useMapSelection()
       @click="sel.focusFeature(`plan:${p.id}`)"
     >
       <div class="flex items-center justify-between gap-2">
-        <span class="rounded-md border px-1.5 py-0.5 text-[11px] font-semibold" :class="PLANNING_STYLE[p.status].soft">{{ PLANNING_STYLE[p.status].label }}</span>
+        <span class="rounded-full border px-2.5 py-0.5 text-[11px] font-semibold tracking-wide uppercase" :class="PLANNING_STYLE[p.status].soft">{{ PLANNING_STYLE[p.status].label }}</span>
         <span class="text-xs tabular-nums text-muted-foreground">{{ metres(p.distance_m) }} away</span>
       </div>
       <p class="font-medium">{{ p.summary }}</p>

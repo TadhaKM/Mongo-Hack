@@ -16,7 +16,7 @@ const sourceOf = (id: string) => props.sources.find(s => s.id === id)
   <Sheet v-model:open="open">
     <SheetContent :side="desktop ? 'right' : 'bottom'" class="flex max-h-[85dvh] flex-col gap-0 overflow-hidden p-0 sm:max-w-md lg:max-h-none">
       <SheetHeader class="border-b p-4 text-left">
-        <SheetTitle>Evidence</SheetTitle>
+        <SheetTitle class="type-display-sm">Evidence</SheetTitle>
         <SheetDescription v-if="heading" class="text-sm text-foreground/80">“{{ heading }}”</SheetDescription>
       </SheetHeader>
 
@@ -25,7 +25,7 @@ const sourceOf = (id: string) => props.sources.find(s => s.id === id)
         <article v-for="e in items" :key="e.id" class="space-y-2 rounded-lg border p-3">
           <div class="flex items-baseline justify-between gap-3">
             <h3 class="text-sm font-medium">{{ e.label }}</h3>
-            <p class="font-heading text-lg font-semibold tabular-nums">{{ e.value }}</p>
+            <p class="type-title text-foreground tabular-nums">{{ e.value }}</p>
           </div>
           <p class="text-xs text-muted-foreground">{{ e.scope }}</p>
           <p v-if="e.observations" class="flex items-center gap-1.5 text-xs">

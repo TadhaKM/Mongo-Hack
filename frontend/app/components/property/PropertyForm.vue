@@ -96,14 +96,14 @@ const submit = handleSubmit(async (form) => {
       scrollToFirstError()
       return
     }
-    toast.error('Couldn\'t start the check', { description: err instanceof Error ? err.message : undefined })
+    toast.error('Check didn\'t start', { description: err instanceof Error ? `${err.message} Try again.` : 'Try again.' })
   }
 }, scrollToFirstError)
 </script>
 
 <template>
   <div>
-    <PanelHeader title="Check a property" subtitle="Four details and we'll do the rest" />
+    <PanelHeader title="Check a rent" subtitle="Four details. RentCheck finds the rest." />
 
     <form class="space-y-5 p-4" data-form="property" novalidate @submit.prevent="submit">
       <!-- Address (required) -->
@@ -140,7 +140,7 @@ const submit = handleSubmit(async (form) => {
         </div>
         <p v-if="errors.monthly_rent" class="text-xs text-destructive">{{ errors.monthly_rent }}</p>
         <div v-else-if="needsRentConfirm" class="flex items-center justify-between gap-2 rounded-md border border-verdict-above/40 bg-verdict-above/10 px-3 py-2 text-xs">
-          <span>{{ eur(values.monthly_rent ?? 0) }} a month? That's unusually high.</span>
+          <span>{{ eur(values.monthly_rent ?? 0) }} is high for a monthly rent.</span>
           <button type="button" class="font-medium text-brand hover:underline" @click="confirmHighRent = true">Yes, it's monthly</button>
         </div>
       </div>
@@ -159,8 +159,8 @@ const submit = handleSubmit(async (form) => {
         <p v-if="errors.property_type" class="text-xs text-destructive">{{ errors.property_type }}</p>
       </div>
 
-      <div class="space-y-4 rounded-lg border border-dashed p-3">
-        <p class="text-xs font-medium tracking-wide text-muted-foreground uppercase">Optional · improves the match</p>
+      <div class="space-y-4 rounded-xl border border-dashed border-hairline-strong p-4">
+        <p class="type-caption-upper text-muted-foreground">Optional · improves the match</p>
 
         <div class="space-y-1.5">
           <Label for="pf-area">Floor area</Label>
@@ -185,9 +185,9 @@ const submit = handleSubmit(async (form) => {
         </div>
       </div>
 
-      <Button type="submit" class="h-11 w-full bg-brand text-brand-foreground hover:bg-brand/90" :disabled="create.isPending.value">
+      <Button type="submit" class="h-11 w-full rounded-full bg-brand text-[15px] text-brand-foreground shadow-soft hover:bg-brand/90 active:bg-brand/80" :disabled="create.isPending.value">
         <Sparkles class="size-4" />
-        {{ create.isPending.value ? 'Starting…' : 'Run full check' }}
+        {{ create.isPending.value ? 'Starting check…' : 'Check this rent' }}
       </Button>
     </form>
   </div>

@@ -15,7 +15,7 @@ async function retry() {
     sel.startAnalysis(res.id)
   }
   catch (err) {
-    toast.error('Retry failed', { description: err instanceof Error ? err.message : undefined })
+    toast.error('Check didn\'t start', { description: err instanceof Error ? err.message : undefined })
   }
 }
 
@@ -25,12 +25,12 @@ function edit() {
 </script>
 
 <template>
-  <div class="m-4 space-y-3 rounded-lg border border-planning-refused/30 bg-planning-refused/5 p-4">
-    <p class="flex items-center gap-2 font-medium text-planning-refused"><TriangleAlert class="size-4" /> We couldn't finish this check</p>
-    <p class="text-sm">{{ analysis.error?.message ?? 'Something went wrong while the agents were working.' }}</p>
-    <p v-if="failedStage" class="text-xs text-muted-foreground">Failed at: {{ failedStage.label.replace(/…$/, '') }}<template v-if="failedStage.detail"> ({{ failedStage.detail }})</template></p>
+  <div class="m-4 space-y-3 rounded-xl border bg-canvas-soft p-5">
+    <p class="flex items-center gap-2 font-medium text-planning-refused"><TriangleAlert class="size-4" /> This check stopped<template v-if="failedStage"> at {{ failedStage.label.replace(/…$/, '').toLowerCase() }}</template></p>
+    <p class="text-sm">{{ analysis.error?.message ?? 'A data source didn\'t respond, so there is no rating.' }} Try again, or change the details.</p>
+    <p v-if="failedStage?.detail" class="text-xs text-muted-foreground">{{ failedStage.detail }}</p>
     <div class="flex gap-2">
-      <Button size="sm" :disabled="create.isPending.value" @click="retry"><RotateCcw class="size-3.5" /> Retry</Button>
+      <Button size="sm" :disabled="create.isPending.value" @click="retry"><RotateCcw class="size-3.5" /> Try again</Button>
       <Button size="sm" variant="outline" @click="edit">Edit details</Button>
     </div>
   </div>

@@ -4,53 +4,75 @@ import { eur, metres, pct, period, verdictLabel } from '~/lib/format'
 import { VERDICT_STYLE } from '~/lib/verdict'
 import ClaimText from './ClaimText.vue'
 import ConfidencePill from './ConfidencePill.vue'
+import GradientOrb from './GradientOrb.vue'
+import RentRating from './RentRating.vue'
 
-const props = defineProps<{ summary: NonNullable<Analysis['summary']> }>()
+const props = defineProps<{ summary: NonNullable<Analysis['summary']>; animate?: boolean }>()
 const style = computed(() => VERDICT_STYLE[props.summary.verdict])
-const diffEur = computed(() => `${props.summary.difference_eur > 0 ? '+' : props.summary.difference_eur < 0 ? '-' : ''}${eur(Math.abs(props.summary.difference_eur))}`)
+const orb = computed(() => ({ below_market: 'mint', in_line: 'lavender', above_market: 'peach' } as const)[props.summary.verdict])
+
+// Say the difference in money first: that's what a renter feels every month.
+const headline = computed(() => {
+  const diff = props.summary.difference_eur
+  if (props.summary.verdict === 'in_line') return 'In line with similar homes nearby'
+  return `${eur(Math.abs(diff))} a month ${diff > 0 ? 'more' : 'less'} than similar homes nearby`
+})
+const subline = computed(() => {
+  const diff = props.summary.difference_eur
+  if (props.summary.verdict !== 'in_line') return `${pct(Math.abs(props.summary.difference_pct), { decimals: 1 })} ${diff > 0 ? 'above' : 'below'} the median of ${eur(props.summary.median)}`
+  if (diff === 0) return `Exactly the median of ${eur(props.summary.median)}`
+  return `${eur(Math.abs(diff))} ${diff > 0 ? 'above' : 'below'} the median of ${eur(props.summary.median)}`
+})
 </script>
 
 <template>
   <div class="space-y-4">
-    <div class="flex items-start justify-between gap-3">
-      <div>
-        <p class="inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-semibold tracking-wide uppercase" :class="style.soft">
-          <component :is="style.icon" class="size-3.5" /> {{ verdictLabel(summary.verdict) }}
-        </p>
-        <p class="mt-2 font-heading text-4xl font-semibold tracking-tight tabular-nums" :class="style.text">
-          {{ pct(summary.difference_pct, { sign: true }) }}
-        </p>
-        <p class="text-sm text-muted-foreground">vs comparable median</p>
+    <!-- gradient-orb-card: the verdict headline sits on a soft atmospheric bloom -->
+    <div class="relative overflow-hidden rounded-3xl bg-canvas-soft px-5 pt-5 pb-6">
+      <GradientOrb :tone="orb" :size="280" class="-top-24 -right-16" />
+      <GradientOrb tone="lavender" :size="180" class="-bottom-24 -left-12 opacity-50" />
+      <div class="relative space-y-6">
+        <div class="flex items-start justify-between gap-3">
+          <p class="type-caption-upper inline-flex items-center gap-1.5 rounded-full bg-background/80 px-2.5 py-1 text-foreground">
+            <component :is="style.icon" class="size-3.5" :class="style.text" /> {{ verdictLabel(summary.verdict) }}
+          </p>
+          <ConfidencePill :confidence="summary.confidence" />
+        </div>
+        <div>
+          <h3 class="type-display-md text-balance text-foreground">{{ headline }}</h3>
+          <p class="mt-2 text-sm text-muted-foreground">{{ subline }}</p>
+        </div>
       </div>
-      <ConfidencePill :confidence="summary.confidence" />
     </div>
 
-    <!-- The numbers come before any conclusion -->
-    <dl class="grid grid-cols-2 gap-px overflow-hidden rounded-lg border bg-border text-sm">
+    <RentRating :difference-pct="summary.difference_pct" :asking="summary.asking" :observations="summary.observations" :animate="animate" />
+
+    <!-- The numbers behind the rating -->
+    <dl class="grid grid-cols-2 gap-px overflow-hidden rounded-xl border bg-border text-sm">
       <div class="bg-background p-3">
         <dt class="text-xs text-muted-foreground">Asking rent</dt>
-        <dd class="font-heading text-lg font-semibold tabular-nums">{{ eur(summary.asking) }}</dd>
+        <dd class="type-title text-foreground tabular-nums">{{ eur(summary.asking) }}</dd>
       </div>
       <div class="bg-background p-3">
-        <dt class="text-xs text-muted-foreground">Comparable median</dt>
-        <dd class="font-heading text-lg font-semibold tabular-nums">{{ eur(summary.median) }}</dd>
+        <dt class="text-xs text-muted-foreground">Median for similar homes</dt>
+        <dd class="type-title text-foreground tabular-nums">{{ eur(summary.median) }}</dd>
       </div>
       <div class="bg-background p-3">
-        <dt class="text-xs text-muted-foreground">Typical range (P10 to P90)</dt>
-        <dd class="font-medium tabular-nums">{{ eur(summary.p10) }} to {{ eur(summary.p90) }}</dd>
+        <dt class="text-xs text-muted-foreground">Most rent between</dt>
+        <dd class="font-medium tabular-nums">{{ eur(summary.p10) }} and {{ eur(summary.p90) }}</dd>
       </div>
       <div class="bg-background p-3">
-        <dt class="text-xs text-muted-foreground">Difference</dt>
-        <dd class="font-medium tabular-nums" :class="style.text">{{ diffEur }} ({{ pct(summary.difference_pct, { sign: true, decimals: 1 }) }})</dd>
+        <dt class="text-xs text-muted-foreground">Cheaper than this one</dt>
+        <dd class="font-medium tabular-nums">{{ summary.percentile }}% of them</dd>
       </div>
     </dl>
 
-    <p class="text-xs text-muted-foreground">
-      {{ summary.observations }} comparable observations · {{ period(summary.period.from, summary.period.to) }} · within {{ metres(summary.radius_m) }}
+    <p class="text-xs leading-relaxed text-muted-foreground">
+      RTB · {{ summary.observations }} homes · {{ period(summary.period.from, summary.period.to) }} · within {{ metres(summary.radius_m) }}
     </p>
 
-    <div v-if="summary.claims.length" class="space-y-2 rounded-lg bg-muted/50 p-3">
-      <p class="text-xs font-semibold tracking-wide text-muted-foreground uppercase">Why</p>
+    <div v-if="summary.claims.length" class="space-y-2 rounded-xl bg-canvas p-4">
+      <p class="type-caption-upper text-foreground">Why</p>
       <ClaimText v-for="c in summary.claims" :key="c.id" :claim="c" />
     </div>
   </div>

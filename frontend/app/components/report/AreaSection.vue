@@ -12,7 +12,7 @@ const fmt = (v: number, unit: 'pct' | 'count' | 'eur') => (unit === 'pct' ? frac
     <div class="grid grid-cols-2 gap-2">
       <div v-for="s in area.stats" :key="s.key" class="rounded-lg border p-3">
         <p class="text-xs text-muted-foreground">{{ s.label }}</p>
-        <p class="font-heading text-xl font-semibold tabular-nums">{{ fmt(s.value, s.unit) }}</p>
+        <p class="type-display-sm text-foreground tabular-nums">{{ fmt(s.value, s.unit) }}</p>
         <p v-if="s.national != null" class="text-[11px] text-muted-foreground">Ireland: {{ fmt(s.national, s.unit) }}</p>
         <p class="mt-1 text-[11px] text-muted-foreground">{{ s.geography }} · {{ s.year }}</p>
       </div>

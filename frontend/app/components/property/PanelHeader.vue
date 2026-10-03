@@ -12,7 +12,7 @@ const sel = useMapSelection()
       <ArrowLeft class="size-4" />
     </Button>
     <div class="min-w-0 flex-1">
-      <p v-if="title" class="truncate text-sm font-medium">{{ title }}</p>
+      <p v-if="title" class="truncate text-[15px] font-medium text-foreground">{{ title }}</p>
       <p v-if="subtitle" class="truncate text-xs text-muted-foreground">{{ subtitle }}</p>
     </div>
     <slot name="actions" />

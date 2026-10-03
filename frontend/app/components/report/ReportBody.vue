@@ -20,10 +20,12 @@ const props = defineProps<{
   planning?: PlanningResponse
   disclaimer?: string
   print?: boolean
+  /** Play the entrance animations (only when the user watched the check run). */
+  animate?: boolean
 }>()
 
 const failed = (stage: string) => props.analysis.stages.find(s => s.stage === stage)?.status === 'failed'
-const unavailable = (stage: string, what: string) => (failed(stage) ? `${what} data unavailable for this area: ${props.analysis.stages.find(s => s.stage === stage)?.detail ?? 'the source did not respond'}.` : null)
+const unavailable = (stage: string, what: string) => (failed(stage) ? `No ${what.toLowerCase()} data for this check: ${(props.analysis.stages.find(s => s.stage === stage)?.detail ?? 'the source did not respond').toLowerCase()}. The rest of the report is unaffected.` : null)
 const furnished = computed(() => ({ furnished: 'Furnished', unfurnished: 'Unfurnished', unknown: 'Furnishing not stated' })[props.analysis.input.furnished ?? 'unknown'])
 const lowConfidence = computed(() => props.analysis.summary?.confidence.level === 'low')
 </script>
@@ -31,9 +33,9 @@ const lowConfidence = computed(() => props.analysis.summary?.confidence.level ==
 <template>
   <div class="divide-y">
     <!-- Property summary -->
-    <ReportSection id="r-summary" title="Property">
+    <ReportSection id="r-summary" title="The property">
       <div class="flex items-baseline justify-between gap-2">
-        <p class="font-heading text-2xl font-semibold tabular-nums">{{ eur(analysis.input.monthly_rent) }}<span class="text-sm font-normal text-muted-foreground"> /month</span></p>
+        <p class="type-display-md text-foreground tabular-nums">{{ eur(analysis.input.monthly_rent) }}<span class="text-sm font-normal text-muted-foreground"> /month</span></p>
         <p class="text-sm text-muted-foreground">{{ analysis.property.area }}</p>
       </div>
       <p class="text-sm text-muted-foreground">
@@ -44,11 +46,11 @@ const lowConfidence = computed(() => props.analysis.summary?.confidence.level ==
     </ReportSection>
 
     <!-- Rental analysis -->
-    <ReportSection id="r-rent" title="Rental analysis" :unavailable="analysis.summary ? null : 'Rental analysis unavailable: no comparable data could be retrieved.'">
+    <ReportSection id="r-rent" title="Is the rent fair?" :unavailable="analysis.summary ? null : 'No rating: comparable rents could not be retrieved.'">
       <div v-if="lowConfidence" class="rounded-lg border border-verdict-above/40 bg-verdict-above/10 p-3 text-xs">
-        Only {{ analysis.summary!.observations }} comparables were found, so treat this verdict with caution.
+        Only {{ analysis.summary!.observations }} similar homes were found, so treat this rating as a rough guide.
       </div>
-      <VerdictCard v-if="analysis.summary" :summary="analysis.summary" />
+      <VerdictCard v-if="analysis.summary" :summary="analysis.summary" :animate="animate" />
       <RentDistributionChart
         v-if="analysis.summary && comparables"
         class="pt-2"
@@ -68,13 +70,13 @@ const lowConfidence = computed(() => props.analysis.summary?.confidence.level ==
     </ReportSection>
 
     <!-- Comparables -->
-    <ReportSection id="r-comparables" title="Comparable properties" :unavailable="unavailable('comparables', 'Comparable')">
+    <ReportSection id="r-comparables" title="What similar homes rent for" :unavailable="unavailable('comparables', 'Comparable')">
       <ComparablesTable v-if="comparables && analysis.summary" :comparables="comparables.items" :asking="analysis.summary.asking" :print="print" />
       <SectionFooter :source-ids="['rtb']" :observations="comparables?.stats.count" />
     </ReportSection>
 
     <!-- Location -->
-    <ReportSection id="r-location" title="Location" :unavailable="unavailable('transport', 'Transport')">
+    <ReportSection id="r-location" title="Getting around" :unavailable="unavailable('transport', 'Transport')">
       <template v-if="location">
         <ClaimText v-for="c in location.claims" :key="c.id" :claim="c" />
         <TransportList :transport="location.transport" :amenities="print ? [] : location.amenities" />
@@ -83,7 +85,7 @@ const lowConfidence = computed(() => props.analysis.summary?.confidence.level ==
     </ReportSection>
 
     <!-- Area -->
-    <ReportSection id="r-area" title="Area" :unavailable="unavailable('area', 'Census')">
+    <ReportSection id="r-area" title="The area" :unavailable="unavailable('area', 'Census')">
       <template v-if="analysis.area">
         <AreaSection :area="analysis.area" />
         <SectionFooter :source-ids="['cso']" />
@@ -100,7 +102,7 @@ const lowConfidence = computed(() => props.analysis.summary?.confidence.level ==
     </ReportSection>
 
     <!-- Sources -->
-    <ReportSection id="r-sources" title="Sources and limitations">
+    <ReportSection id="r-sources" title="Where this comes from">
       <SourcesSection :sources="analysis.sources" :limitations="analysis.limitations" :disclaimer="disclaimer" />
     </ReportSection>
   </div>
