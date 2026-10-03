@@ -6,6 +6,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['shadcn-nuxt'],
   css: ['~/assets/css/main.css'],
+  // Auto-import the data layer (Agent A) alongside top-level composables.
+  imports: { dirs: ['composables/api'] },
   vite: {
     plugins: [tailwindcss()],
   },

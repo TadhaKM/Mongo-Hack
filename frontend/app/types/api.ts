@@ -37,6 +37,7 @@ export type AnalysisEvent =
 export interface AnalyseRequest {
   property_id?: string            // when started from a listing pin
   address?: string; place_id?: string
+  location?: LngLat               // dropped pin with no geocoded address
   monthly_rent?: number; bedrooms?: number; property_type?: PropertyType
   floor_area_m2?: number; furnished?: Furnished; listing_url?: string
 }

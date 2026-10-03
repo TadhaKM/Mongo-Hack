@@ -13,7 +13,7 @@
     "@lucide/vue": "^1.51.0",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/vue-query": "^5.104.1",
-    "@tanstack/vue-table": "^9.2.4",
+    "@tanstack/vue-table": "^8.21.3",
     "@unovis/ts": "^1.7.1",
     "@unovis/vue": "^1.7.1",
     "@vee-validate/zod": "^4.15.1",
