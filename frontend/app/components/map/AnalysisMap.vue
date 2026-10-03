@@ -3,6 +3,8 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import '~/lib/map/map.css'
 import { Marker, type Map as MlMap, type GeoJSONSource, type MapMouseEvent } from 'maplibre-gl'
 import { useDebounceFn, useMediaQuery } from '@vueuse/core'
+import { Box, Crosshair, MapPinPlus, ZoomIn } from '@lucide/vue'
+import RadialMenu, { type RadialItem } from './RadialMenu.vue'
 import { toast } from 'vue-sonner'
 import type { ListingSummary, LngLat } from '~/types/api'
 import {
@@ -69,7 +71,9 @@ onMounted(async () => {
 
   m.on('moveend', updateBBox)
   updateBBox()
-  m.on('contextmenu', (e: MapMouseEvent) => dropAt(e.lngLat))
+  m.on('contextmenu', (e: MapMouseEvent) => openRadial(e.point, e.lngLat))
+  m.on('movestart', closeRadial)
+  m.on('click', closeRadial)
   attachLongPress(m)
 
   map.value = m
@@ -180,6 +184,36 @@ async function onSelectionChange() {
 }
 watch(() => [sel.selectedListingId.value, sel.droppedPin.value, propertyLocation.value?.lng, propertyLocation.value?.lat], onSelectionChange)
 
+// --- radial menu (right-click / long-press) ----------------------------------
+
+const radial = ref<{ x: number; y: number; lngLat: LngLat } | null>(null)
+const radialRef = ref<InstanceType<typeof RadialMenu> | null>(null)
+
+const radialItems = computed<RadialItem[]>(() => [
+  ...(sel.activeAnalysisId.value ? [] : [{ key: 'check', label: 'Check a property here', icon: MapPinPlus }]),
+  { key: 'zoom', label: 'Zoom in here', icon: ZoomIn },
+  { key: 'centre', label: 'Centre here', icon: Crosshair },
+  { key: '3d', label: flat.value ? 'Show 3D' : 'Show 2D', icon: Box },
+])
+
+function openRadial(point: { x: number; y: number }, lngLat: { lng: number; lat: number }) {
+  radial.value = { x: point.x, y: point.y, lngLat: { lng: lngLat.lng, lat: lngLat.lat } }
+}
+
+function closeRadial() {
+  radialRef.value?.close()
+}
+
+function onRadialPick(key: string) {
+  const m = map.value
+  const at = radial.value?.lngLat
+  if (!m || !at) return
+  if (key === 'check') dropAt(at)
+  else if (key === 'zoom') m.easeTo({ center: [at.lng, at.lat], zoom: Math.min(m.getZoom() + 2, 18), duration: 600 })
+  else if (key === 'centre') m.easeTo({ center: [at.lng, at.lat], duration: 600 })
+  else if (key === '3d') ui.is3D.value = flat.value
+}
+
 // --- dropped pin ------------------------------------------------------------
 
 function dropAt(lngLat: { lng: number; lat: number }) {
@@ -213,7 +247,8 @@ function attachLongPress(m: MlMap) {
   m.on('touchstart', (e) => {
     if (e.originalEvent.touches.length !== 1) return cancel()
     const at = e.lngLat
-    timer = setTimeout(() => { timer = null; dropAt(at) }, 500)
+    const pt = e.point
+    timer = setTimeout(() => { timer = null; openRadial(pt, at) }, 500)
   })
   m.on('touchend', cancel)
   m.on('touchcancel', cancel)
@@ -316,5 +351,15 @@ watch(ui.recentre, () => {
   <div class="absolute inset-0">
     <div ref="container" class="h-full w-full" />
     <slot v-if="map" />
+    <RadialMenu
+      v-if="radial"
+      :key="`${radial.x},${radial.y}`"
+      ref="radialRef"
+      :x="radial.x"
+      :y="radial.y"
+      :items="radialItems"
+      @pick="onRadialPick"
+      @closed="radial = null"
+    />
   </div>
 </template>
