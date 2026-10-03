@@ -1,0 +1,158 @@
+import { Marker, type Map as MlMap, type MapSourceDataEvent } from 'maplibre-gl'
+import type { ListingSummary, Verdict } from '~/types/api'
+import { eur } from '~/lib/format'
+
+export const LISTINGS_SOURCE = 'listings'
+
+export interface PinState {
+  hoveredId: string | null
+  selectedId: string | null
+  visited: Set<string>
+  /** While an analysis runs only the selected pin is shown. */
+  onlySelected: boolean
+}
+
+interface PinEntry { marker: Marker; el: HTMLElement; pill: HTMLButtonElement; verdict: Verdict }
+
+/**
+ * Keeps HTML price-pill markers in sync with the unclustered points of the
+ * `listings` GeoJSON source. Markers are keyed by listing id: new ones are
+ * added, existing ones kept, missing ones removed. Never recreated wholesale.
+ */
+export class PricePins {
+  private pins = new Map<string, PinEntry>()
+  private listings = new Map<string, ListingSummary>()
+  private state: PinState = { hoveredId: null, selectedId: null, visited: new Set(), onlySelected: false }
+  private scheduled = false
+
+  private map: MlMap
+  private handlers: { hover: (id: string | null) => void; select: (id: string) => void }
+
+  constructor(map: MlMap, handlers: { hover: (id: string | null) => void; select: (id: string) => void }) {
+    this.map = map
+    this.handlers = handlers
+    map.on('render', this.schedule)
+    map.on('sourcedata', this.onSourceData)
+  }
+
+  /** Latest listings (also used to place the selected pin when it is inside a cluster). */
+  setListings(items: ListingSummary[]) {
+    for (const l of items) this.listings.set(l.id, l)
+    this.schedule()
+  }
+
+  /** Remember a listing that may not be in the current bbox result (e.g. from URL restore). */
+  remember(listing: ListingSummary) {
+    this.listings.set(listing.id, listing)
+    this.schedule()
+  }
+
+  setState(patch: Partial<PinState>) {
+    this.state = { ...this.state, ...patch }
+    this.schedule()
+  }
+
+  destroy() {
+    this.map.off('render', this.schedule)
+    this.map.off('sourcedata', this.onSourceData)
+    for (const p of this.pins.values()) p.marker.remove()
+    this.pins.clear()
+  }
+
+  private onSourceData = (e: MapSourceDataEvent) => {
+    if (e.sourceId === LISTINGS_SOURCE && e.isSourceLoaded) this.schedule()
+  }
+
+  private schedule = () => {
+    if (this.scheduled) return
+    this.scheduled = true
+    requestAnimationFrame(() => {
+      this.scheduled = false
+      this.sync()
+    })
+  }
+
+  private visibleIds(): Set<string> {
+    const ids = new Set<string>()
+    const { selectedId, onlySelected } = this.state
+    if (!onlySelected && this.map.getSource(LISTINGS_SOURCE)) {
+      for (const f of this.map.querySourceFeatures(LISTINGS_SOURCE)) {
+        const p = f.properties
+        if (p && !p.cluster && typeof p.id === 'string') ids.add(p.id)
+      }
+    }
+    // The selected pin is always shown, even if its point is clustered or out of view.
+    if (selectedId && this.listings.has(selectedId)) ids.add(selectedId)
+    return ids
+  }
+
+  private sync() {
+    if (!this.map.style) return
+    const want = this.visibleIds()
+    for (const [id, p] of this.pins) {
+      if (!want.has(id)) {
+        p.marker.remove()
+        this.pins.delete(id)
+      }
+    }
+    for (const id of want) {
+      const listing = this.listings.get(id)
+      if (!listing) continue
+      let entry = this.pins.get(id)
+      if (!entry) {
+        entry = this.create(listing)
+        this.pins.set(id, entry)
+      }
+      this.paint(id, entry, listing)
+    }
+  }
+
+  private create(l: ListingSummary): PinEntry {
+    const el = document.createElement('div')
+    el.className = 'rc-pin rc-pin--enter'
+    const pill = document.createElement('button')
+    pill.type = 'button'
+    pill.className = 'rc-pin__pill'
+    pill.textContent = eur(l.rent)
+    pill.setAttribute('aria-label', `${eur(l.rent)}, ${l.bedrooms} bed ${l.property_type.replace('_', ' ')} in ${l.area}`)
+    el.appendChild(pill)
+    pill.addEventListener('mouseenter', () => this.handlers.hover(l.id))
+    pill.addEventListener('mouseleave', () => this.handlers.hover(null))
+    pill.addEventListener('click', (e) => {
+      e.stopPropagation()
+      this.handlers.select(l.id)
+    })
+    el.addEventListener('animationend', () => el.classList.remove('rc-pin--enter'), { once: true })
+    const marker = new Marker({ element: el, anchor: 'bottom' })
+      .setLngLat([l.location.lng, l.location.lat])
+      .addTo(this.map)
+    return { marker, el, pill, verdict: l.verdict }
+  }
+
+  private paint(id: string, p: PinEntry, l: ListingSummary) {
+    const { hoveredId, selectedId, visited } = this.state
+    const selected = id === selectedId
+    const hovered = id === hoveredId
+    p.el.dataset.verdict = l.verdict
+    p.el.classList.toggle('is-selected', selected)
+    p.el.classList.toggle('is-hovered', hovered && !selected)
+    p.el.classList.toggle('is-visited', visited.has(id) && !selected)
+    p.el.style.zIndex = selected ? '30' : hovered ? '20' : '1'
+    if (p.verdict !== l.verdict || p.pill.textContent !== eur(l.rent)) {
+      p.pill.textContent = eur(l.rent)
+      p.verdict = l.verdict
+    }
+  }
+}
+
+/** GeoJSON for the clustered listings source. */
+export function listingsGeoJSON(items: ListingSummary[]): GeoJSON.FeatureCollection {
+  return {
+    type: 'FeatureCollection',
+    features: items.map(l => ({
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [l.location.lng, l.location.lat] },
+      properties: { id: l.id, rent: l.rent, verdict: l.verdict },
+    })),
+  }
+}
