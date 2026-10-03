@@ -7,7 +7,9 @@
   "scripts": {
     "db:indexes": "node db/scripts/createIndexes.js",
     "db:seed": "node db/scripts/seed.js",
-    "db:test": "node db/test/run.js && node db/test/comparables.test.js",
+    "db:test": "node db/test/run.js && node db/test/comparables.test.js && node db/test/trends.test.js",
+    "db:test:trends": "node db/test/trends.test.js",
+    "db:pipelines": "node db/scripts/printComparablePipeline.js && node db/scripts/printTrendPipelines.js",
     "db:test:comparables": "node db/test/comparables.test.js"
   },
   "dependencies": {

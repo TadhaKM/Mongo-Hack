@@ -159,7 +159,7 @@ export async function seed(db) {
   return data.C;
 }
 
-if (import.meta.url === `file://${process.argv[1].replace(/\\/g, "/")}` || process.argv[1]?.endsWith("seed.js")) {
+if (process.argv[1]?.endsWith("seed.js")) {
   const { MongoClient } = await import("mongodb");
   const { createIndexes } = await import("./createIndexes.js");
   const { applyValidators } = await import("../schemas/validators.js");
@@ -170,4 +170,57 @@ if (import.meta.url === `file://${process.argv[1].replace(/\\/g, "/")}` || proce
   await seed(db);
   console.log("seeded", db.databaseName);
   await client.close();
+}
+
+// ---- historical rent observations for trend tests ---------------------------------------------------------
+// Deterministic (seeded PRNG) so tests can recompute every statistic independently.
+// Series (all monthly, ~31 months back from `now`):
+//   listings   apartment 2-bed  : 4/month in Ranelagh A + 4/month in Ranelagh B, +0.8%/month; gap 18 months back; 2 docs 17 months back
+//   listings   apartment 1-bed, house 3-bed
+//   listings_b apartment 2-bed  : a second source, systematically ~8% higher
+//   rtb_registered apartment 2-bed (measure "registered"): ~12% lower - must never leak into advertised results
+//   far group  apartment 2-bed ~3.3 km away, 20% cheaper, areaId unassigned - only visible to wide radii
+export function buildHistory(now = new Date()) {
+  let s = 123456789;
+  const rnd = () => { s = (s + 0x6D2B79F5) | 0; let t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const monthStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1));
+  const docs = [];
+  const mk = (i, { source, measure = "advertised", type, beds, base, n, box, areaId, mult = 1 }, k) => {
+    const m = new Date(Date.UTC(monthStart.getUTCFullYear(), monthStart.getUTCMonth() - i, 1));
+    const maxDay = i === 0 ? Math.max(1, now.getUTCDate() - 1) : 28;
+    const observedAt = new Date(Date.UTC(m.getUTCFullYear(), m.getUTCMonth(), 1 + Math.floor(rnd() * maxDay), 12));
+    const growth = 1.008 ** (31 - i);
+    const amount = Math.round((base * growth * mult * (1 + (rnd() - 0.5) * 0.06)) / 5) * 5;
+    const [w, so, e, no] = box;
+    const geo = { type: "Point", coordinates: [w + rnd() * (e - w), so + rnd() * (no - so)] };
+    docs.push({
+      measure, rent: { amount, period: "month" }, bedrooms: beds, propertyType: type, floorAreaM2: 50 + Math.floor(rnd() * 30), geo, areaId,
+      observedAt, address: `${source} ${type} ${beds}-bed ${i}-${k}`,
+      src: { sourceId: source, recordId: `${source}-${type}-${beds}-${areaId}-${i}-${k}`, version: "hist-seed", retrievedAt: now, geoMethod: "address_match", geoConfidence: 0.9 },
+    });
+  };
+  const sa1 = [C.lng - 0.003, C.lat - 0.002, C.lng + 0.003, C.lat + 0.002];
+  const sa2 = [C.lng + 0.003, C.lat - 0.002, C.lng + 0.009, C.lat + 0.002];
+  const far = [C.lng + 0.05, C.lat - 0.002, C.lng + 0.054, C.lat + 0.002];
+  for (let i = 0; i <= 31; i++) {
+    const main = i === 18 ? 0 : i === 17 ? 1 : 4;   // gap at 18; a thin month (2 docs total) at 17
+    for (let k = 0; k < main; k++) {
+      mk(i, { source: "listings", type: "apartment", beds: 2, base: 2000, box: sa1, areaId: "sa:268001001" }, k);
+      mk(i, { source: "listings", type: "apartment", beds: 2, base: 2000, box: sa2, areaId: "sa:268001002" }, k);
+    }
+    for (let k = 0; k < 6; k++) {
+      mk(i, { source: "listings", type: "apartment", beds: 1, base: 1600, box: sa1, areaId: "sa:268001001" }, k);
+      mk(i, { source: "listings", type: "house", beds: 3, base: 2600, box: sa2, areaId: "sa:268001002" }, k);
+      mk(i, { source: "listings_b", type: "apartment", beds: 2, base: 2000, mult: 1.08, box: sa1, areaId: "sa:268001001" }, k);
+      mk(i, { source: "rtb_registered", measure: "registered", type: "apartment", beds: 2, base: 2000, mult: 0.88, box: sa1, areaId: "sa:268001001" }, k);
+    }
+    for (let k = 0; k < 5; k++) mk(i, { source: "listings", type: "apartment", beds: 2, base: 2000, mult: 0.8, box: far, areaId: "sa:268001999" }, k);
+  }
+  return docs;
+}
+
+export async function seedHistory(db, now = new Date()) {
+  const docs = buildHistory(now);
+  await db.collection("rental_observations").insertMany(docs);
+  return docs;
 }

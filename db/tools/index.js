@@ -13,6 +13,7 @@ import * as rent from "./rent.js";
 import * as profile from "./profile.js";
 import * as evidence from "./evidence.js";
 import * as comparables from "./comparables.js";
+import * as trends from "./trends.js";
 export { startAnalysis, getOrCreateProperty, addressKey } from "./properties.js";
 
 export const TOOLS = {
@@ -25,6 +26,7 @@ export const TOOLS = {
   rentsInSameArea: geo.rentsInSameArea,
   comparableListings: geo.comparableListings,
   rentalComparables: comparables.rentalComparables,
+  rentalTrend: trends.rentalTrend,
   benchmarkRent: rent.benchmarkRent,
   zoneComparables: rent.zoneComparables,
   rentTrend: rent.rentTrend,

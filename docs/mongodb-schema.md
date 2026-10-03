@@ -52,7 +52,7 @@ Database: **`rentcheck`**. Implemented and tested in `db/` (`npm run db:test`: 4
 
 **Deliberately not collections:** `evidence` (embedded), `vacancy` (inside `area_stats`), `census_areas` (inside `areas`), transport routes (embedded in stops), GTFS `stop_times` (aggregated by Person 4 before loading).
 
-**Time series:** not used. The RTB index is thousands of rows, not millions, and time-series collections are awkward to upsert and cannot be freely updated. `rental_indexes` with a compound index gives the same history queries. Reconsider only if `rental_observations` reaches tens of millions of rows.
+**Time series:** one derived collection, `rental_observation_series` (optional, stretch), rebuilt from `rental_observations` for trend queries. The systems of record stay regular because a MongoDB time-series collection cannot have a validator, a unique index or single-document updates. The RTB index (`rental_indexes`) stays regular: it is thousands of rows. Full design, limits and the probe results are in [mongodb-timeseries.md](mongodb-timeseries.md).
 
 ### Conventions (all collections)
 
@@ -613,7 +613,8 @@ Rule used: **embed** what is read together, bounded and owned by one parent; **r
 | `sources` | dataset registry | `_id`, title, organisation, url, licence, version, coverage | `_id` | no | no | no |
 | `areas` | polygons for all levels + census | level, code, `geometry`, `centroid`, `parents`, `census` | `{geometry 2dsphere, level}`, `{centroid 2dsphere, level}`, `{level, code}` unique | **Polygon / MultiPolygon, Point** | no | stretch: `featureVector` |
 | `properties` | one doc per address | `addressKey`, `address`, `geo`, `areaId`, `parents`, `attributes` | `addressKey` unique, `geo` 2dsphere | **Point** | no | no |
-| `rental_observations` | advertised / registered rents | `measure`, `rent`, `bedrooms`, `propertyType`, `floorAreaM2`, `geo`, `areaId`, `observedAt` | `{geo 2dsphere, measure, propertyType, bedrooms, observedAt}` | **Point** | no | stretch: `embedding` |
+| `rental_observations` | advertised / registered rents | `measure`, `rent`, `bedrooms`, `propertyType`, `floorAreaM2`, `geo`, `areaId`, `observedAt` | `{geo 2dsphere, measure, propertyType, bedrooms, observedAt}` | **Point** | no (feeds the series below) | stretch: `embedding` |
+| `rental_observation_series` *(derived, optional)* | time-series copy for rent trends | `meta{measure, sourceId, propertyType, bedrooms, leaId}`, `observedAt`, `rent`, `areaId`, `geo`, `obsId` | `lea_series`, `area_series`, `geo` | **Point** | **yes** (timeField `observedAt`, metaField `meta`, 1-year custom buckets) | no |
 | `rental_indexes` | official area averages | `areaId`, `measure`, `avgRent`, `propertyType`, `bedrooms`, `periodStart` | `{areaId, measure, propertyType, bedrooms, periodStart}` unique | no | not used (small) | no |
 | `transport_stops` | stops, routes, frequency | `geo`, `modes`, `routes`, `service`, `areaId` | `geo` 2dsphere, `{modes, geo}` | **Point** | no | no |
 | `planning_applications` | applications | `reference`, `geo`, `applicationDate`, `status`, `proposal`, `development` | `{geo 2dsphere, applicationDate, status}` | **Point** | no | no |
@@ -712,6 +713,7 @@ export async function createIndexes(db) {
 `sources`, `areas`, `properties`, `rental_observations`, `rental_indexes`, `transport_stops`, `planning_applications`, `analyses`. These run the full comparable engine, location, transport and planning, and traceable evidence.
 
 ### F. Should-have / optional (2) and stretch
+- **Derived, optional:** `rental_observation_series` (MongoDB time-series, [mongodb-timeseries.md](mongodb-timeseries.md)): rent trends by month, quarter and year.
 - **Should:** `property_sales` (price context, Op 9), `area_stats` (vacancy and RTB risk, Ops 10-11).
 - **Stretch (no new collections):** `rental_observations.embedding` and `areas.featureVector` with Atlas Vector Search; Atlas Search autocomplete on addresses; a standalone `evidence` collection if reports grow beyond a few hundred items.
 
