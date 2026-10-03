@@ -1,46 +1,39 @@
 # Person 2 → team: what the agent layer needs and provides
 
-## For Person 4 (backend). Two lines to mount the agents in your app
-```python
-# app/main.py
-from rentcheck_agents.api import router as ai_router
-app.include_router(ai_router)          # env: TOOL_CLIENT=inprocess  (uses your services + `analyses` collection)
+## Integrated app (Person 4 backend + Person 2 agents), one process
+The agents are mounted inside `rentcheck_person4_backend/app/main.py` at `/ai/*` (in-process: they call the backend
+services directly and save into the backend's `analyses` collection).
+```bash
+cd rentcheck_person4_backend
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt -e ../agents
+cp .env.example .env            # set MONGODB_URI (+ GEMINI_API_KEY, or keep it in agents/.env)
+python scripts/seed_demo.py     # demo data incl. demo boundary polygons + 12-quarter RTB series
+uvicorn app.main:app --reload   # http://localhost:8000/docs
 ```
-Install: `pip install -e ../agents` (or `uv pip install -e ../agents`). Alternatively run it standalone:
-`cd agents && TOOL_CLIENT=http RENTCHECK_API_URL=http://localhost:8000 uv run uvicorn rentcheck_agents.api:app --port 8001`.
+Docker: `docker compose up --build` (build context is now the repo root so the image includes `agents/`).
+Demo request: `POST /ai/analyse` `{"latitude":53.3405,"longitude":-6.2995,"monthly_rent":2200,"bedrooms":2,"property_type":"apartment"}`.
+The stored result is then readable at `GET /analysis/{id}/report` (now includes `report` + `agent`).
 
-### Issues found reading the backend (please fix; my code already guards against each)
-1. **`app/api/analysis.py` router has no `prefix="/analysis"`.** The routes are `/{analysis_id}/report` etc., so
-   the documented `GET /analysis/{id}/report` 404s and `tests/test_api_contract.py` fails.
-   Fix: `APIRouter(prefix="/analysis", tags=["analysis"])`. Then move `POST /analyse` to its own router, or define it with an absolute path.
-2. **`rtb_area` is never resolved** (`app/geo/boundaries.py` only does small area, ED, LEA, LA and county). So
-   `rental_comparables` runs with **no area filter** and returns rents from other areas. The agent refuses to
-   benchmark in that case, which means **no rent benchmark at all in the demo until this is fixed.**
-   Suggested fix, using CSO RIQ02 (below): store each RIQ02 location with an exact code, and map the property to it.
-   For the demo, an explicit lookup table from small area / LEA code to RIQ02 location code is fine. Never match on names.
-3. `rental_history` ignores bedrooms/type and is capped at `years*4` rows across *all* profiles, so it only covers about 1 year.
-   Please add `property.bedrooms` / `property.type` filters. (I filter client-side and merge in the comparables series.)
-4. `planning_applications.application_date` is a raw string, and ArcGIS returns epoch ms. Store it as a Date.
-   It would also help to return `num_residential_units` (the `NumResidentialUnits` field) and `decision_date`. I parse dates defensively.
-5. Census values are raw CSV columns. I read these canonical keys: `population_total`, `households_total`,
-   `private_rented_pct`, `car_available_pct`, and from vacancy `vacancy_rate_pct`. Please emit those names.
-6. **`scripts/seed_demo.py` crashes** (`KeyError: '_record_key'`): the `properties` doc has no `_record_key`, so `make seed`
-   fails before seeding anything. Add `"_record_key": "property:demo"` to the property dict.
-7. Because of issue 1, **`GET /health` returns `{"detail": "Analysis not found"}`**: the prefix-less `/{analysis_id}`
-   route is registered before `/health` and swallows it.
+### Backend issues: status
+| # | Issue | Status |
+|---|---|---|
+| 1 | analysis router had no `/analysis` prefix | **fixed by Person 4** |
+| 7 | `GET /health` swallowed by `/{analysis_id}` | **fixed by Person 4** (consequence of 1) |
+| 2 | `rtb_area` never resolved, so rent queries had no area filter | **fixed in integration**: `resolve_geographies` now does `$geoIntersects` on a new `rtb_areas` polygon collection (load real polygons with `scripts/ingest.py boundary --collection rtb_areas`; codes must equal `rent_index.geography.code`). The seed includes a demo polygon |
+| 6 | `seed_demo.py` crashed (`_record_key`) | **fixed in integration**; seed also adds demo boundaries, a Luas stop and a 12-quarter rent series |
+| 8 | planning importer `NameError: ImportResult` | **fixed in integration** |
+| 9 | `first()` ignored CamelCase ArcGIS keys | **fixed in integration**; ArcGIS field aliases added, and `num_residential_units` is now stored and returned |
+| 3 | `rental_history` ignores bedrooms/type, capped at `years*4` rows | open (agents filter client-side and merge the comparables series) |
+| 4 | `rent_index` has no tenancy counts | open (data limitation: RIQ02 has none) |
+| 5 | planning `application_date` stored as a string | open (agents parse defensively) |
+| 10 | planning limit 100 / transport limit 50, no date filter | open (agents word counts as minimums) |
 
-8. **Planning ingestion crashes**: `app/ingestion/planning.py` calls `ImportResult(...)` but never imports it, so it raises `NameError`
-   (add `ImportResult` to the `from app.ingestion.base import ...` line).
-9. `app/ingestion/utils.first()` canonicalises the candidate names but not the row keys. CamelCase ArcGIS fields
-   (`ApplicationNumber`, `ReceivedDate`, `DevelopmentDescription`, `Decision`) never match, so applications would be
-   stored without ref/date/proposal. Fix: canonicalise `row` keys inside `first()`, and add those ArcGIS names as aliases.
-10. `nearby_planning` returns the 100 nearest applications **of any year**, and `nearby_transport` returns at most 50 stops.
-    Please add an `application_date >= since` filter (or a `since` query param) so recent schemes farther out aren't cut off.
-    Until then the agent words these counts as minimums ("at least…").
-
-Verified today: I ran your API unchanged (with the seed patched in a scratch copy) on a local MongoDB 8. My agents
-(`TOOL_CLIENT=http` and `inprocess`) produce a full report for `property_demo`. A new map-click property gets "limited"
-rent analysis until issue 2 is fixed.
+### Person 1 vs Person 4 schema conflict: resolved by separate databases
+Person 1's `db/` layer (schema v2) reuses collection names that Person 4's backend also uses (`properties`,
+`analyses`, `transport_stops`, `planning_applications`, `property_sales`), and applies strict validators. It now
+runs in its own database, **`rentcheck_engine`**. The backend and agents stay on **`rentcheck`**
+(`MONGODB_DATABASE`). Don't point both at the same database until the schemas are merged.
 
 ## For Person 1 (MongoDB). Facts about the rent data (verified today)
 - **Use CSO PxStat RIQ02** ("RTB Average Monthly Rent Report"):

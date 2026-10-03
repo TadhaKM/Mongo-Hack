@@ -1,6 +1,6 @@
 // Idempotent. Safe to run on every deploy.   node db/scripts/createIndexes.js
-// Database: rentcheck. See docs/mongodb-schema.md for what each index serves.
-export const DB_NAME = "rentcheck";
+// Database: rentcheck_engine (Person 4's API keeps "rentcheck"). See docs/mongodb-schema.md for what each index serves.
+export const DB_NAME = "rentcheck_engine";
 
 export const INDEXES = {
   sources: [],   // _id is the slug; the collection is tiny

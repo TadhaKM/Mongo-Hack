@@ -164,7 +164,7 @@ if (process.argv[1]?.endsWith("seed.js")) {
   const { createIndexes } = await import("./createIndexes.js");
   const { applyValidators } = await import("../schemas/validators.js");
   const client = await MongoClient.connect(process.env.MONGODB_URI ?? "mongodb://localhost:27017");
-  const db = client.db(process.env.MONGODB_DB ?? "rentcheck");
+  const db = client.db(process.env.MONGODB_DB ?? "rentcheck_engine");
   await applyValidators(db);
   await createIndexes(db);
   await seed(db);
