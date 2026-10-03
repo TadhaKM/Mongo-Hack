@@ -84,3 +84,20 @@ export interface ReportResponse {
 }
 
 export interface ApiError { error: { code: string; message: string; details?: Record<string, unknown> } }
+
+// Commute (served by the Nuxt server itself at /api/commute, not Person 4's API: it calls
+// free OSM routing and geocoding, so it works with the mocks and with the real backend alike).
+export type CommuteMode = 'walk' | 'cycle' | 'transit' | 'drive'
+export interface CommuteOption {
+  mode: CommuteMode
+  distance_m: number
+  duration_s: number
+  /** 'route' = real OSM route; 'estimate' = public transport estimated from the route (no free timetable routing). */
+  basis: 'route' | 'estimate'
+}
+export interface CommuteResponse {
+  from: LngLat
+  to: { location: LngLat; label: string }
+  options: CommuteOption[]
+  attribution: string
+}

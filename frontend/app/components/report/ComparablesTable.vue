@@ -48,7 +48,7 @@ watch(sel.hoveredFeature, (id) => {
       <thead class="bg-muted/50 text-xs text-muted-foreground">
         <tr>
           <th v-for="h in table.getHeaderGroups()[0]!.headers" :key="h.id" class="px-2 py-2 text-left font-medium first:pl-3 last:pr-3">
-            <button type="button" class="inline-flex items-center gap-0.5 hover:text-foreground" @click="h.column.toggleSorting(h.column.getIsSorted() === 'asc')">
+            <button type="button" class="inline-flex items-center gap-0.5 hover:text-foreground" @click="h.column.toggleSorting(h.column.getIsSorted() !== 'desc')">
               <FlexRender :render="h.column.columnDef.header" :props="h.getContext()" />
               <ArrowUp v-if="h.column.getIsSorted() === 'asc'" class="size-3" />
               <ArrowDown v-else-if="h.column.getIsSorted() === 'desc'" class="size-3" />

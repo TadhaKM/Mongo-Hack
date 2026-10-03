@@ -18,7 +18,7 @@ const sortKey = ref<SortKey>('difference')
 const items = computed<ListingSummary[]>(() => {
   const list = tab.value === 'saved' ? [...shortlist.saved.value] : [...(data.value?.items ?? [])]
   return sortKey.value === 'price'
-    ? list.sort((a, b) => a.rent - b.rent)
+    ? list.sort((a, b) => b.rent - a.rent) // highest price first
     : list.sort((a, b) => a.diff_pct - b.diff_pct)
 })
 
