@@ -1,4 +1,5 @@
 import { Popup, type Map as MlMap } from 'maplibre-gl'
+import { gsap, reducedMotion } from '~/lib/motion'
 import { inject, onBeforeUnmount, watch, type ShallowRef } from 'vue'
 import { MAP_KEY, removeLayersAndSource, whenStyleReady } from './core'
 import { REGISTRY_KEY, type FeatureRegistry } from './registry'
@@ -62,5 +63,34 @@ export function fadeIn(map: MlMap, layer: string, prop: 'circle-opacity' | 'circ
   map.setPaintProperty(layer, prop, 0)
   requestAnimationFrame(() => {
     if (map.getLayer(layer)) map.setPaintProperty(layer, prop, to)
+  })
+}
+
+/**
+ * One "here's everything" pulse when an analysis completes: comparable dots swell
+ * and settle, transport markers bump. Paint is restored exactly afterwards.
+ */
+export function pulseAnalysis(map: MlMap) {
+  if (reducedMotion()) return
+  const layer = 'analysis-comparables-circle'
+  const base = map.getLayer(layer) ? map.getPaintProperty(layer, 'circle-radius') : null
+  const state = { k: 0 }
+  gsap.to(state, {
+    k: 1, duration: 0.3, ease: 'power2.out', yoyo: true, repeat: 1, easeReverse: 'power2.in',
+    onUpdate: () => {
+      if (base != null && map.getLayer(layer)) map.setPaintProperty(layer, 'circle-radius', ['+', base, state.k * 4] as never)
+    },
+    onComplete: () => {
+      if (base != null && map.getLayer(layer)) map.setPaintProperty(layer, 'circle-radius', base as never)
+    },
+  })
+  // Stop markers: CSS bump (MapLibre owns their transform, so no GSAP transforms here).
+  map.getContainer().querySelectorAll<HTMLElement>('.rc-stop').forEach((el, i) => {
+    setTimeout(() => {
+      el.classList.remove('is-pulse')
+      void el.offsetWidth
+      el.classList.add('is-pulse')
+      el.addEventListener('animationend', () => el.classList.remove('is-pulse'), { once: true })
+    }, 100 + i * 50)
   })
 }

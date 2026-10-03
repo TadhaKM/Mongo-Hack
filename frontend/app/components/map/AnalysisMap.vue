@@ -18,6 +18,7 @@ import { token } from '~/lib/map/colors'
 import { roundBBox, type BBox } from '~/lib/map/geo'
 import { FeatureRegistry, REGISTRY_KEY } from '~/lib/map/registry'
 import { useMapUi } from '~/lib/map/state'
+import { pulseAnalysis } from '~/lib/map/layer'
 import { parseFeatureId } from '~/composables/useMapSelection'
 
 const props = defineProps<{ listings: ListingSummary[] }>()
@@ -282,6 +283,8 @@ function frameAnalysis() {
   const home = propertyLocation.value
   if (!m) return
   fitPoints(m, [...registry.all(), ...(home ? [home] : [])], desktop.value)
+  // Then one pulse so the eye lands on the evidence (A's verdict count-up starts ~0.6 s after complete).
+  m.once('moveend', () => { if (map.value === m && sel.activeAnalysisId.value) pulseAnalysis(m) })
 }
 
 watch(sel.activeAnalysisId, (id, prev) => {
