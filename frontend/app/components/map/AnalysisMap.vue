@@ -3,8 +3,9 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import '~/lib/map/map.css'
 import { Marker, type Map as MlMap, type GeoJSONSource, type MapMouseEvent } from 'maplibre-gl'
 import { useDebounceFn, useMediaQuery } from '@vueuse/core'
-import { Box, Crosshair, MapPinPlus, ZoomIn } from '@lucide/vue'
+import { Box, Crosshair, Eye, Mail, MapPinPlus, ZoomIn } from '@lucide/vue'
 import RadialMenu, { type RadialItem } from './RadialMenu.vue'
+import LandlordCard from './LandlordCard.vue'
 import { toast } from 'vue-sonner'
 import type { ListingSummary, LngLat } from '~/types/api'
 import {
@@ -65,7 +66,14 @@ onMounted(async () => {
   addListingLayers(m)
   pins = new PricePins(m, {
     hover: id => sel.hover(id ? `listing:${id}` : null),
-    select: id => sel.selectListing(id),
+    select: (id) => {
+      if (id === sel.selectedListingId.value) {
+        const l = props.listings.find(x => x.id === id) ?? selectedListing.value
+        if (l) openRadialOnPin(id, m.project([l.location.lng, l.location.lat]))
+      }
+      else sel.selectListing(id)
+    },
+    context: openRadialOnPin,
   })
   pins.setListings(props.listings)
   syncPinState()
@@ -185,20 +193,35 @@ async function onSelectionChange() {
 }
 watch(() => [sel.selectedListingId.value, sel.droppedPin.value, propertyLocation.value?.lng, propertyLocation.value?.lat], onSelectionChange)
 
-// --- radial menu (right-click / long-press) ----------------------------------
+// --- radial menu (right-click / long-press, or tap the selected pin again) ---
 
-const radial = ref<{ x: number; y: number; lngLat: LngLat } | null>(null)
+/** `listingId`: the rental the menu is about (a right-clicked pin, or the selected one). */
+const radial = ref<{ x: number; y: number; lngLat: LngLat; listingId: string | null } | null>(null)
 const radialRef = ref<InstanceType<typeof RadialMenu> | null>(null)
+const landlord = ref<{ listingId: string; x: number; y: number } | null>(null)
 
-const radialItems = computed<RadialItem[]>(() => [
-  ...(sel.activeAnalysisId.value ? [] : [{ key: 'check', label: 'Check a property here', icon: MapPinPlus }]),
-  { key: 'zoom', label: 'Zoom in here', icon: ZoomIn },
-  { key: 'centre', label: 'Centre here', icon: Crosshair },
-  { key: '3d', label: flat.value ? 'Show 3D' : 'Show 2D', icon: Box },
-])
+const radialItems = computed<RadialItem[]>(() => {
+  const r = radial.value
+  const onPin = !!r?.listingId && r.listingId !== sel.selectedListingId.value
+  return [
+    ...(r?.listingId ? [{ key: 'landlord', label: 'Send to landlord', icon: Mail }] : []),
+    ...(onPin ? [{ key: 'open', label: 'View this rental', icon: Eye }] : []),
+    ...(!r?.listingId && !sel.activeAnalysisId.value ? [{ key: 'check', label: 'Check a property here', icon: MapPinPlus }] : []),
+    { key: 'zoom', label: 'Zoom in here', icon: ZoomIn },
+    { key: 'centre', label: 'Centre here', icon: Crosshair },
+    ...(r?.listingId ? [] : [{ key: '3d', label: flat.value ? 'Show 3D' : 'Show 2D', icon: Box }]),
+  ]
+})
 
-function openRadial(point: { x: number; y: number }, lngLat: { lng: number; lat: number }) {
-  radial.value = { x: point.x, y: point.y, lngLat: { lng: lngLat.lng, lat: lngLat.lat } }
+function openRadial(point: { x: number; y: number }, lngLat: { lng: number; lat: number }, listingId: string | null = sel.selectedListingId.value) {
+  landlord.value = null
+  radial.value = { x: point.x, y: point.y, lngLat: { lng: lngLat.lng, lat: lngLat.lat }, listingId }
+}
+
+/** Right-click on a price pin, or a tap on the already-selected pin (phones). */
+function openRadialOnPin(id: string, point: { x: number; y: number }) {
+  const l = props.listings.find(x => x.id === id) ?? (selectedListing.value?.id === id ? selectedListing.value : null)
+  if (l) openRadial(point, l.location, id)
 }
 
 function closeRadial() {
@@ -207,13 +230,19 @@ function closeRadial() {
 
 function onRadialPick(key: string) {
   const m = map.value
-  const at = radial.value?.lngLat
-  if (!m || !at) return
-  if (key === 'check') dropAt(at)
+  const r = radial.value
+  if (!m || !r) return
+  const at = r.lngLat
+  if (key === 'landlord' && r.listingId) landlord.value = { listingId: r.listingId, x: r.x, y: r.y }
+  else if (key === 'open' && r.listingId) sel.selectListing(r.listingId)
+  else if (key === 'check') dropAt(at)
   else if (key === 'zoom') m.easeTo({ center: [at.lng, at.lat], zoom: Math.min(m.getZoom() + 2, 18), duration: 600 })
   else if (key === 'centre') m.easeTo({ center: [at.lng, at.lat], duration: 600 })
   else if (key === '3d') ui.is3D.value = flat.value
 }
+
+// Close the landlord card when going back to browsing.
+watch(sel.selectedListingId, (id) => { if (!id) landlord.value = null })
 
 // --- dropped pin ------------------------------------------------------------
 
@@ -363,6 +392,15 @@ watch(ui.recentre, () => {
       :items="radialItems"
       @pick="onRadialPick"
       @closed="radial = null"
+    />
+    <LandlordCard
+      v-if="landlord"
+      :key="landlord.listingId"
+      :listing-id="landlord.listingId"
+      :x="landlord.x"
+      :y="landlord.y"
+      :desktop="desktop"
+      @closed="landlord = null"
     />
   </div>
 </template>

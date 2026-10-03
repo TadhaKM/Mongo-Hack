@@ -13,6 +13,13 @@ export interface PinState {
   onlySelected: boolean
 }
 
+export interface PinHandlers {
+  hover: (id: string | null) => void
+  select: (id: string) => void
+  /** Right-click on a pin; `point` is in map-container pixels at the pin's tip. */
+  context: (id: string, point: { x: number; y: number }) => void
+}
+
 interface PinEntry { marker: Marker; el: HTMLElement; pill: HTMLButtonElement; verdict: Verdict }
 
 /**
@@ -29,9 +36,9 @@ export class PricePins {
   private introPlayed = false
 
   private map: MlMap
-  private handlers: { hover: (id: string | null) => void; select: (id: string) => void }
+  private handlers: PinHandlers
 
-  constructor(map: MlMap, handlers: { hover: (id: string | null) => void; select: (id: string) => void }) {
+  constructor(map: MlMap, handlers: PinHandlers) {
     this.map = map
     this.handlers = handlers
     map.on('render', this.schedule)
@@ -148,6 +155,11 @@ export class PricePins {
     pill.addEventListener('click', (e) => {
       e.stopPropagation()
       this.handlers.select(l.id)
+    })
+    pill.addEventListener('contextmenu', (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      this.handlers.context(l.id, this.map.project([l.location.lng, l.location.lat]))
     })
     el.addEventListener('animationend', () => el.classList.remove('rc-pin--enter'), { once: true })
     const marker = new Marker({ element: el, anchor: 'bottom' })
