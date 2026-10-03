@@ -1,0 +1,247 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Type (DESIGN.md): Newsreader 300 stands in for Waldenburg Light; Inter for everything else */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Newsreader', 'Times New Roman', serif;
+  --color-ink: var(--ink);
+  --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-hairline-strong: var(--hairline-strong);
+  --color-orb-mint: var(--orb-mint);
+  --color-orb-peach: var(--orb-peach);
+  --color-orb-lavender: var(--orb-lavender);
+  --color-orb-sky: var(--orb-sky);
+  --color-orb-rose: var(--orb-rose);
+  --color-band-1: var(--band-1);
+  --color-band-2: var(--band-2);
+  --color-band-3: var(--band-3);
+  --color-band-4: var(--band-4);
+  --color-band-5: var(--band-5);
+  /* RentCheck tokens as Tailwind colours: bg-verdict-above, text-brand, etc. */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-verdict-below: var(--verdict-below);
+  --color-verdict-inline: var(--verdict-inline);
+  --color-verdict-above: var(--verdict-above);
+  --color-planning-granted: var(--planning-granted);
+  --color-planning-pending: var(--planning-pending);
+  --color-planning-refused: var(--planning-refused);
+  --color-planning-appealed: var(--planning-appealed);
+  --color-transport-luas: var(--transport-luas);
+  --color-transport-dart: var(--transport-dart);
+  --color-transport-rail: var(--transport-rail);
+  --color-transport-bus: var(--transport-bus);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: #ffffff;
+  --foreground: #0c0a09;
+  --card: #ffffff;
+  --card-foreground: #0c0a09;
+  --popover: #ffffff;
+  --popover-foreground: #0c0a09;
+  --primary: #292524;
+  --primary-foreground: #ffffff;
+  --secondary: #f0efed;
+  --secondary-foreground: #0c0a09;
+  --muted: #f0efed;
+  --muted-foreground: #777169;
+  --accent: #f0efed;
+  --accent-foreground: #0c0a09;
+  --destructive: #dc2626;
+  --border: #e7e5e4;
+  --input: #d6d3d1;
+  --ring: #3d2db5;
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0.001 106.423);
+  --sidebar-foreground: oklch(0.147 0.004 49.25);
+  --sidebar-primary: oklch(0.216 0.006 56.043);
+  --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
+  --sidebar-accent: oklch(0.97 0.001 106.424);
+  --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
+  --sidebar-border: oklch(0.923 0.003 48.717);
+  --sidebar-ring: oklch(0.709 0.01 56.259);
+  /* RentCheck tokens (hex so MapLibre paint properties can use them directly). Source: DESIGN.md */
+  --ink: #0c0a09;
+  --body: #4e4e4e;
+  --canvas: #f5f5f5;
+  --canvas-soft: #fafafa;
+  --hairline-strong: #d6d3d1;
+  --brand: #3d2db5;            /* Georgian indigo: actions, selected pin and building */
+  --brand-foreground: #ffffff;
+  --orb-mint: #a7e5d3;         /* atmosphere only: never fills, never text */
+  --orb-peach: #f4c5a8;
+  --orb-lavender: #c8b8e0;
+  --orb-sky: #a8c8e8;
+  --orb-rose: #e8b8c4;
+  /* Rent rating bands (vivid, BER style): well below → well above */
+  --band-1: #0b7a4b;
+  --band-2: #4fa34a;
+  --band-3: #c9a227;
+  --band-4: #e07b24;
+  --band-5: #c4321c;
+  /* Verdict colours for text and pins (white text sits on these) */
+  --verdict-below: #1f7a44;
+  --verdict-inline: #8a6d0f;
+  --verdict-above: #c2410c;
+  --planning-granted: #1f7a44;
+  --planning-pending: #2b6cb0;
+  --planning-refused: #b42318;
+  --planning-appealed: #7a3e9d;
+  --transport-luas: #8e2a8b;
+  --transport-dart: #0f8a5f;
+  --transport-rail: #14532d;
+  --transport-bus: #b7791f;
+  --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.dark {
+  --background: oklch(0.147 0.004 49.25);
+  --foreground: oklch(0.985 0.001 106.423);
+  --card: oklch(0.216 0.006 56.043);
+  --card-foreground: oklch(0.985 0.001 106.423);
+  --popover: oklch(0.216 0.006 56.043);
+  --popover-foreground: oklch(0.985 0.001 106.423);
+  --primary: oklch(0.923 0.003 48.717);
+  --primary-foreground: oklch(0.216 0.006 56.043);
+  --secondary: oklch(0.268 0.007 34.298);
+  --secondary-foreground: oklch(0.985 0.001 106.423);
+  --muted: oklch(0.268 0.007 34.298);
+  --muted-foreground: oklch(0.709 0.01 56.259);
+  --accent: oklch(0.268 0.007 34.298);
+  --accent-foreground: oklch(0.985 0.001 106.423);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.553 0.013 58.071);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.216 0.006 56.043);
+  --sidebar-foreground: oklch(0.985 0.001 106.423);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
+  --sidebar-accent: oklch(0.268 0.007 34.298);
+  --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.553 0.013 58.071);
+  --ink: #ffffff;
+  --body: #d6d3d1;
+  --canvas: #0c0a09;
+  --canvas-soft: #1c1917;
+  --hairline-strong: #44403c;
+  --brand: #8b7ff0;
+  --brand-foreground: #12101f;
+  --orb-mint: #a7e5d3;
+  --orb-peach: #f4c5a8;
+  --orb-lavender: #c8b8e0;
+  --orb-sky: #a8c8e8;
+  --orb-rose: #e8b8c4;
+  --band-1: #22a36a;
+  --band-2: #6cc063;
+  --band-3: #ddb93c;
+  --band-4: #f0913d;
+  --band-5: #e5553f;
+  --verdict-below: #4cc27f;
+  --verdict-inline: #ddb93c;
+  --verdict-above: #f0913d;
+  --planning-granted: #4cc27f;
+  --planning-pending: #6aa7e6;
+  --planning-refused: #f07a6a;
+  --planning-appealed: #c08ae0;
+  --transport-luas: #d77bd4;
+  --transport-dart: #3fc28f;
+  --transport-rail: #5fc98b;
+  --transport-bus: #e0a84a;
+  --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Type scale from DESIGN.md. Display stays at weight 300: never bold. */
+@utility type-display-md {
+  font-family: var(--font-heading);
+  font-size: 32px; font-weight: 300; line-height: 1.13; letter-spacing: -0.32px;
+}
+@utility type-display-sm {
+  font-family: var(--font-heading);
+  font-size: 24px; font-weight: 300; line-height: 1.2; letter-spacing: 0;
+}
+@utility type-title {
+  font-family: var(--font-sans);
+  font-size: 20px; font-weight: 500; line-height: 1.35;
+}
+@utility type-caption-upper {
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 600; line-height: 1.4; letter-spacing: 0.96px; text-transform: uppercase;
+}
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@layer base {
+  body { letter-spacing: 0.16px; }
+  :focus-visible { outline-color: var(--ink); }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  .print-avoid-break { break-inside: avoid; }
+  @page { size: A4; margin: 16mm; }
+}
