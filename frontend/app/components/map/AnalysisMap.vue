@@ -7,6 +7,7 @@ import { FileText, Mail, MapPinPlus, PersonStanding, Route, Sparkles } from '@lu
 import RadialMenu, { type RadialItem } from './RadialMenu.vue'
 import LandlordCard from './LandlordCard.vue'
 import CommuteCard from './CommuteCard.vue'
+import PinHint from './PinHint.vue'
 import { toast } from 'vue-sonner'
 import type { ListingSummary, LngLat } from '~/types/api'
 import {
@@ -234,6 +235,7 @@ const radialItems = computed<RadialItem[]>(() => {
 function openRadial(point: { x: number; y: number }, lngLat: { lng: number; lat: number }, listingId: string | null = null) {
   landlord.value = null
   commute.value = null
+  hintUsed.value = true
   radial.value = { x: point.x, y: point.y, lngLat: { lng: lngLat.lng, lat: lngLat.lat }, listingId }
 }
 
@@ -282,6 +284,49 @@ function onRadialPick(key: string) {
     commute.value = { from: at, label, x: r.x, y: r.y }
   }
 }
+
+// --- one-time hint: "click the pin again for more" ----------------------------
+// Per page load (not localStorage), so a rehearsal never hides it for the real demo.
+const hintUsed = useState<boolean>('map:hint-used', () => false)
+const settled = ref(false)
+const hintPos = ref<{ x: number; y: number; flip: boolean } | null>(null)
+const touch = useMediaQuery('(pointer: coarse)')
+
+function updateHintPos() {
+  const m = map.value
+  const id = sel.selectedListingId.value
+  const l = id ? (selectedListing.value?.id === id ? selectedListing.value : props.listings.find(x => x.id === id)) : null
+  if (!m || !l) { hintPos.value = null; return }
+  const p = m.project([l.location.lng, l.location.lat])
+  const w = m.getContainer().clientWidth
+  hintPos.value = { x: p.x, y: p.y - 22, flip: p.x + 340 > w }
+}
+
+const showHint = computed(() => !hintUsed.value && settled.value && !!hintPos.value
+  && !!sel.selectedListingId.value && !radial.value && !landlord.value && !commute.value)
+
+// Appears once the fly-in has landed; follows the pin as the map moves.
+function settleHintAfterFly() {
+  settled.value = false
+  const m = map.value
+  const id = sel.selectedListingId.value
+  if (!id || !m) return
+  // Selecting can start a second fly a moment later (when the full listing loads),
+  // so only settle once the camera is still a frame after a moveend.
+  const check = () => requestAnimationFrame(() => {
+    if (sel.selectedListingId.value !== id) return
+    if (m.isMoving()) return m.once('moveend', check)
+    updateHintPos()
+    settled.value = true
+  })
+  check()
+}
+watch(sel.selectedListingId, settleHintAfterFly)
+watch(map, (m) => {
+  if (!m) return
+  m.on('move', () => { if (showHint.value) updateHintPos() })
+  settleHintAfterFly() // selection restored from the URL before the map existed
+})
 
 // Close the cards when going back to browsing.
 watch(sel.selectedListingId, (id) => { if (!id) { landlord.value = null; commute.value = null } })
@@ -451,6 +496,7 @@ watch(ui.recentre, () => {
       :desktop="desktop"
       @closed="landlord = null"
     />
+    <PinHint v-if="showHint && hintPos" :x="hintPos.x" :y="hintPos.y" :flip="hintPos.flip" :touch="touch" />
     <CommuteCard
       v-if="commute"
       :key="`${commute.x},${commute.y}`"
