@@ -8,6 +8,8 @@ import RadialMenu, { type RadialItem } from './RadialMenu.vue'
 import LandlordCard from './LandlordCard.vue'
 import CommuteCard from './CommuteCard.vue'
 import PinHint from './PinHint.vue'
+import RentHeatLayer from './layers/RentHeatLayer.vue'
+import HeatLegend from './HeatLegend.vue'
 import { toast } from 'vue-sonner'
 import type { ListingSummary, LngLat } from '~/types/api'
 import {
@@ -485,6 +487,12 @@ watch(ui.recentre, () => {
   <div class="absolute inset-0">
     <div ref="container" class="h-full w-full" />
     <slot v-if="map" />
+    <RentHeatLayer v-if="map && ui.heat.value && !sel.activeAnalysisId.value" :items="listings" />
+    <HeatLegend
+      v-if="map && ui.heat.value && !sel.activeAnalysisId.value"
+      class="absolute z-10"
+      :class="desktop ? 'bottom-8 left-[440px]' : 'left-3 top-[124px]'"
+    />
     <RadialMenu
       v-if="radial"
       :key="`${radial.x},${radial.y}`"

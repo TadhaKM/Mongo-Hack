@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core'
-import { LocateFixed, Minus, Plus } from '@lucide/vue'
+import { Flame, LocateFixed, Minus, Plus } from '@lucide/vue'
 import { DESKTOP_QUERY } from '~/lib/map/config'
 import { useMapUi } from '~/lib/map/state'
 
 // Rendered outside AnalysisMap's slot: talks to the map through shared UI state.
 const ui = useMapUi()
+const sel = useMapSelection()
 const desktop = useMediaQuery(DESKTOP_QUERY, { ssrWidth: 1280 })
 const is3D = computed(() => ui.is3D.value ?? desktop.value)
 
@@ -25,6 +26,18 @@ function zoom(delta: number) {
         <Minus class="size-4" />
       </button>
     </div>
+    <button
+      v-if="!sel.activeAnalysisId.value"
+      type="button"
+      class="grid size-11 place-items-center rounded-lg border shadow-md transition-colors"
+      :class="ui.heat.value ? 'border-brand bg-brand text-brand-foreground' : 'bg-background hover:bg-muted'"
+      :aria-pressed="ui.heat.value"
+      aria-label="Rent heatmap"
+      title="Rent heatmap: where rents run above or below the local median"
+      @click="ui.heat.value = !ui.heat.value"
+    >
+      <Flame class="size-4" />
+    </button>
     <button
       type="button"
       class="grid size-11 place-items-center rounded-lg border bg-background text-xs font-bold shadow-md hover:bg-muted"

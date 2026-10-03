@@ -17,6 +17,8 @@ export function useMapUi() {
     sameBedroomsOnly: useState<boolean>('map:same-beds', () => false),
     /** Bumped by the recentre control. */
     recentre: useState<number>('map:recentre', () => 0),
+    /** Rent heatmap (hexagons coloured by % vs local median) while browsing. */
+    heat: useState<boolean>('map:heat', () => false),
     /** County picked in the filters (a camera move, not an API filter). Cleared when the user pans away. */
     county: useState<string | null>('map:county', () => null),
     /** Request to frame a bbox; `n` makes repeats observable. */
