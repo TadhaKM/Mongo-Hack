@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ArrowLeft } from '@lucide/vue'
 import { Button } from '@/components/ui/button'
+import TextSwap from '../report/TextSwap.vue'
 
 defineProps<{ title?: string; subtitle?: string }>()
 const sel = useMapSelection()
@@ -13,7 +14,7 @@ const sel = useMapSelection()
     </Button>
     <div class="min-w-0 flex-1">
       <p v-if="title" class="truncate text-[15px] font-medium text-foreground">{{ title }}</p>
-      <p v-if="subtitle" class="truncate text-xs text-muted-foreground">{{ subtitle }}</p>
+      <p v-if="subtitle" class="truncate text-xs text-muted-foreground"><TextSwap :text="subtitle" /></p>
     </div>
     <slot name="actions" />
   </div>

@@ -6,6 +6,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import EvidenceProvider from '~/components/evidence/EvidenceProvider.vue'
 import ReportBody from '~/components/report/ReportBody.vue'
 import GradientOrb from '~/components/report/GradientOrb.vue'
+import TextSwap from '~/components/report/TextSwap.vue'
 import MiniMap from '~/components/map/MiniMap.vue'
 import type { FeatureId } from '~/composables/useMapSelection'
 import { beds, day, eur, pct, propertyType, verdictLabel } from '~/lib/format'
@@ -167,7 +168,7 @@ onBeforeUnmount(() => {
             <div v-if="summary" data-rise class="flex flex-wrap items-center gap-3">
               <span class="type-caption-upper inline-flex items-center gap-1.5 rounded-full bg-background/90 px-3 py-1.5 text-foreground shadow-soft">
                 <component :is="VERDICT_STYLE[summary.verdict].icon" class="size-3.5" :class="VERDICT_STYLE[summary.verdict].text" />
-                {{ verdictLabel(summary.verdict) }}
+                <TextSwap :text="verdictLabel(summary.verdict)" from="Checking" :delay="0.7" />
               </span>
               <span class="text-sm text-muted-foreground">
                 {{ pct(summary.difference_pct, { sign: true, decimals: 1 }) }} against {{ summary.observations }} similar homes nearby

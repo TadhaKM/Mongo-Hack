@@ -2,23 +2,27 @@
 import type { Analysis } from '~/types/api'
 import { eur, metres, pct, period, verdictLabel } from '~/lib/format'
 import { VERDICT_STYLE } from '~/lib/verdict'
-import { scrambleTo } from '~/lib/motion'
+import { registerBeatPart } from '~/lib/beat'
+import TextSwap from './TextSwap.vue'
 import ClaimText from './ClaimText.vue'
 import ConfidencePill from './ConfidencePill.vue'
 import GradientOrb from './GradientOrb.vue'
 import RentRating from './RentRating.vue'
 
-const props = defineProps<{ summary: NonNullable<Analysis['summary']>; animate?: boolean }>()
+const props = defineProps<{ summary: NonNullable<Analysis['summary']>; animate?: boolean | 'beat' }>()
 const style = computed(() => VERDICT_STYLE[props.summary.verdict])
-// Text replacement: the pill resolves from "Checking" into the verdict as the report appears.
-const verdictEl = ref<HTMLElement>()
-let swap: ReturnType<typeof scrambleTo> = null
+// Text replacement (SplitText): the pill's letters swap from "Checking" to the verdict.
+// In a live run the completion beat sequences it; on the report page it plays after a short delay.
+const pill = ref<InstanceType<typeof TextSwap>>()
+let unregister: (() => void) | null = null
+let fallback: ReturnType<typeof setTimeout> | undefined
+let played = false
 onMounted(() => {
-  if (!props.animate || !verdictEl.value) return
-  verdictEl.value.textContent = 'Checking'
-  swap = scrambleTo(verdictEl.value, verdictLabel(props.summary.verdict), { duration: 0.9, delay: 0.5, chars: 'upperCase' })
+  if (props.animate !== 'beat') return
+  unregister = registerBeatPart('verdict', () => { played = true; return pill.value?.swap() })
+  fallback = setTimeout(() => { if (!played) pill.value?.swap() }, 2000)
 })
-onBeforeUnmount(() => swap?.kill())
+onBeforeUnmount(() => { unregister?.(); clearTimeout(fallback) })
 
 const orb = computed(() => ({ below_market: 'mint', in_line: 'lavender', above_market: 'peach' } as const)[props.summary.verdict])
 
@@ -45,7 +49,16 @@ const subline = computed(() => {
       <div class="relative space-y-6">
         <div class="flex items-start justify-between gap-3">
           <p class="type-caption-upper inline-flex items-center gap-1.5 rounded-full bg-background/80 px-2.5 py-1 text-foreground">
-            <component :is="style.icon" class="size-3.5" :class="style.text" /> <span ref="verdictEl">{{ verdictLabel(summary.verdict) }}</span>
+            <component :is="style.icon" class="size-3.5" :class="style.text" />
+            <TextSwap
+              v-if="animate"
+              ref="pill"
+              :text="verdictLabel(summary.verdict)"
+              from="Checking"
+              :manual="animate === 'beat'"
+              :delay="0.6"
+            />
+            <span v-else>{{ verdictLabel(summary.verdict) }}</span>
           </p>
           <ConfidencePill :confidence="summary.confidence" />
         </div>

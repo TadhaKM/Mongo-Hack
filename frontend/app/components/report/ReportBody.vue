@@ -22,7 +22,7 @@ const props = defineProps<{
   disclaimer?: string
   print?: boolean
   /** Play the entrance animations (only when the user watched the check run). */
-  animate?: boolean
+  animate?: boolean | 'beat'
   /** The full report page shows the property in its cover instead. */
   hideSummary?: boolean
 }>()

@@ -10,6 +10,7 @@ import GradientOrb from '../report/GradientOrb.vue'
 import StageRow from './StageRow.vue'
 import { useStageQueue } from './useStageQueue'
 import { gsap, reducedMotion } from '~/lib/motion'
+import { playCompletionBeat } from '~/lib/beat'
 
 const props = defineProps<{ analysisId: string }>()
 const id = computed(() => props.analysisId)
@@ -47,7 +48,8 @@ watch(
   () => [analysis.value?.status, settled.value] as const,
   ([status, isSettled]) => {
     if (status !== 'complete' || !isSettled || showReport.value) return
-    if (animated.value) setTimeout(() => (showReport.value = true), 600)
+    // Live run: one master timeline sequences map → panel → rating → verdict (lib/beat.ts).
+    if (animated.value) playCompletionBeat({ onPanel: () => (showReport.value = true) })
     else showReport.value = true
   },
   { immediate: true },
@@ -127,7 +129,7 @@ function jump(sectionId: string) {
             {{ s.label }}
           </button>
         </nav>
-        <ReportBody :analysis="analysis" :comparables="comparables" :location="location" :planning="planning" :animate="animated" />
+        <ReportBody :analysis="analysis" :comparables="comparables" :location="location" :planning="planning" :animate="animated ? 'beat' : false" />
       </EvidenceProvider>
       </div>
     </Transition>

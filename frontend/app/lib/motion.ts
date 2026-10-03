@@ -1,10 +1,11 @@
 // GSAP helpers (Agent A). Every animation goes through here so reduced motion is respected in one place.
 import { gsap } from 'gsap'
 import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin'
+import { SplitText } from 'gsap/SplitText'
 
-if (import.meta.client) gsap.registerPlugin(ScrambleTextPlugin)
+if (import.meta.client) gsap.registerPlugin(ScrambleTextPlugin, SplitText)
 
-export { gsap }
+export { gsap, SplitText }
 
 export function reducedMotion(): boolean {
   return import.meta.client && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -42,4 +43,29 @@ export function scrambleTo(el: HTMLElement | null | undefined, text: string, opt
     ease: 'none',
     scrambleText: { text, chars: opts.chars ?? 'lowerCase', speed: 0.5, revealDelay: 0.1 },
   })
+}
+
+/**
+ * Text replacement: the current letters roll up and out of a mask, the new ones rise in with a stagger.
+ * Returns the timeline so a parent (e.g. the completion beat) can sequence it.
+ */
+export function swapText(el: HTMLElement | null | undefined, text: string, opts: { delay?: number } = {}) {
+  const tl = gsap.timeline({ delay: opts.delay ?? 0 })
+  if (!el) return tl
+  if (reducedMotion() || !el.textContent?.trim()) {
+    tl.call(() => { el.textContent = text })
+    return tl
+  }
+  const out = SplitText.create(el, { type: 'chars', mask: 'chars' })
+  tl.to(out.chars, { yPercent: -110, autoAlpha: 0, duration: 0.28, stagger: 0.012, ease: 'power2.in' })
+  tl.call(() => {
+    out.revert()
+    el.textContent = text
+    const incoming = SplitText.create(el, { type: 'chars', mask: 'chars' })
+    tl.add(gsap.from(incoming.chars, {
+      yPercent: 110, autoAlpha: 0, duration: 0.45, stagger: 0.018, ease: 'back.out(2)',
+      onComplete: () => incoming.revert(),
+    }), tl.time())
+  })
+  return tl
 }
