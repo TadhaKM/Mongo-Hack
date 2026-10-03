@@ -10,6 +10,7 @@
 //
 // Honest limits: RIQ02 is an average of NEWLY REGISTERED tenancies by place name. It has no sample sizes, ~83% of cells are
 // suppressed in the latest quarter, and CSO publishes no coordinates, so place centroids come from geocoding (approximate).
+import "../lib/env.js";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { Delaunay } from "d3-delaunay";
 import { parseRiq02, quarterOf } from "./riq02Parse.js";
@@ -109,6 +110,19 @@ export async function build({ since = SINCE } = {}) {
   return { source, areas, indexes, csv: csv.join("\n") + "\n", geojson, stats: { locations: cube.locations.length, geocoded: areas.length, withRegion: geojson.features.length, rentCells: indexes.length, csvRows: csv.length - 1, skippedRanges: cube.skipped.range, version } };
 }
 
+/** Loads a built RIQ02 dataset into an engine database (validators + indexes first). Replaces this source's previous load. */
+export async function loadIntoDb(db, out) {
+  const { createIndexes } = await import("./createIndexes.js");
+  const { applyValidators } = await import("../schemas/validators.js");
+  await applyValidators(db); await createIndexes(db);
+  await db.collection("sources").replaceOne({ _id: out.source._id }, out.source, { upsert: true });
+  await db.collection("areas").deleteMany({ "src.sourceId": SOURCE_ID });
+  await db.collection("rental_indexes").deleteMany({ "src.sourceId": SOURCE_ID });
+  await db.collection("areas").insertMany(out.areas);
+  for (let i = 0; i < out.indexes.length; i += 5000) await db.collection("rental_indexes").insertMany(out.indexes.slice(i, i + 5000), { ordered: false });
+  return { areas: out.areas.length, rental_indexes: out.indexes.length };
+}
+
 if (process.argv[1]?.endsWith("importRiq02.js")) {
   const out = await build();
   console.log("built", out.stats);
@@ -120,18 +134,10 @@ if (process.argv[1]?.endsWith("importRiq02.js")) {
   }
   if (!arg("no-db", false)) {
     const { MongoClient } = await import("mongodb");
-    const { createIndexes } = await import("./createIndexes.js");
-    const { applyValidators } = await import("../schemas/validators.js");
     const client = await MongoClient.connect(process.env.MONGODB_URI ?? "mongodb://localhost:27017");
     const db = client.db(process.env.MONGODB_DB ?? "rentcheck_engine");
-    await applyValidators(db); await createIndexes(db);
-    await db.collection("sources").replaceOne({ _id: out.source._id }, out.source, { upsert: true });
-    // replace this dataset release atomically-enough for a demo: delete what this source loaded, then insert
-    await db.collection("areas").deleteMany({ "src.sourceId": SOURCE_ID });
-    await db.collection("rental_indexes").deleteMany({ "src.sourceId": SOURCE_ID });
-    await db.collection("areas").insertMany(out.areas);
-    for (let i = 0; i < out.indexes.length; i += 5000) await db.collection("rental_indexes").insertMany(out.indexes.slice(i, i + 5000), { ordered: false });
-    console.log(`loaded into ${db.databaseName}: ${out.areas.length} areas, ${out.indexes.length} rental_indexes`);
+    const loaded = await loadIntoDb(db, out);
+    console.log(`loaded into ${db.databaseName}: ${loaded.areas} areas, ${loaded.rental_indexes} rental_indexes`);
     await client.close();
   }
 }

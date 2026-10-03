@@ -6,6 +6,7 @@
 //   GET  /analyses/:id                                                  -> stored analysis (results + evidence)
 //   POST /tools/:name         { params, analysisId? }                   -> { ok, data, evidence[], coverage, warnings[] }
 //                             with analysisId the result and evidence are stored on that analysis (callTool)
+import "./lib/env.js";
 import http from "node:http";
 import { ObjectId } from "mongodb";
 import { Ledger } from "./lib/envelope.js";

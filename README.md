@@ -54,6 +54,15 @@ curl -X POST localhost:8000/engine/tools/rentContext -H 'content-type: applicati
   -d '{"params":{"lng":-6.2546,"lat":53.3438,"propertyType":"apartment","bedrooms":2,"askingRent":2600}}'
 ```
 
+## MongoDB Atlas (shared database for the whole team)
+
+1. Atlas: create a **database user** (Database Access) and allow your IP (Network Access; `0.0.0.0/0` is fine for a hackathon).
+2. Copy the cluster's connection string (`mongodb+srv://<user>:<password>@<cluster>.mongodb.net/...`) into the git-ignored repo-root `.env` as `MONGODB_URI` (template: `.env.example`).
+3. `npm run atlas:setup` creates the validators and indexes and loads the real CSO/RTB rent data into the engine database. `npm run atlas:check` connects and reports which datasets are present or missing in both databases, then runs a live query on the real data.
+4. Backend: put the same `MONGODB_URI` and `MONGODB_DATABASE=rentcheck` in `rentcheck_person4_backend/.env`, then run the three `ingest.py` commands from the quick start.
+
+Never commit `.env`: it holds the database password and the Atlas Model API key.
+
 ## Tests
 
 | Command | Checks | Needs |

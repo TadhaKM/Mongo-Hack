@@ -18,6 +18,7 @@ const qLabel = (d) => `${d.getUTCFullYear()}Q${Math.floor(d.getUTCMonth() / 3) +
 const daysAgo = (n) => new Date(NOW.getTime() - n * 864e5);
 const src = (sourceId, recordId, version = "seed", extra = {}) => ({ sourceId, recordId, version, retrievedAt: NOW, ...extra });
 
+import "../lib/env.js";
 export function buildSeed() {
   const sources = [
     ["rtb_rent_index", "RTB Rent Index", "Residential Tenancies Board / ESRI", "rtb_zone", "cell_key"],

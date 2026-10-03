@@ -9,6 +9,7 @@
 //   property_sales  Person 4's PPR rows have no coordinates and no "not full market price" flag (both required here)
 //   properties, analyses  runtime data; each side writes its own
 //   rental_observations  Person 4 has no listing-level rents, so the comparable engine reports "none"
+import "../lib/env.js";
 import { point } from "../lib/geo.js";
 import { DB_NAME, createIndexes } from "./createIndexes.js";
 import { applyValidators } from "../schemas/validators.js";

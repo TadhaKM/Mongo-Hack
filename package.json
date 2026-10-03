@@ -17,7 +17,9 @@
     "db:pipelines": "node db/scripts/printComparablePipeline.js && node db/scripts/printTrendPipelines.js",
     "engine": "node db/server.js",
     "db:import:riq02": "node db/scripts/importRiq02.js",
-    "db:geocode:riq02": "node db/scripts/geocodeRiq02Locations.js"
+    "db:geocode:riq02": "node db/scripts/geocodeRiq02Locations.js",
+    "atlas:check": "node db/scripts/atlas.js check",
+    "atlas:setup": "node db/scripts/atlas.js setup"
   },
   "dependencies": {
     "d3-delaunay": "^6.0.4",
