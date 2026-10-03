@@ -3,9 +3,10 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import '~/lib/map/map.css'
 import { Marker, type Map as MlMap, type GeoJSONSource, type MapMouseEvent } from 'maplibre-gl'
 import { useDebounceFn, useMediaQuery } from '@vueuse/core'
-import { Box, Crosshair, Eye, Mail, MapPinPlus, ZoomIn } from '@lucide/vue'
+import { FileText, Mail, MapPinPlus, PersonStanding, Route, Sparkles } from '@lucide/vue'
 import RadialMenu, { type RadialItem } from './RadialMenu.vue'
 import LandlordCard from './LandlordCard.vue'
+import CommuteCard from './CommuteCard.vue'
 import { toast } from 'vue-sonner'
 import type { ListingSummary, LngLat } from '~/types/api'
 import {
@@ -195,54 +196,93 @@ watch(() => [sel.selectedListingId.value, sel.droppedPin.value, propertyLocation
 
 // --- radial menu (right-click / long-press, or tap the selected pin again) ---
 
-/** `listingId`: the rental the menu is about (a right-clicked pin, or the selected one). */
+/** `listingId`: the rental the menu is about (pin menu); null for a spot on the map. */
 const radial = ref<{ x: number; y: number; lngLat: LngLat; listingId: string | null } | null>(null)
 const radialRef = ref<InstanceType<typeof RadialMenu> | null>(null)
 const landlord = ref<{ listingId: string; x: number; y: number } | null>(null)
+const commute = ref<{ from: LngLat; label: string; x: number; y: number } | null>(null)
+const createAnalysis = useCreateAnalysis()
+
+/** The analysis currently shown for `listingId`, if any. */
+function analysisFor(listingId: string) {
+  const a = analysis.value
+  return sel.activeAnalysisId.value && a?.input?.property_id === listingId ? a : null
+}
 
 const radialItems = computed<RadialItem[]>(() => {
   const r = radial.value
-  const onPin = !!r?.listingId && r.listingId !== sel.selectedListingId.value
+  if (r?.listingId) {
+    const a = analysisFor(r.listingId)
+    return [
+      { key: 'landlord', label: 'Send to landlord', icon: Mail },
+      ...(a?.status === 'complete'
+        ? [{ key: 'report', label: 'Full report', icon: FileText }]
+        : a ? [] : [{ key: 'check-rent', label: 'Check this rent', icon: Sparkles }]),
+      { key: 'streetview', label: 'Street View', icon: PersonStanding },
+      { key: 'commute', label: 'Commute', icon: Route },
+    ]
+  }
   return [
-    ...(r?.listingId ? [{ key: 'landlord', label: 'Send to landlord', icon: Mail }] : []),
-    ...(onPin ? [{ key: 'open', label: 'View this rental', icon: Eye }] : []),
-    ...(!r?.listingId && !sel.activeAnalysisId.value ? [{ key: 'check', label: 'Check a property here', icon: MapPinPlus }] : []),
-    { key: 'zoom', label: 'Zoom in here', icon: ZoomIn },
-    { key: 'centre', label: 'Centre here', icon: Crosshair },
-    ...(r?.listingId ? [] : [{ key: '3d', label: flat.value ? 'Show 3D' : 'Show 2D', icon: Box }]),
+    ...(sel.activeAnalysisId.value ? [] : [{ key: 'check', label: 'Check a property here', icon: MapPinPlus }]),
+    { key: 'streetview', label: 'Street View here', icon: PersonStanding },
+    { key: 'commute', label: 'Commute from here', icon: Route },
   ]
 })
 
-function openRadial(point: { x: number; y: number }, lngLat: { lng: number; lat: number }, listingId: string | null = sel.selectedListingId.value) {
+function openRadial(point: { x: number; y: number }, lngLat: { lng: number; lat: number }, listingId: string | null = null) {
   landlord.value = null
+  commute.value = null
   radial.value = { x: point.x, y: point.y, lngLat: { lng: lngLat.lng, lat: lngLat.lat }, listingId }
 }
 
 /** Right-click on a price pin, or a tap on the already-selected pin (phones). */
 function openRadialOnPin(id: string, point: { x: number; y: number }) {
   const l = props.listings.find(x => x.id === id) ?? (selectedListing.value?.id === id ? selectedListing.value : null)
-  if (l) openRadial(point, l.location, id)
+  // Centre the ring on the price pill, which sits ~22 px above the pin's tip.
+  if (l) openRadial({ x: point.x, y: point.y - 22 }, l.location, id)
 }
 
 function closeRadial() {
   radialRef.value?.close()
 }
 
-function onRadialPick(key: string) {
-  const m = map.value
-  const r = radial.value
-  if (!m || !r) return
-  const at = r.lngLat
-  if (key === 'landlord' && r.listingId) landlord.value = { listingId: r.listingId, x: r.x, y: r.y }
-  else if (key === 'open' && r.listingId) sel.selectListing(r.listingId)
-  else if (key === 'check') dropAt(at)
-  else if (key === 'zoom') m.easeTo({ center: [at.lng, at.lat], zoom: Math.min(m.getZoom() + 2, 18), duration: 600 })
-  else if (key === 'centre') m.easeTo({ center: [at.lng, at.lat], duration: 600 })
-  else if (key === '3d') ui.is3D.value = flat.value
+async function checkRent(listingId: string) {
+  if (sel.selectedListingId.value !== listingId) sel.selectListing(listingId)
+  try {
+    const res = await createAnalysis.mutateAsync({ property_id: listingId })
+    sel.startAnalysis(res.id)
+  }
+  catch {
+    toast.error('Couldn\'t start the check. Try again from the card.')
+  }
 }
 
-// Close the landlord card when going back to browsing.
-watch(sel.selectedListingId, (id) => { if (!id) landlord.value = null })
+function onRadialPick(key: string) {
+  const r = radial.value
+  if (!r) return
+  const at = r.lngLat
+  // Prefer the full Listing (has the address) when it's the selected one.
+  const listing = !r.listingId ? null : selectedListing.value?.id === r.listingId ? selectedListing.value : props.listings.find(l => l.id === r.listingId) ?? null
+  if (key === 'landlord' && r.listingId) landlord.value = { listingId: r.listingId, x: r.x, y: r.y }
+  else if (key === 'check-rent' && r.listingId) void checkRent(r.listingId)
+  else if (key === 'report' && r.listingId) {
+    const a = analysisFor(r.listingId)
+    if (a) window.open(`/analysis/${a.id}/report`, '_blank', 'noopener')
+  }
+  else if (key === 'check') dropAt(at)
+  else if (key === 'streetview') {
+    window.open(`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${at.lat},${at.lng}`, '_blank', 'noopener')
+  }
+  else if (key === 'commute') {
+    // Full Listing (selected) has an address; a ListingSummary only has its area.
+    const address = listing && 'address' in listing && typeof listing.address === 'string' ? listing.address : null
+    const label = address ?? (listing ? `this ${listing.area} rental` : 'this spot')
+    commute.value = { from: at, label, x: r.x, y: r.y }
+  }
+}
+
+// Close the cards when going back to browsing.
+watch(sel.selectedListingId, (id) => { if (!id) { landlord.value = null; commute.value = null } })
 
 // --- dropped pin ------------------------------------------------------------
 
@@ -401,6 +441,16 @@ watch(ui.recentre, () => {
       :y="landlord.y"
       :desktop="desktop"
       @closed="landlord = null"
+    />
+    <CommuteCard
+      v-if="commute"
+      :key="`${commute.x},${commute.y}`"
+      :from="commute.from"
+      :label="commute.label"
+      :x="commute.x"
+      :y="commute.y"
+      :desktop="desktop"
+      @closed="commute = null"
     />
   </div>
 </template>

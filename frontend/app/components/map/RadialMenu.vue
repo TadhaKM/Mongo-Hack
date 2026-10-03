@@ -10,7 +10,7 @@ export interface RadialItem { key: string; label: string; icon: Component }
 const props = defineProps<{ x: number; y: number; items: RadialItem[] }>()
 const emit = defineEmits<{ pick: [key: string]; closed: [] }>()
 
-const RADIUS = 66
+const RADIUS = 76
 const root = ref<HTMLElement>()
 const itemEls = ref<HTMLElement[]>([])
 let tl: gsap.core.Timeline | null = null

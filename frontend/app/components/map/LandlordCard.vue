@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { Check, Copy, Mail, X } from '@lucide/vue'
-import { onClickOutside } from '@vueuse/core'
+import { Check, Copy, Mail } from '@lucide/vue'
 import { toast } from 'vue-sonner'
 import { beds, eur, metres, period, propertyType } from '~/lib/format'
-import { gsap, reducedMotion } from '~/lib/motion'
+import MapCard from './MapCard.vue'
 
 // "Send to landlord", opened from the map's radial menu. A draft built from the
 // evidence (same wording as A's report version). RentCheck never sends anything:
@@ -70,76 +69,10 @@ async function copy() {
   }
 }
 
-// --- placement + motion -------------------------------------------------------
-const W = 360
-const root = ref<HTMLElement>()
-const style = computed(() => {
-  if (!props.desktop) return {}
-  const parent = root.value?.parentElement?.getBoundingClientRect()
-  const pw = parent?.width ?? 1280
-  const ph = parent?.height ?? 800
-  // Beside the pin, on whichever side has more room (the side panel takes ~440 px on the left).
-  const GAP = 70
-  const roomRight = pw - (props.x + GAP)
-  const roomLeft = props.x - GAP - 440
-  const left = roomRight >= roomLeft
-    ? Math.min(props.x + GAP, pw - W - 16)
-    : Math.max(props.x - GAP - W, 440)
-  const top = Math.min(Math.max(props.y - 120, 80), ph - 470)
-  return { left: `${left}px`, top: `${Math.max(16, top)}px`, width: `${W}px` }
-})
-
-let tween: gsap.core.Tween | null = null
-onMounted(() => {
-  if (reducedMotion()) return
-  // Grow out of the radial menu point (props.x/y are in map-container pixels).
-  const el = root.value!
-  const parent = el.parentElement!.getBoundingClientRect()
-  const r = el.getBoundingClientRect()
-  tween = gsap.fromTo(el, {
-    autoAlpha: 0, scale: 0.85, y: 8,
-    transformOrigin: `${props.x - (r.left - parent.left)}px ${props.y - (r.top - parent.top)}px`,
-  }, { autoAlpha: 1, scale: 1, y: 0, duration: 0.35, ease: 'back.out(1.6)', easeReverse: 'power2.in' })
-})
-onBeforeUnmount(() => tween?.kill())
-
-let closing = false
-function close() {
-  if (closing) return
-  closing = true
-  if (!tween || reducedMotion()) return emit('closed')
-  tween.eventCallback('onReverseComplete', () => emit('closed'))
-  tween.timeScale(1.5).reverse()
-}
-function onKey(e: KeyboardEvent) { if (e.key === 'Escape') close() }
-onMounted(() => window.addEventListener('keydown', onKey))
-// Any click outside the card (map, side panel, search, anywhere) closes it.
-onClickOutside(root, close)
-onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 </script>
 
 <template>
-  <section
-    ref="root"
-    class="absolute z-30 flex flex-col gap-3 rounded-2xl border bg-background p-4 shadow-2xl"
-    :class="desktop ? '' : 'inset-x-3 top-[124px] max-h-[calc(100dvh-140px)] overflow-y-auto'"
-    :style="style"
-    role="dialog"
-    aria-label="Send to landlord"
-    @mousedown.stop
-    @contextmenu.stop
-  >
-    <header class="flex items-start gap-3">
-      <span class="grid size-9 shrink-0 place-items-center rounded-full bg-brand text-brand-foreground"><Mail class="size-4" /></span>
-      <div class="min-w-0 flex-1">
-        <h2 class="text-sm font-semibold">Send to landlord</h2>
-        <p class="truncate text-xs text-muted-foreground">{{ listing?.address ?? 'Loading…' }}</p>
-      </div>
-      <button type="button" class="grid size-9 place-items-center rounded-full hover:bg-muted" aria-label="Close" @click="close">
-        <X class="size-4" />
-      </button>
-    </header>
-
+  <MapCard :x="x" :y="y" :desktop="desktop" title="Send to landlord" :subtitle="listing?.address ?? 'Loading…'" :icon="Mail" @closed="emit('closed')">
     <p v-if="counter" class="text-sm">
       Suggested offer: <strong class="font-semibold">{{ eur(counter) }}</strong>
       <span class="text-muted-foreground"> (midway between the median and the asking rent)</span>
@@ -166,5 +99,5 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
     <p class="text-xs text-muted-foreground">
       RentCheck doesn't send anything.<template v-if="listing?.is_sample"> Sample listing: there's no real landlord to contact.</template>
     </p>
-  </section>
+  </MapCard>
 </template>
